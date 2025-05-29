@@ -1,14 +1,14 @@
 <template>
-  <div id="app">
-    <HeaderComponent />
-    <BannerComponent :title="title" :backgroundImage="backgroundImage" :bannerThumb="bannerThumb" />
-    <ImageGalleryComponent title="Rejoins l'équipe EKNA. et construit l'avenir de la colocation"
-      subtitle="Nous cherchons des talents passionnés pour transformer l’immobilier locatif."
-      description="We wanna hear from you! Revest is a growing startup and we're always on the lookout for kindred spirits."
-      :images="images" />
-    <PositionsComponent :jobs="jobList" :tabs="tabs" :default="activeTab" />
-    <FooterComponent />
-  </div>
+    <div id="app">
+        <HeaderComponent />
+        <BannerComponent :title="title" :backgroundImage="backgroundImage" :bannerThumb="bannerThumb" />
+        <ImageGalleryComponent title="Rejoins l'équipe EKNA. et construit l'avenir de la colocation"
+            subtitle="Nous cherchons des talents passionnés pour transformer l’immobilier locatif."
+            description="We wanna hear from you! Revest is a growing startup and we're always on the lookout for kindred spirits."
+            :images="images" />
+        <PositionsComponent :jobs="jobList" :tabs="tabs" :default="activeTab" />
+        <FooterComponent />
+    </div>
 </template>
 
 <script setup>
@@ -36,42 +36,42 @@ const tabs = ['all', 'sales', 'marketing', 'engineering', 'design']
 const activeTab = 'all'
 
 const jobList = [
-  {
-    title: 'Director of Sales',
-    image: salesIcon,
-    department: 'Sales',
-    location: 'Remote',
-    type: 'Full Time',
-    tags: ['all', 'sales'],
-    link: 'career-details.html',
-  },
-  {
-    title: 'Business Development Representative',
-    image: businessIcon,
-    department: 'Business',
-    location: 'Remote',
-    type: 'Full Time',
-    tags: ['all', 'engineering'],
-    link: 'career-details.html',
-  },
-  {
-    title: 'Product Marketing Lead',
-    image: marketingIcon,
-    department: 'Marketing',
-    location: 'Remote',
-    type: 'Full Time',
-    tags: ['all', 'marketing'],
-    link: 'career-details.html',
-  },
-  {
-    title: 'Business Development Representative',
-    image: developmentIcon,
-    department: 'Business',
-    location: 'Remote',
-    type: 'Full Time',
-    tags: ['all', 'design'],
-    link: 'career-details.html',
-  },
+    {
+        title: 'Director of Sales',
+        image: salesIcon,
+        department: 'Sales',
+        location: 'Remote',
+        type: 'Full Time',
+        tags: ['all', 'sales'],
+        link: 'career-details.html',
+    },
+    {
+        title: 'Business Development Representative',
+        image: businessIcon,
+        department: 'Business',
+        location: 'Remote',
+        type: 'Full Time',
+        tags: ['all', 'engineering'],
+        link: 'career-details.html',
+    },
+    {
+        title: 'Product Marketing Lead',
+        image: marketingIcon,
+        department: 'Marketing',
+        location: 'Remote',
+        type: 'Full Time',
+        tags: ['all', 'marketing'],
+        link: 'career-details.html',
+    },
+    {
+        title: 'Business Development Representative',
+        image: developmentIcon,
+        department: 'Business',
+        location: 'Remote',
+        type: 'Full Time',
+        tags: ['all', 'design'],
+        link: 'career-details.html',
+    },
 ]
 </script>
 

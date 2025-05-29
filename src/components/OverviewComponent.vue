@@ -3,11 +3,7 @@
     <div class="container">
       <div class="contact__overview__area">
         <div class="row">
-          <div
-            v-for="(item, index) in items"
-            :key="index"
-            class="col-md-6 col-xl-4"
-          >
+          <div v-for="(item, index) in items" :key="index" class="col-md-6 col-xl-4">
             <div class="contact__overview__single column__space--secondary shadow__effect">
               <img :src="item.icon" :alt="item.alt" />
               <h5>{{ item.title }}</h5>
@@ -48,6 +44,6 @@ const items = props.items
 /* styles globaux éventuels */
 
 .contact__overview__single {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 </style>
