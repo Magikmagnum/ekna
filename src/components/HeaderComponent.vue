@@ -100,6 +100,7 @@ const menu = [
       { label: 'Home', to: '/home' },
       { label: 'Error', to: '/error' },
       { label: 'Support', to: '/support' },
+      { label: 'Alert', to: '/alert' },
     ],
   },
 ]

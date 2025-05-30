@@ -36,7 +36,6 @@
 
 const backgroundImage = new URL('@//assets/images/gd-bg.png', import.meta.url).href
 
-
 const props = defineProps({
     steps: {
     type: Array,

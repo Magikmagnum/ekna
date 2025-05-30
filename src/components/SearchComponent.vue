@@ -1,12 +1,9 @@
 <template>
-  <section
-    class="support__banner bg__img clear__top"
-    :style="{ backgroundImage: `url(${bgImage})` }"
-  >
+  <section class="support__banner bg__img clear__top" :style="{ backgroundImage: `url(${bgImage})` }">
     <div class="container">
       <div class="support__banner__area">
         <div class="support__banner__inner">
-          <h1 class="neutral-top">How can we help?</h1>
+          <h1 class="neutral-top">{{ title }}</h1>
 
           <div class="input input--secondary">
             <input
@@ -37,19 +34,33 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import bgImage from '@/assets/images/support-bg.png'
+import { ref, watch, defineProps } from 'vue'
+
+const props = defineProps({
+  bgImage: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    default: 'How can we help?',
+  },
+  tabs: {
+    type: Array,
+    default: () => [],
+  },
+  defaultTab: {
+    type: String,
+    default: '',
+  },
+})
 
 const searchTerm = ref('')
-const activeTab = ref('#start')
+const activeTab = ref(props.defaultTab)
 
-const tabs = [
-  { label: 'Getting Started', href: '#start' },
-  { label: 'Adding Funds', href: '#funds' },
-  { label: 'Investing', href: '#investing' },
-  { label: 'Security', href: '#security' },
-  { label: 'Taxes', href: '#taxes' },
-]
+watch(() => props.defaultTab, (newVal) => {
+  activeTab.value = newVal
+})
 
 function setActive(href) {
   activeTab.value = href
@@ -57,5 +68,4 @@ function setActive(href) {
 </script>
 
 <style scoped>
-/* Ajoute ici des styles personnalisés si nécessaire */
 </style>
