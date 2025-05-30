@@ -36,8 +36,6 @@
                 </li>
               </ul>
             </li>
-
-            
             <li class="nav-item">
               <RouterLink class="nav-link" to="/">List your property</RouterLink>
             </li>
@@ -100,6 +98,8 @@ const menu = [
       { label: 'Terme', to: '/terme' },
       { label: 'Stat', to: '/stat' },
       { label: 'Home', to: '/home' },
+      { label: 'Error', to: '/error' },
+      { label: 'Support', to: '/support' },
     ],
   },
 ]

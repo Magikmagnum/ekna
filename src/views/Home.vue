@@ -3,12 +3,9 @@
     <HeaderComponent />
     <BannerComponent :title="title" :bannerThumb="bannerThumb" :backgroundImage="backgroundImage"
       :breadcrumbs="breadcrumbs" />
-
     <BannerSecondComponent />
     <StepTwoSectionComponent />
     <TestimonialsComponent />
-    <FooterComponent />
-
     <FooterComponent />
   </div>
 </template>

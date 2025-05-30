@@ -9,6 +9,8 @@ import Cookie from '../views/Cookie.vue'
 import Privacy from '../views/Privacy.vue'
 import Terme from '../views/Terme.vue'
 import Stat from '../views/Stat.vue'
+import Error from '../views/Error.vue'
+import Support from '../views/Support.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -19,6 +21,8 @@ const routes = [
   { path: '/terme', name: 'Terme', component: Terme },
   { path: '/stat', name: 'Stat', component: Stat },
   { path: '/home', name: 'Home', component: Home },
+  { path: '/error', name: 'Error', component: Error },
+  { path: '/support', name: 'Support', component: Support },
   // Ajouter ici d'autres routes si nécessaires
 ]
 
