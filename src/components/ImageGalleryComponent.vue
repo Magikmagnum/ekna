@@ -6,7 +6,7 @@
             <p v-if="description" class="neutral-bottom">{{ description }}</p>
         </div>
 
-        <Swiper v-if="images?.length" :slides-per-view="3" :space-between="10" :loop="true"
+        <Swiper v-if="qq?.length" :slides-per-view="3" :space-between="10" :loop="true"
             class="image__gallery__area">
             <SwiperSlide v-for="(image, index) in images" :key="index">
                 <div class="gallery__single">

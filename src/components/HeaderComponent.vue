@@ -101,6 +101,7 @@ const menu = [
       { label: 'Error', to: '/error' },
       { label: 'Support', to: '/support' },
       { label: 'Alert', to: '/alert' },
+      {label: 'Affiliate', to: '/affiliate' },
     ],
   },
 ]

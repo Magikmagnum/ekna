@@ -12,6 +12,7 @@ import Stat from '../views/Stat.vue'
 import Error from '../views/Error.vue'
 import Support from '../views/Support.vue'
 import Alert from '../views/alert.vue'
+import Affiliate from '../views/Affiliate.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -25,6 +26,7 @@ const routes = [
   { path: '/error', name: 'Error', component: Error },
   { path: '/support', name: 'Support', component: Support },
   { path: '/alert', name: 'Alert', component: Alert },
+  { path: '/affiliate', name: 'Affiliate', component: Affiliate },
   // Ajouter ici d'autres routes si nécessaires
 ]
 
