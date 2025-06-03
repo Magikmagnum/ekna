@@ -9,7 +9,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="text-start text-lg-end">
-                                <a href="properties.html" class="button button--secondary button--effect">
+                                <a href="/home" class="button button--secondary button--effect">
                                     Browse All Properties
                                 </a>
                             </div>

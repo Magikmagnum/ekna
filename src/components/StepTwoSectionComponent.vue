@@ -43,11 +43,16 @@
         </div>
       </div>
     </div>
+
     <!-- ==== #video popup section end ==== -->
   </section>
 </template>
 
 <script setup>
+
+import VideoComponent from './VideoComponent.vue';
+
+
 defineProps({
   title: {
     type: String,

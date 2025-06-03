@@ -106,31 +106,31 @@ const handleSubmit = () => {
 };
 
 const companyLinks = [
-    { text: 'About Us', href: '/' },
-    { text: 'Careers', href: '/' },
-    { text: 'Blog', href: '/' },
-    { text: 'Contact Us', href: '/' },
-    { text: 'Affiliate', href: '/' },
+    { text: 'About Us', href: '/home' },
+    { text: 'Careers', href: '/home' },
+    { text: 'Blog', href: '/home' },
+    { text: 'Contact Us', href: '/home' },
+    { text: 'Affiliate', href: '/home' },
 ];
 
 const investLinks = [
-    { text: 'Browse Properties', href: '/' },
-    { text: 'How it works', href: '/' },
-    { text: 'Loan Application', href: '/' },
-    { text: 'Property Alerts', href: '/' },
-    { text: 'FAQs', href: '/' },
+    { text: 'Browse Properties', href: '/home' },
+    { text: 'How it works', href: '/home' },
+    { text: 'Loan Application', href: '/home' },
+    { text: 'Property Alerts', href: '/home' },
+    { text: 'FAQs', href: '/home' },
 ];
 
 const insightsLinks = [
-    { text: 'Help Center', href: '/' },
-    { text: 'List Your Property', href: '/' },
-    { text: 'Loyality program', href: '/' },
+    { text: 'Help Center', href: '/home' },
+    { text: 'List Your Property', href: '/home' },
+    { text: 'Loyality program', href: '/home' },
 ];
 
 const legalLinks = [
-    { text: 'Privacy Policy', href: '/' },
-    { text: 'Term & Conditions', href: '/' },
-    { text: 'Cookie Policy', href: '/' },
-    { text: 'Key Risks', href: '/' },
+    { text: 'Privacy Policy', href: '/home' },
+    { text: 'Term & Conditions', href: '/home' },
+    { text: 'Cookie Policy', href: '/home' },
+    { text: 'Key Risks', href: '/home' },
 ];
 </script>

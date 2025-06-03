@@ -2,15 +2,15 @@
   <header class="header header--secondary">
     <nav class="navbar navbar-expand-xl">
       <div class="container">
-        <RouterLink class="navbar-brand" to="/">
+        <RouterLink class="navbar-brand" to="/home">
           <img src="@/assets/images/logo.png" alt="Logo" class="logo" />
         </RouterLink>
 
         <!-- Droite de la navbar -->
         <div class="navbar__out order-2 order-xl-3">
           <div class="nav__group__btn d-none d-sm-flex">
-            <RouterLink to="/" class="log">Log In</RouterLink>
-            <RouterLink to="/" class="button button--effect">
+            <RouterLink to="/home" class="log">Log In</RouterLink>
+            <RouterLink to="/home" class="button button--effect">
               Join Now <i class="fa-solid fa-arrow-right-long"></i>
             </RouterLink>
           </div>
@@ -37,17 +37,17 @@
               </ul>
             </li>
             <li class="nav-item">
-              <RouterLink class="nav-link" to="/">List your property</RouterLink>
+              <RouterLink class="nav-link" to="/home">List your property</RouterLink>
             </li>
             <li class="nav-item">
-              <RouterLink class="nav-link" to="/">Contact</RouterLink>
+              <RouterLink class="nav-link" to="/home">Contact</RouterLink>
             </li>
 
             <li class="nav-item d-block d-sm-none">
-              <RouterLink to="/" class="nav-link">Log In</RouterLink>
+              <RouterLink to="/home" class="nav-link">Log In</RouterLink>
             </li>
             <li class="nav-item d-block d-sm-none">
-              <RouterLink to="/" class="button button--effect button--last">
+              <RouterLink to="/home" class="button button--effect button--last">
                 Join Now <i class="fa-solid fa-arrow-right-long"></i>
               </RouterLink>
             </li>

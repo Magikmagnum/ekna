@@ -33,7 +33,6 @@ const exp = new URL('@/assets/images/icons/exp.png', import.meta.url).href
 
 const iconMessage = new URL('@/assets/images/icons/message.png', import.meta.url).href
 
-
 const attractive = new URL('@/assets/images/icons/attractive.png', import.meta.url).href
 const fast = new URL('@/assets/images/icons/fast.png', import.meta.url).href
 const innovation = new URL('@/assets/images/icons/innovation.png', import.meta.url).href
