@@ -13,60 +13,54 @@
         <PropositionComponent />
         <Home3Component />
         <Home4Component />
-        <PropertyComponent headingSmall="Your success is our success." headingLarge="Why sell through Revest?"
-      description="Revest enables real estate owners to sell their properties through its platform. Submit your property quickly and easily!"
-      learnMoreLink="contact-us.html" learnMoreLabel="Let us know about your property" ctaLink="login.html"
-      ctaLabel="Submit Your Property" :leftItems="leftItems" :rightItems="rightItems" />
+        <Home5Component :stats="statsComponent5" buttonLink="/properties" :backgroundImage="backgroundImageComponent5" />
+
         <TestimonialsComponent />
         <BannerSecondComponent title="Vous louez. Ekna s'occupe du reste." subtitle="Optimisez votre mobilité"
-            :imageSrc="imageSrc" />
+            :imageSrc="backgroundImageBannerSecond" />
         <FooterComponent />
     </div>
 </template>
 
 <script setup>
+// Importing components
 import HeaderComponent from '@/components/HeaderComponent.vue'
 import BannerHomeComponent from '@/components/BannerHomeComponent.vue'
 import AnnonceComponent from '@/components/AnnonceComponent.vue';
 import PropositionComponent from '@/components/PropositionComponent.vue';
 import Home3Component from '@/components/Home3Component.vue';
 import Home4Component from '@/components/Home4Component.vue';
+import Home5Component from '@/components/Home5Component.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 import BannerSecondComponent from '@/components/BannerSecondComponent.vue';
 import TestimonialsComponent from '@/components/TestimonialsComponent.vue';
-import PropertyComponent from '@/components/PropertyComponent.vue';
 
-const imageSrc = new URL('@/assets/images/market-illustration.png', import.meta.url).href
-
-
-const attractive = new URL('@/assets/images/icons/attractive.png', import.meta.url).href
-const fast = new URL('@/assets/images/icons/fast.png', import.meta.url).href
-const innovation = new URL('@/assets/images/icons/innovation.png', import.meta.url).href
+// Background image for BannerSecondComponent
+const backgroundImageBannerSecond = new URL('@/assets/images/market-illustration.png', import.meta.url).href
 
 
-const leftItems = [
+// Background image and stats for Home5Component
+const backgroundImageComponent5 = new URL('@/assets/images/globe.png', import.meta.url).href
+const statsComponent5 = [
   {
-    icon: attractive,
-    alt: 'Attractive',
-    title: 'Attractive conditions',
-    description: 'With us you sell your property without paying a brokerage commission.',
+    image: new URL('@/assets/images/platforms.png', import.meta.url).href,
+    alt: 'Platform',
+    value: 2500,
+    label: 'Investors Using Platform'
   },
   {
-    icon: fast,
-    alt: 'Fast',
-    title: 'Fast processing',
-    description: 'Receive an initial offer and a property assessment within 48 hours.',
+    image: new URL('@/assets/images/returns.png', import.meta.url).href,
+    alt: 'Returns',
+    value: 18,
+    label: 'Returns upto'
   },
-]
-
-const rightItems = [
   {
-    icon: innovation,
-    alt: 'Innovation',
-    title: 'Innovation',
-    description: 'Sell your property online through an innovative business model.',
-  },
-]
+    image: new URL('@/assets/images/experience.png', import.meta.url).href,
+    alt: 'Experience',
+    value: 10,
+    label: 'Years Experience'
+  }
+];
 
 
 </script>

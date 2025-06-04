@@ -44,7 +44,7 @@ defineProps({
   },
   ctaLink: {
     type: String,
-    default: '/register',
+    default: '/Home',
   },
   imageSrc: {
     type: String,

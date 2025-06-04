@@ -32,16 +32,25 @@
             </div>
         </div>
     </section>
+    <!-- ==== video popup section start ==== -->
+    <VideoComponent :videoIllustration="videoIllustration" :videoAlt="videoAlt" :videoLink="videoLink" />
+    <!-- ==== #video popup section end ==== -->
 </template>
 
 <script setup>
 
+import VideoComponent from './VideoComponent.vue'
 
 const backgroundUrl = new URL('@/assets/images/step/start-bg.png', import.meta.url).href
 const image1 = new URL('@/assets/images/step/browse.png', import.meta.url).href
 const image2 = new URL('@/assets/images/step/invest.png', import.meta.url).href
 const image3 = new URL('@/assets/images/step/earn.png', import.meta.url).href
 
+
+// Define the properties for the video component
+const videoIllustration = new URL('@/assets/images/video-illustration.png', import.meta.url).href
+const videoAlt = 'Video Illustration'
+const videoLink = 'https://www.youtube.com/watch?v=LCihLrSehCo'
 
 const steps = [
     {

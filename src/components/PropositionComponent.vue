@@ -6,12 +6,12 @@
                 <div class="title__with__cta">
                     <div class="row d-flex align-items-center">
                         <div class="col-lg-8">
-                            <h2>All Properties</h2>
+                            <h2>Toutes les colocations</h2>
                         </div>
                         <div class="col-lg-4">
                             <div class="text-start text-lg-end">
                                 <a href="properties.html" class="button button--secondary button--effect">
-                                    Browse All Properties
+                                    Voir toutes les annonces
                                 </a>
                             </div>
                         </div>
@@ -39,16 +39,16 @@ const imageSan = new URL('@/assets/images/property/san.png', import.meta.url).hr
 const properties = [
     {
         id: 1,
-        title: 'Los Angeles',
-        address: '8706 Herrick Ave, Los Angeles',
+        title: 'Lille',
+        address: 'Rue de Douai',
         imageUrl: imageLos,
-        investors: 119,
+        investors: 375,
         amount: '494,196',
         progressPercent: 54.73,
-        annualReturn: '7.5% + 3%',
-        propertyType: 'Commercial',
+        chambres: '2',
+        type: 'Appartement',
         detailsUrl: '/home',
-        countdown: { days: '10', hours: '08', minutes: '24' },
+        countdown: { days: '10', month: '08', years: '24' },
     },
     {
         id: 2,
@@ -58,10 +58,10 @@ const properties = [
         investors: 179,
         amount: '164,296',
         progressPercent: 64.73,
-        annualReturn: '3.5% + 6%',
-        propertyType: 'Commercial',
+        chambres: '4',
+        type: 'Appartement',
         detailsUrl: '/home',
-        countdown: { days: '05', hours: '16', minutes: '00' },
+        countdown: { days: '05', month: '16', years: '00' },
     },
     {
         id: 3,
@@ -71,10 +71,10 @@ const properties = [
         investors: 17,
         amount: '794,196',
         progressPercent: 14.73,
-        annualReturn: '2.5% + 4%',
-        propertyType: 'Commercial',
+        chambres: '3',
+        type: 'Appartement',
         detailsUrl: '/home',
-        countdown: { days: '12', hours: '03', minutes: '48' },
+        countdown: { days: '12', month: '03', years: '48' },
     },
     {
         id: 4,
@@ -84,10 +84,10 @@ const properties = [
         investors: 59,
         amount: '894,196',
         progressPercent: 54.73,
-        annualReturn: '7.5% + 9%',
-        propertyType: 'Commercial',
+        chambres: '3',
+        type: 'Appartement',
         detailsUrl: '/home',
-        countdown: { days: '07', hours: '10', minutes: '00' },
+        countdown: { days: '07', month: '10', years: '00' },
     },
     {
         id: 5,
@@ -97,10 +97,10 @@ const properties = [
         investors: 59,
         amount: '894,196',
         progressPercent: 54.73,
-        annualReturn: '7.5% + 9%',
-        propertyType: 'Commercial',
+        chambres: '2',
+        type: 'Commercial',
         detailsUrl: '/home',
-        countdown: { days: '02', hours: '06', minutes: '12' },
+        countdown: { days: '02', month: '06', years: '12' },
     },
 ];
 

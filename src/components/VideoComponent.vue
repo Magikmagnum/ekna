@@ -1,5 +1,5 @@
 <template>
-    <div class="video video__two section__space__top">
+    <div class="video">
         <div class="container">
             <div class="video__area">
                 <img :src="videoIllustration" :alt="videoAlt" />
@@ -19,15 +19,15 @@
 defineProps({
     videoIllustration: {
         type: String,
-        required: true,
+        default: new URL('@/assets/images/video-illustration.png', import.meta.url).href,
     },
     videoAlt: {
         type: String,
-        default: 'Video preview',
+        default: 'Video Illustration',
     },
     videoLink: {
         type: String,
-        required: true,
+        default: 'https://www.youtube.com/watch?v=LCihLrSehCo',
     },
 });
 </script>

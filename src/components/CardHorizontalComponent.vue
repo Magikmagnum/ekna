@@ -19,13 +19,9 @@
                     </div>
                     <div class="item__head__right">
                         <div class="countdown__wrapper">
-                            <p class="secondary"><i class="fa-solid fa-clock"></i> Left to invest</p>
+                            <p class="secondary"><i class="fa-solid fa-clock"></i> Disponibilité</p>
                             <div class="countdown">
-                                <h5><span class="days">00</span><span class="ref">d</span><span
-                                        class="seperator">:</span></h5>
-                                <h5><span class="hours">00</span><span class="ref">h</span><span
-                                        class="seperator">:</span></h5>
-                                <h5><span class="minutes">00</span><span class="ref">m</span></h5>
+                                <h5>Immédiate</h5>
                             </div>
                         </div>
                     </div>
@@ -38,31 +34,27 @@
                     </div>
                     <div class="project__info">
                         <p class="project__has">
-                            <span class="project__has__investors">{{ property.investors }} Investors</span> |
-                            <span class="project__has__investors__amount"><i class="fa-solid fa-dollar-sign"></i> {{
-                                property.amount }}</span>
-                            <span class="project__has__investors__percent">({{ property.percent }})</span>
+                            <span class="project__has__investors">{{ property.investors }} €  CC</span> 
                         </p>
-                        <p class="project__goal"><i class="fa-solid fa-dollar-sign"></i> {{ property.goal }} Goal</p>
                     </div>
                 </div>
 
                 <div class="item__info">
                     <div class="item__info__single">
-                        <p>Annual Return</p>
-                        <h6>{{ property.return }}</h6>
+                        <p>Nb de chambres</p>
+                        <h6>{{ property.chambres }} chambre(s)</h6>
                     </div>
                     <div class="item__info__single">
-                        <p>Maximum Term</p>
-                        <h6>{{ property.term }}</h6>
+                        <p>Type de bail</p>
+                        <h6>{{ property.bail }}</h6>
                     </div>
                     <div class="item__info__single">
-                        <p>Property Type</p>
+                        <p>Type d'habitat</p>
                         <h6>{{ property.type }}</h6>
                     </div>
                     <div class="item__info__single">
-                        <p>Distribution</p>
-                        <h6>{{ property.distribution }}</h6>
+                        <p>Surface</p>
+                        <h6>{{ property.Surface }}</h6>
                     </div>
                 </div>
 
@@ -70,13 +62,13 @@
                     <div class="item__security">
                         <div class="icon__box"><img :src="imageHome" alt="Security" /></div>
                         <div class="item__security__content">
-                            <p class="secondary">Security</p>
-                            <h6>{{ property.security }}</h6>
+                            <p class="secondary">Annonce certifiée</p>
+                            <h6>EKNA</h6>
                         </div>
                     </div>
                     <div class="item__cta__group">
-                        <a href="registration.html" class="button button--effect">Invest Now</a>
-                        <a href="property-details.html" class="button button--secondary button--effect">Details</a>
+                        <a href="registration.html" class="button button--effect">Réserver</a>
+                        <a href="property-details.html" class="button button--secondary button--effect">Détails</a>
                     </div>
                 </div>
             </div>
@@ -91,3 +83,11 @@ const imageHome = new URL('@/assets/images/home.png', import.meta.url).href
 
 defineProps({ property: Object })
 </script>
+
+
+<style scoped>
+.countdown h5 {
+    text-transform: capitalize;
+    font-weight: 700;
+}
+</style>
