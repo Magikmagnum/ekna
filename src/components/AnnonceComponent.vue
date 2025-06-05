@@ -5,12 +5,12 @@
                 <div class="title__with__cta">
                     <div class="row d-flex align-items-center">
                         <div class="col-lg-8">
-                            <h2>Annonces à la une</h2>
+                            <h2>{{$t('AnnonceComponent.annoncesALaUne')}}</h2>
                         </div>
                         <div class="col-lg-4">
                             <div class="text-start text-lg-end">
                                 <a href="/home" class="button button--secondary button--effect">
-                                    Voir toutes les annonces
+                                    {{ $t('AnnonceComponent.voirToutes') }}
                                 </a>
                             </div>
                         </div>
@@ -23,7 +23,7 @@
                         <CardHorizontalComponent :property="property" />
                     </div>
                 </div>
-                <div v-else class="text-center mt-4">Chargement des annonces...</div>
+                <div v-else class="text-center mt-4">{{ $t('AnnonceComponent.chargement') }}</div>
             </div>
         </div>
     </section>
@@ -32,8 +32,15 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import { useI18n } from 'vue-i18n'
+
+// Importing the CardHorizontalComponent for displaying property details
 import CardHorizontalComponent from './CardHorizontalComponent.vue'
 
+// Importing the i18n instance for translations
+const { t } = useI18n()
+
+// Reactive reference to hold the list of properties
 const properties = ref([])
 onMounted(async () => {
     try {
@@ -52,7 +59,7 @@ onMounted(async () => {
         }))
     } catch (error) {
         console.error('Erreur lors du chargement des logements:', error)
-    } 
+    }
 })
 
 </script>

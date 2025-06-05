@@ -1,3 +1,4 @@
+<!-- CardHorizontalComponent -->
 <template>
     <div class="row d-flex align-items-center">
         <div class="col-lg-5">
@@ -19,9 +20,9 @@
                     </div>
                     <div class="item__head__right">
                         <div class="countdown__wrapper">
-                            <p class="secondary"><i class="fa-solid fa-clock"></i> Disponibilité</p>
+                            <p class="secondary"><i class="fa-solid fa-clock"></i> {{ $t('CardHorizontalComponent.disponibilite') }}</p>
                             <div class="countdown">
-                                <h5>Immédiate</h5>
+                                <h5>{{ $t('CardHorizontalComponent.immediate') }}</h5>
                             </div>
                         </div>
                     </div>
@@ -34,26 +35,26 @@
                     </div>
                     <div class="project__info">
                         <p class="project__has">
-                            <span class="project__has__investors">{{ property.investors }} €  CC</span> 
+                            <span class="project__has__investors">{{ property.investors }} € CC</span>
                         </p>
                     </div>
                 </div>
 
                 <div class="item__info">
                     <div class="item__info__single">
-                        <p>Nb de chambres</p>
-                        <h6>{{ property.chambres }} chambre(s)</h6>
+                        <p>{{ $t('CardHorizontalComponent.nbChambres') }}</p>
+                        <h6>{{ property.chambres }} {{ $t('CardHorizontalComponent.chambres') }}</h6>
                     </div>
                     <div class="item__info__single">
-                        <p>Type de bail</p>
+                        <p>{{ $t('CardHorizontalComponent.typeBail') }}</p>
                         <h6>{{ property.bail }}</h6>
                     </div>
                     <div class="item__info__single">
-                        <p>Type d'habitat</p>
+                        <p>{{ $t('CardHorizontalComponent.typeHabitat') }}</p>
                         <h6>{{ property.type }}</h6>
                     </div>
                     <div class="item__info__single">
-                        <p>Surface</p>
+                        <p>{{ $t('CardHorizontalComponent.surface') }}</p>
                         <h6>{{ property.Surface }}</h6>
                     </div>
                 </div>
@@ -62,13 +63,13 @@
                     <div class="item__security">
                         <div class="icon__box"><img :src="imageHome" alt="Security" /></div>
                         <div class="item__security__content">
-                            <p class="secondary">Annonce certifiée</p>
+                            <p class="secondary">{{ $t('CardHorizontalComponent.certifie') }}</p>
                             <h6>EKNA</h6>
                         </div>
                     </div>
                     <div class="item__cta__group">
-                        <a href="registration.html" class="button button--effect">Réserver</a>
-                        <a href="property-details.html" class="button button--secondary button--effect">Détails</a>
+                        <a href="registration.html" class="button button--effect">{{ $t('CardHorizontalComponent.reserver') }}</a>
+                        <a href="property-details.html" class="button button--secondary button--effect">{{ $t('CardHorizontalComponent.details') }}</a>
                     </div>
                 </div>
             </div>
@@ -77,11 +78,15 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
 
+// Importing the i18n instance for translations
+const { t } = useI18n()
 
 const imageHome = new URL('@/assets/images/home.png', import.meta.url).href
 
 defineProps({ property: Object })
+
 </script>
 
 

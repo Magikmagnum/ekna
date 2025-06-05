@@ -2,6 +2,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import { createI18n } from 'vue-i18n'
+import messages from './i18n/messages'
+
+const i18n = createI18n({
+  locale: 'fr', // ou 'en'
+  fallbackLocale: 'en',
+  messages
+})
 
 // CSS globaux
 import './assets/vendor/bootstrap/css/bootstrap.min.css'
@@ -12,4 +20,4 @@ import './assets/vendor/animate/animate.css'
 import './assets/css/style.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).use(i18n).mount('#app')
