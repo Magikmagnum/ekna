@@ -17,42 +17,42 @@
                     </div>
                 </div>
 
-                <div v-for="(property, index) in properties" :key="index" class="property__list__wrapper">
-                    <CardHorizontalComponent :property="property" />
+                <div v-if="properties.length">
+                    <div v-for="(property, index) in properties" :key="property.reference || index"
+                        class="property__list__wrapper">
+                        <CardHorizontalComponent :property="property" />
+                    </div>
                 </div>
+                <div v-else class="text-center mt-4">Chargement des annonces...</div>
             </div>
         </div>
     </section>
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
 import CardHorizontalComponent from './CardHorizontalComponent.vue'
 
-const image1 = new URL('@/assets/images/property/los.png', import.meta.url).href
-const image2 = new URL('@/assets/images/property/san.png', import.meta.url).href
+const properties = ref([])
+onMounted(async () => {
+    try {
+        const response = await axios.post('https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements')
+        properties.value = response.data.result.data.map(annonce => ({
+            title: annonce.ville,
+            location: annonce.adresse,
+            image: annonce.image,
+            investors: annonce.locataires?.length || 0,
+            chambres: annonce.total_chambre?.toString() || 'N.C.',
+            bail: annonce.is_meuble ? 'Meublé' : 'Non meublé',
+            type: annonce.type_logement || 'N.C.',
+            Surface: annonce.surface_total ? `${annonce.surface_total} m²` : 'N.C.',
+            security: annonce.loyer_hors_charge ? `${annonce.loyer_hors_charge} € HC` : 'N.C.',
+            reference: annonce.reference,
+        }))
+    } catch (error) {
+        console.error('Erreur lors du chargement des logements:', error)
+    } 
+})
 
-const properties = [
-    {
-        title: 'Tourcoing',
-        location: '36 rue des Acacias',
-        image: image1,
-        investors: 350,
-        chambres: '3',
-        bail: 'Individuel',
-        type: 'Maison',
-        Surface: '75 m2',
-        security: '1st-Rank Mortgage',
-    },
-    {
-        title: 'San Francisco, CA',
-        location: '3335 21 St, San Francisco',
-        image: image2,
-        investors: 179,
-        chambres: '2',
-        bail: 'Individuel',
-        type: 'Maison',
-        Surface: '75 m2',
-        security: '1st-Rank Mortgage',
-    },
-]
 </script>

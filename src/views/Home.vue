@@ -9,7 +9,7 @@
             :secondaryCta="{ label: 'Trouver une colocation', link: '/funding' }"
             backgroundImage="@/assets/images/hero/light-bg.png.png"
             illustration="@/assets/images/hero/hero-illustration.png" />
-        <AnnonceComponent />
+        <AnnonceComponent/>
         <PropositionComponent />
         <Home3Component />
         <Home4Component />
@@ -26,6 +26,9 @@
 </template>
 
 <script setup>
+
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
 // Importing components
 import HeaderComponent from '@/components/HeaderComponent.vue'
 import BannerHomeComponent from '@/components/BannerHomeComponent.vue'
@@ -37,6 +40,12 @@ import Home5Component from '@/components/Home5Component.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 import BannerSecondComponent from '@/components/BannerSecondComponent.vue';
 import TestimonialsComponent from '@/components/TestimonialsComponent.vue';
+
+
+
+const logements = ref([])
+const loading = ref(true)
+
 
 // Background image for BannerSecondComponent
 const backgroundImageBannerSecond = new URL('@/assets/images/market-illustration.png', import.meta.url).href
