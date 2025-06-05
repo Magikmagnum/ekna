@@ -12,7 +12,7 @@
             <div class="content">
               <h5 class="neutral-top">{{ subtitle }}</h5>
               <h2>{{ title }}</h2>
-              <p>{{ description }}</p>
+              <div v-html="description"></div>
               <router-link :to="ctaLink" class="button button--effect">
                 {{ ctaText }}
               </router-link>

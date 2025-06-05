@@ -1,15 +1,11 @@
 <template>
     <div id="app">
         <HeaderComponent />
-        <BannerHomeComponent
-            subtitle="La plateforme intelligente pour trouver ou louer une colocation en toute simplicité"
-            title="Les bons <span>locataires</span>, tout simplement"
-            description="Accélérez vos démarches, sécurisez vos biens et connectez-vous à des locataires qualifiés."
-            :primaryCta="{ label: 'Déposer une annonce', link: '/explore' }"
+        <BannerHomeComponent :primaryCta="{ label: 'Déposer une annonce', link: '/explore' }"
             :secondaryCta="{ label: 'Trouver une colocation', link: '/funding' }"
             backgroundImage="@/assets/images/hero/light-bg.png.png"
             illustration="@/assets/images/hero/hero-illustration.png" />
-        <AnnonceComponent/>
+        <AnnonceComponent />
         <PropositionComponent />
         <Home3Component />
         <Home4Component />
@@ -17,10 +13,15 @@
             :backgroundImage="backgroundImageComponent5" />
 
         <TestimonialsComponent />
-        <BannerSecondComponent title="L'app EKNA t'accompagne partout." subtitle="Trouvez une colocation ou ton futur colocataire en quelques clics"
-            :imageSrc="backgroundImageBannerSecond" 
-            description="<p>Grâce à notre algorithme de matching et notre scoring de dossier, finis les recherches interminables et les mauvaises surprises.</p><ul>  <li>Navigue parmi des profils qualifiés.</li>  <li>Échange directement avec les bons candidats ou propriétaires.</li>  <li>Centralise ton dossier locatif.</li>  <li>Reçois des alertes en temps réel.</li></ul>"
-            />
+        <BannerSecondComponent title="L'app EKNA t'accompagne partout."
+            subtitle="Trouvez une colocation ou ton futur colocataire en quelques clics"
+            :imageSrc="backgroundImageBannerSecond" :description="`<p style='margin-bottom: 24px;'>Grâce à notre algorithme de matching et notre scoring de dossier, finis les recherches interminables et les mauvaises surprises.</p>
+            <ul style='list-style: disc;margin-left: 52px;'>
+            <li>Navigue parmi des profils qualifiés.</li>
+            <li>Échange directement avec les bons candidats ou propriétaires.</li>
+            <li>Centralise ton dossier locatif.</li>
+            <li>Reçois des alertes en temps réel.</li>
+            </ul>`" />
         <FooterComponent />
     </div>
 </template>

@@ -20,7 +20,14 @@ export default {
             certifie: 'Annonce certifiée',
             reserver: 'Réserver',
             details: 'Détails'
-        }
+        },
+        BannerHomeComponent: {
+            subtitle: 'La plateforme intelligente pour trouver ou louer une colocation en toute simplicité',
+            title: 'Les bons <span>locataires</span>, tout simplement',
+            description: 'Accélérez vos démarches, sécurisez vos biens et connectez-vous à des locataires qualifiés.',
+            primaryCta: 'Déposer une annonce',
+            secondaryCta: 'Trouver une colocation'
+        },
     },
     en: {
         AnnonceComponent: {
@@ -43,6 +50,13 @@ export default {
             certifie: 'Certified listing',
             reserver: 'Book now',
             details: 'Details'
+        },
+        BannerHomeComponent: {
+            subtitle: 'The smart platform to easily find or rent a shared accommodation',
+            title: 'The right <span>tenants</span>, made simple',
+            description: 'Speed up your process, secure your property, and connect with qualified tenants.',
+            primaryCta: 'Post a listing',
+            secondaryCta: 'Find a shared flat'
         }
     }
 }
