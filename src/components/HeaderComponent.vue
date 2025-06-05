@@ -9,9 +9,10 @@
         <!-- Droite de la navbar -->
         <div class="navbar__out order-2 order-xl-3">
           <div class="nav__group__btn d-none d-sm-flex">
-            <RouterLink to="/home" class="log">Log In</RouterLink>
+            <!-- <RouterLink to="/home" class="log">Log In</RouterLink> -->
             <RouterLink to="/home" class="button button--effect">
-              Join Now <i class="fa-solid fa-arrow-right-long"></i>
+              Espace bailleur 
+              <!-- <i class="fa-solid fa-arrow-right-long"></i> -->
             </RouterLink>
           </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav"
@@ -36,19 +37,19 @@
                 </li>
               </ul>
             </li>
+            <!-- <li class="nav-item">
+              <RouterLink class="nav-link" to="/home">Bailleurs</RouterLink>
+            </li> -->
             <li class="nav-item">
-              <RouterLink class="nav-link" to="/home">List your property</RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" to="/home">Contact</RouterLink>
+              <RouterLink class="nav-link" to="/home">Déposer une annonce</RouterLink>
             </li>
 
-            <li class="nav-item d-block d-sm-none">
+            <!-- <li class="nav-item d-block d-sm-none">
               <RouterLink to="/home" class="nav-link">Log In</RouterLink>
-            </li>
+            </li> -->
             <li class="nav-item d-block d-sm-none">
               <RouterLink to="/home" class="button button--effect button--last">
-                Join Now <i class="fa-solid fa-arrow-right-long"></i>
+                Espace bailleur <i class="fa-solid fa-arrow-right-long"></i>
               </RouterLink>
             </li>
           </ul>
@@ -60,35 +61,8 @@
 
 <script setup>
 const menu = [
-  // {
-  //   label: 'Home',
-  //   id: 'navbarHomeDropdown',
-  //   children: [
-  //     { label: 'Home', to: '/' },
-  //     { label: 'Home Two', to: '/home-two' },
-  //     { label: 'Home Three', to: '/home-three' },
-  //   ],
-  // },
-  // {
-  //   label: 'Properties',
-  //   id: 'navbarPropertyDropdown',
-  //   children: [
-  //     { label: 'Properties', to: '/properties' },
-  //     { label: 'Property Details', to: '/property-details' },
-  //     { label: 'Property Alert', to: '/property-alert' },
-  //   ],
-  // },
-  // {
-  //   label: 'Loan',
-  //   id: 'navbarLoanDropdown',
-  //   children: [
-  //     { label: 'Business Loan', to: '/business-loan' },
-  //     { label: 'Business Loan Details', to: '/business-loan-details' },
-  //     { label: 'Loan Application', to: '/loan-application' },
-  //   ],
-  // },
   {
-    label: 'Pages',
+    label: 'Colocataires',
     id: 'navbarDropdown',
     children: [
       { label: 'Aide', to: '/aide' },
@@ -101,9 +75,27 @@ const menu = [
       { label: 'Error', to: '/error' },
       { label: 'Support', to: '/support' },
       { label: 'Alert', to: '/alert' },
-      {label: 'Affiliate', to: '/affiliate' },
+      { label: 'Affiliate', to: '/affiliate' },
     ],
   },
+  {
+    label: 'Bailleurs',
+    id: 'navbarLoanDropdown',
+    children: [
+      { label: 'Business Loan', to: '/home' },
+      { label: 'Business Loan Details', to: '/home' },
+      { label: 'Loan Application', to: '/home' },
+    ],
+  },
+  {
+    label: 'À propos',
+    id: 'navbarPropertyDropdown',
+    children: [
+      { label: 'Properties', to: '/home' },
+      { label: 'Property Details', to: '/home' },
+      { label: 'Property Alert', to: '/home' },
+    ],
+  }
 ]
 </script>
 

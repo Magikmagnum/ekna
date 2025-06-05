@@ -56,8 +56,11 @@
 </template>
 
 <script>
+// Importing images for background and quotes
 import backgroundImage from '@/assets/images/testimonial/dot-map.png'
 import quoteImage from '@/assets/images/testimonial/quote.png'
+
+// Default Avatar imag
 import avatar from '@/assets/images/testimonial/avatar.png'
 
 export default {
@@ -67,15 +70,15 @@ export default {
             backgroundImage,
             quoteImage,
             header: {
-                smallTitle: 'Investors Trust Us',
-                mainTitle: 'Trusted by Over 40,000 Worldwide Customers since 2022',
+                smallTitle: 'Ils nous font confiance',
+                mainTitle: 'Plus de 50 bailleurs nous font confiance depuis 2022',
                 description:
-                    'We divide each property into shares so anyone can get started. Kindly check out what our investors say about Revest.',
+                    '',
             },
             testimonials: [
                 {
-                    name: 'Allan Murphy',
-                    country: 'United States',
+                    name: 'Thomas',
+                    country: 'Lille, France',
                     avatar,
                     stars: 5,
                     comment:

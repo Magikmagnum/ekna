@@ -13,11 +13,14 @@
         <PropositionComponent />
         <Home3Component />
         <Home4Component />
-        <Home5Component :stats="statsComponent5" buttonLink="/properties" :backgroundImage="backgroundImageComponent5" />
+        <Home5Component :stats="statsComponent5" buttonLink="/properties"
+            :backgroundImage="backgroundImageComponent5" />
 
         <TestimonialsComponent />
-        <BannerSecondComponent title="Vous louez. Ekna s'occupe du reste." subtitle="Optimisez votre mobilité"
-            :imageSrc="backgroundImageBannerSecond" />
+        <BannerSecondComponent title="L'app EKNA t'accompagne partout." subtitle="Trouvez une colocation ou ton futur colocataire en quelques clics"
+            :imageSrc="backgroundImageBannerSecond" 
+            description="<p>Grâce à notre algorithme de matching et notre scoring de dossier, finis les recherches interminables et les mauvaises surprises.</p><ul>  <li>Navigue parmi des profils qualifiés.</li>  <li>Échange directement avec les bons candidats ou propriétaires.</li>  <li>Centralise ton dossier locatif.</li>  <li>Reçois des alertes en temps réel.</li></ul>"
+            />
         <FooterComponent />
     </div>
 </template>
@@ -42,24 +45,24 @@ const backgroundImageBannerSecond = new URL('@/assets/images/market-illustration
 // Background image and stats for Home5Component
 const backgroundImageComponent5 = new URL('@/assets/images/globe.png', import.meta.url).href
 const statsComponent5 = [
-  {
-    image: new URL('@/assets/images/platforms.png', import.meta.url).href,
-    alt: 'Platform',
-    value: 2500,
-    label: 'Investors Using Platform'
-  },
-  {
-    image: new URL('@/assets/images/returns.png', import.meta.url).href,
-    alt: 'Returns',
-    value: 18,
-    label: 'Returns upto'
-  },
-  {
-    image: new URL('@/assets/images/experience.png', import.meta.url).href,
-    alt: 'Experience',
-    value: 10,
-    label: 'Years Experience'
-  }
+    {
+        image: new URL('@/assets/images/platforms.png', import.meta.url).href,
+        alt: 'Platform',
+        value: '73%',
+        label: 'de matching réussi grace à notre scoring de compatiblebilité',
+    },
+    {
+        image: new URL('@/assets/images/returns.png', import.meta.url).href,
+        alt: 'Returns',
+        value: '+50',
+        label: 'bailleurs partenaires nous font déjà confiance',
+    },
+    {
+        image: new URL('@/assets/images/experience.png', import.meta.url).href,
+        alt: 'Experience',
+        value: '90%',
+        label: 'des annonces trouvent un candidat qualifier en moin de 7 jours',
+    }
 ];
 
 

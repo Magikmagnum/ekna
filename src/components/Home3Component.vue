@@ -3,15 +3,14 @@
         <div class="container">
             <div class="profit__area wow fadeInUp">
                 <div class="section__header">
-                    <h5 class="neutral-top">Built to help smart investors invest smarter</h5>
+                    <h5 class="neutral-top">Gagnez du temps et maximisez vos chances</h5>
                     <h2>
-                        We handle the heavy lifting so you
-                        can sit back, relax, and profit.
+                        Pourquoi choisir EKNA ?
                     </h2>
-                    <p class="neutral-bottom">
+                    <!-- <p class="neutral-bottom">
                         We make institutional quality real estate accessible to investors, in a
                         simple and transparent way.
-                    </p>
+                    </p> -->
                 </div>
 
                 <div v-for="(row, rowIndex) in items" :key="rowIndex" class="profit__item__wrapper">
@@ -48,29 +47,29 @@ const items = [
     [
         {
             image: income,
-            title: 'Passive Income',
-            description: 'Earn rental income and receive deposits quarterly',
+            title: 'Des profils fiables et compatibles',
+            description: 'grâce à un algorithme de matching relationnel.',
             alt: true,
         },
         {
             image: secure,
-            title: 'Secure & Cost-efficient',
+            title: 'Gain de temps',
             description:
-                'Digital security is legally compliant and tangible for qualified investors',
+                'dans la recherche comme dans la sélection',
             alt: false,
         },
     ],
     [
         {
             image: transparency,
-            title: 'Transparency',
-            description: 'Easily consult the full documentation for each property.',
+            title: 'Moins de turnover',
+            description: 'Plus de stabilité et de tranquillité',
             alt: true,
         },
         {
             image: support,
-            title: 'Support',
-            description: 'Earn rental income and receive deposits quarterly',
+            title: 'Communication directe',
+            description: 'et fluide entre toutes les parties',
             alt: false,
         },
     ],

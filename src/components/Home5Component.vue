@@ -49,15 +49,15 @@ defineProps({
     },
     subtitle: {
         type: String,
-        default: 'With Revest anyone can invest!',
+        default: 'Plus qu\'une plateforme, un véritable outil de sélection.',
     },
     title: {
         type: String,
-        default: 'Numbers Said More Than Words',
+        default: 'Pourquoi choisir EKNA pour votre colocation?',
     },
     description: {
         type: String,
-        default: 'Our low minimums give you the flexibility to invest the right amount, at the right time, to meet your goals.',
+        default: 'Optimisez l\'occupation de votre bien réduisez la vacance locative, augmentez votre rentabilité.',
     },
     buttonLink: {
         type: String,
@@ -65,7 +65,7 @@ defineProps({
     },
     buttonText: {
         type: String,
-        default: 'Start Exploring',
+        default: 'Parcourir les annonces',
     },
     stats: {
         type: Array,

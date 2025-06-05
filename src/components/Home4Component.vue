@@ -3,13 +3,13 @@
         <div class="container">
             <div class="start__area wow fadeInUp">
                 <div class="section__header">
-                    <h5 class="neutral-top">We're changing the way you invest.</h5>
-                    <h2>It's Easy to Get Started.</h2>
-                    <p class="neutral-bottom">
+                    <h5 class="neutral-top">Comment ça fonctionne ?</h5>
+                    <h2>Louez ou trouvez votre colocataire en 3 étapes simple.</h2>
+                    <!-- <p class="neutral-bottom">
                         Signing up with Revest is simple and only takes a few minutes. We can
                         automatically connect with more than 3,500 banks, so no complicated paperwork is required to
                         fund your account.
-                    </p>
+                    </p> -->
                 </div>
 
                 <div class="row">
@@ -56,25 +56,25 @@ const steps = [
     {
         number: "01",
         image: image1,
-        title: 'Browse Properties',
+        title: 'Découvrez votre annonce ou recherchez un bien',
         description:
-            'Select a property that fits your goal from our huge variety of hand-picked properties.',
+            'Découvrez votre bien ou trouvez la colocation idéale en quelques clics.',
         hasArrow: false,
     },
     {
         number: "02",
         image: image2,
-        title: 'View Details & Invest',
+        title: 'Recevez des profils ou des offres compatibles',
         description:
-            'View detailed metrics for that property like Rental Yield, etc. and invest like institutions.',
+            'Accedez au meuilleurs correspondances selon votre profil ou vos critères.',
         hasArrow: true,
     },
     {
         number: "03",
         image: image3,
-        title: 'Earn and Track',
+        title: 'Finalisez et emménagez en toutes sérénité',
         description:
-            'You have full visibility into the performance of your investment. Track your total current.',
+            'Gérez vos démarches en ligne, en toute sécurité.',
         hasArrow: false,
     },
 ]

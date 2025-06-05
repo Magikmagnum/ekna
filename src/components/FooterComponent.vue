@@ -6,8 +6,8 @@
                 <div class="row d-flex align-items-center">
                     <div class="col-lg-6">
                         <div class="footer__newsletter__content column__space">
-                            <h3>Subscribe for updates</h3>
-                            <p>Stay on top of the latest blog posts, news and announcements</p>
+                            <h3>Restez informé sur la colocation avec EKNA</h3>
+                            <p>Ne manquez aucune actualité, astuce ou opportunité !</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-xxl-5 offset-xxl-1">
@@ -16,9 +16,9 @@
                                 <div class="footer__newsletter__input__group">
                                     <div class="input">
                                         <input v-model="email" type="email" name="news__letter" id="newsLetterMail"
-                                            placeholder="Enter Your Email" required />
+                                            placeholder="Entrez votre email" required />
                                     </div>
-                                    <button type="submit" class="button button--effect">Subscribe</button>
+                                    <button type="submit" class="button button--effect">S'abonner</button>
                                 </div>
                             </form>
                         </div>
@@ -35,8 +35,7 @@
                             <!-- <RouterLink to="/">
                                 <img src="@/assets/images/logo-light.png" alt="Revest" class="logo" />
                             </RouterLink> -->
-                            <p>Revest is a platform offering anyone the ability to invest and potentially earn money
-                                from property at the click of a button</p>
+                            <p>EKNA simplifie la colocation avec un matching intelligent et un scoring de dossier fiable pour bailleurs et locataires.</p>
                             <div class="social">
                                 <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                                 <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -47,10 +46,10 @@
                     </div>
 
                     <!-- Links Sections -->
-                    <FooterLinks title="Company" :links="companyLinks" />
-                    <FooterLinks title="Invest" :links="investLinks" />
-                    <FooterLinks title="Insights" :links="insightsLinks" />
-                    <FooterLinks title="Legal" :links="legalLinks" />
+                    <FooterLinks title="A propos" :links="companyLinks" />
+                    <FooterLinks title="Colocataires" :links="investLinks" />
+                    <FooterLinks title="Bailleurs" :links="insightsLinks" />
+                    <FooterLinks title="Légal" :links="legalLinks" />
                 </div>
             </div>
 
@@ -59,7 +58,7 @@
                 <div class="row d-flex align-items-center">
                     <div class="col-sm-9 order-1 order-sm-0">
                         <div class="footer__copyright">
-                            <p>Copyright © Revest | Designed by
+                            <p>Copyright © EKNA | Designed by
                                 <a href="https://themeforest.net/user/pixelaxis" target="_blank">Pixelaxis</a>
                             </p>
                         </div>
@@ -106,31 +105,28 @@ const handleSubmit = () => {
 };
 
 const companyLinks = [
-    { text: 'About Us', href: '/home' },
-    { text: 'Careers', href: '/home' },
+    { text: "À propos d'EKNA", href: '/home' },
+    { text: 'EKNA recrute', href: '/home' },
     { text: 'Blog', href: '/home' },
-    { text: 'Contact Us', href: '/home' },
-    { text: 'Affiliate', href: '/home' },
+    { text: 'Nous contacter', href: '/home' },
 ];
 
 const investLinks = [
-    { text: 'Browse Properties', href: '/home' },
-    { text: 'How it works', href: '/home' },
-    { text: 'Loan Application', href: '/home' },
-    { text: 'Property Alerts', href: '/home' },
+    { text: 'Les colocations', href: '/home' },
+    { text: 'Le fonctionnement', href: '/home' },
+    { text: 'Créer une alerte', href: '/home' },
     { text: 'FAQs', href: '/home' },
 ];
 
 const insightsLinks = [
-    { text: 'Help Center', href: '/home' },
-    { text: 'List Your Property', href: '/home' },
-    { text: 'Loyality program', href: '/home' },
+    { text: 'Déposer une annonce', href: '/home' },
+    { text: 'Le fonctionnement', href: '/home' },
+    { text: 'Espace bailleurs', href: '/home' },
 ];
 
 const legalLinks = [
-    { text: 'Privacy Policy', href: '/home' },
-    { text: 'Term & Conditions', href: '/home' },
-    { text: 'Cookie Policy', href: '/home' },
-    { text: 'Key Risks', href: '/home' },
+    { text: 'Confidentialité', href: '/home' },
+    { text: 'CGV-CGU', href: '/home' },
+    { text: 'Cookies', href: '/home' },
 ];
 </script>
