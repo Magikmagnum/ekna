@@ -59,8 +59,9 @@
                 <div class="row d-flex align-items-center">
                     <div class="col-sm-9 order-1 order-sm-0">
                         <div class="footer__copyright">
-                            <p>Copyright © EKNA | Designed by
-                                <a href="https://themeforest.net/user/pixelaxis" target="_blank">Pixelaxis</a>
+                            <p>Copyright © EKNA 
+                                <!-- | Designed by
+                                <a href="https://themeforest.net/user/pixelaxis" target="_blank">Pixelaxis</a> -->
                             </p>
                         </div>
                     </div>
