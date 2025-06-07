@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-lg-6 col-xxl-6 offset-xxl-1">
                         <div class="hero__illustration d-none d-lg-block">
-                            <img :src="illustrationPath" alt="Hero Illustration" />
+                            <img src="@/assets/images/hero/hero-illustration.png" alt="Hero Illustration" />
                         </div>
                     </div>
                 </div>
