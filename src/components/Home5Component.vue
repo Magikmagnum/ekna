@@ -76,7 +76,7 @@ defineProps({
                 stat =>
                     typeof stat.image === 'string' &&
                     typeof stat.alt === 'string' &&
-                    typeof stat.value === 'number' &&
+                    typeof stat.value === 'string' &&
                     typeof stat.label === 'string' &&
                     (stat.unit === undefined || typeof stat.unit === 'string'),
             ),

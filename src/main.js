@@ -5,11 +5,15 @@ import router from './router'
 import { createI18n } from 'vue-i18n'
 import messages from './i18n/messages'
 
+import './assets/js/main.js'; // ton fichier JS global
+
 const i18n = createI18n({
-  locale: 'en', // ou 'en'
+  legacy: false,
+  locale: 'fr',
   fallbackLocale: 'en',
   messages
 })
+
 
 // CSS globaux
 import './assets/vendor/bootstrap/css/bootstrap.min.css'
