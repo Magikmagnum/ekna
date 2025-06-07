@@ -12,11 +12,11 @@
                 <p class="sub__info"><i class="fa-solid fa-location-dot"></i> {{ address }}</p>
 
                 <div class="progress__type">
-                    <div class="progress">
+                    <!-- <div class="progress">
                         <div class="progress-bar" role="progressbar" :style="{ width: progressPercent + '%' }"
                             :aria-valuenow="progressPercent" aria-valuemin="0" aria-valuemax="100">
                         </div>
-                    </div>
+                    </div> -->
                     <p class="project__has">
                         <span class="project__has__investors">{{ investors }} € CC</span>
                     </p>
@@ -37,9 +37,10 @@
                     <div class="countdown__wrapper">
                         <p class="secondary"><i class="fa-solid fa-clock"></i> Disponibilité</p>
                         <div class="countdown">
-                            <h5><span class="days">{{ countdown.days }}</span><span class="seperator">/</span></h5>
+                            <h5>Immédiate</h5>
+                            <!-- <h5><span class="days">{{ countdown.days }}</span><span class="seperator">/</span></h5>
                             <h5><span class="hours">{{ countdown.month }}</span><span class="seperator">/</span></h5>
-                            <h5><span class="minutes">{{ countdown.years }}</span></h5>
+                            <h5><span class="minutes">{{ countdown.years }}</span></h5> -->
                         </div>
                     </div>
                     <div class="invest__cta">
@@ -54,7 +55,6 @@
 </template>
 
 <script setup lang="ts">
-const imageHome = new URL('@/assets/images/home.png', import.meta.url).href
 
 interface Countdown {
     days: string;
@@ -68,8 +68,7 @@ interface PropertyCard {
     address: string;
     imageUrl: string;
     investors: number;
-    amount: string;
-    progressPercent: number;
+    // progressPercent: number;
     chambres: string;
     type: string;
     detailsUrl: string;
@@ -78,3 +77,12 @@ interface PropertyCard {
 
 const props = defineProps < PropertyCard > ()
 </script>
+
+
+
+<style scoped>
+.countdown h5 {
+    text-transform: capitalize;
+    font-weight: 700;
+}
+</style>

@@ -47,9 +47,9 @@ onMounted(async () => {
         const response = await axios.post('https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements')
         properties.value = response.data.result.data.map(annonce => ({
             title: annonce.ville,
-            location: annonce.adresse,
+            location: annonce.adresse + ' ' + annonce.code_postal + ', ' + annonce.ville,
             image: annonce.image,
-            investors: annonce.locataires?.length || 0,
+            investors: annonce.loyer_hors_charge || 0,
             chambres: annonce.total_chambre?.toString() || 'N.C.',
             bail: annonce.is_meuble ? 'Meublé' : 'Non meublé',
             type: annonce.type_logement || 'N.C.',

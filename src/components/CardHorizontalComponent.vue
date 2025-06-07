@@ -29,10 +29,10 @@
                 </div>
 
                 <div class="progress__type progress__type--two">
-                    <div class="progress">
+                    <!-- <div class="progress">
                         <div class="progress-bar" role="progressbar" :style="{ width: property.percent }"
                             :aria-valuenow="parseFloat(property.percent)" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+                    </div> -->
                     <div class="project__info">
                         <p class="project__has">
                             <span class="project__has__investors">{{ property.investors }} € CC</span>

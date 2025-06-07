@@ -32,10 +32,11 @@
                     <!-- Intro -->
                     <div class="col-md-12 col-lg-4 col-xl-4">
                         <div class="footer__intro">
-                            <!-- <RouterLink to="/">
-                                <img src="@/assets/images/logo-light.png" alt="Revest" class="logo" />
-                            </RouterLink> -->
-                            <p>EKNA simplifie la colocation avec un matching intelligent et un scoring de dossier fiable pour bailleurs et locataires.</p>
+                            <RouterLink class="navbar-brand" to="/home">
+                                <img src="@/assets/images/logo.png" alt="Logo" class="logo" />
+                            </RouterLink>
+                            <p>EKNA simplifie la colocation avec un matching intelligent et un scoring de dossier fiable
+                                pour bailleurs et locataires.</p>
                             <div class="social">
                                 <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                                 <a href="#"><i class="fa-brands fa-twitter"></i></a>
