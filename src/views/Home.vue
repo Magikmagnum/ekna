@@ -71,7 +71,7 @@ const statsComponent5 = [
         image: new URL('@/assets/images/experience.png', import.meta.url).href,
         alt: 'Experience',
         value: '90%',
-        label: 'des annonces trouvent un candidat qualifier en moin de 7 jours',
+        label: 'des annonces trouvent un candidat qualifié en moins de 7 jours',
     }
 ];
 
