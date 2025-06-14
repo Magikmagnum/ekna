@@ -26,7 +26,7 @@ export default {
                 part1: 'La plateforme intelligente pour trouver',
                 part2: 'ou louer une colocation en toute simplicité'
             },
-            title: 'Les bons <span>colocataires</span>, tout simplement',
+            title: 'Les bons <span>colocataires,</span> tout simplement',
             description: 'Accélérez vos démarches, sécurisez vos biens et connectez-vous à des locataires qualifiés.',
             primaryCta: 'Déposer une annonce',
             secondaryCta: 'Trouver une colocation'

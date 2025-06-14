@@ -37,9 +37,9 @@
 <script setup>
 
 
-const income = new URL('@/assets/images/overview/passive-income.png', import.meta.url).href
-const secure = new URL('@/assets/images/overview/secure.png', import.meta.url).href
-const transparency = new URL('@/assets/images/overview/transparency.png', import.meta.url).href
+const income = new URL('@/assets/images/ekna/profilsfiables.svg', import.meta.url).href
+const secure = new URL('@/assets/images/ekna/gaindetemps.svg', import.meta.url).href
+const transparency = new URL('@/assets/images/ekna/moinsdeturnover.svg', import.meta.url).href
 const support = new URL('@/assets/images/overview/support.png', import.meta.url).href
 
 
