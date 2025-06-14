@@ -57,7 +57,7 @@ defineProps({
     },
     description: {
         type: String,
-        default: 'Optimisez l\'occupation de votre bien réduisez la vacance locative, augmentez votre rentabilité.',
+        default: 'Optimisez l\'occupation de votre bien, réduisez la vacance locative, augmentez votre rentabilité.',
     },
     buttonLink: {
         type: String,
