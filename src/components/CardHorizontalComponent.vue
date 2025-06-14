@@ -51,7 +51,7 @@
                     </div>
                     <div class="item__info__single">
                         <p>{{ $t('CardHorizontalComponent.typeHabitat') }}</p>
-                        <h6>{{ property.type }}</h6>
+                        <h6>{{ property.type.charAt(0).toUpperCase() + property.type.slice(1) }}</h6>
                     </div>
                     <div class="item__info__single">
                         <p>{{ $t('CardHorizontalComponent.surface') }}</p>
