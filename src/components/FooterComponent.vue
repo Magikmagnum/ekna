@@ -47,7 +47,7 @@
                     </div>
 
                     <!-- Links Sections -->
-                    <FooterLinks title="A propos" :links="companyLinks" />
+                    <FooterLinks title="À propos" :links="companyLinks" />
                     <FooterLinks title="Colocataires" :links="investLinks" />
                     <FooterLinks title="Bailleurs" :links="insightsLinks" />
                     <FooterLinks title="Légal" :links="legalLinks" />
@@ -117,11 +117,11 @@ const investLinks = [
     { text: 'Les colocations', href: '/home' },
     { text: 'Le fonctionnement', href: '/home' },
     { text: 'Créer une alerte', href: '/home' },
-    { text: 'FAQs', href: '/home' },
+    { text: 'FAQ', href: '/home' },
 ];
 
 const insightsLinks = [
-    { text: 'Déposer une annonce', href: '/home' },
+    { text: 'Déposer annonce', href: '/home' },
     { text: 'Le fonctionnement', href: '/home' },
     { text: 'Espace bailleurs', href: '/home' },
 ];
