@@ -81,4 +81,8 @@ const items = [
     min-height: 228px;
 }
 
+.profit__single__item p{
+    min-width: 434px;
+}
+
 </style>
