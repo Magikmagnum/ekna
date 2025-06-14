@@ -56,9 +56,9 @@ const steps = [
     {
         number: "01",
         image: image1,
-        title: 'Découvrez votre annonce ou recherchez un bien',
+        title: 'Décrivez votre annonce ou recherchez un bien',
         description:
-            'Découvrez votre bien ou trouvez la colocation idéale en quelques clics.',
+            'Décrivez votre bien ou trouvez la colocation idéale en quelques clics.',
         hasArrow: false,
     },
     {
