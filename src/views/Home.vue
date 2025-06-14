@@ -56,21 +56,21 @@ const backgroundImageBannerSecond = new URL('@/assets/images/market-illustration
 const backgroundImageComponent5 = new URL('@/assets/images/globe.png', import.meta.url).href
 const statsComponent5 = [
     {
-        image: new URL('@/assets/images/platforms.png', import.meta.url).href,
+        image: new URL('@/assets/images/ekna/matching-modified.png', import.meta.url).href,
         alt: 'Platform',
         value: '73%',
         label: 'de matching réussi grâce à notre scoring de compatibilité',
     },
     {
-        image: new URL('@/assets/images/returns.png', import.meta.url).href,
+        image: new URL('@/assets/images/ekna/partenair-modified.png', import.meta.url).href,
         alt: 'Returns',
         value: '+50',
         label: 'bailleurs partenaires nous font déjà confiance',
     },
     {
-        image: new URL('@/assets/images/experience.png', import.meta.url).href,
+        image: new URL('@/assets/images/ekna/annonce-modified.png', import.meta.url).href,
         alt: 'Experience',
-        value: '90%',
+        value: '95%',
         label: 'des annonces trouvent un candidat qualifié en moins de 7 jours',
     }
 ];
