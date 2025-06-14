@@ -17,6 +17,7 @@
                 {{ ctaText }}
               </router-link>
             </div>
+            <StoreComponent/>
           </div>
         </div>
       </div>
@@ -25,6 +26,7 @@
 </template>
 
 <script setup>
+import StoreComponent from '@/components/StoreComponent.vue';
 defineProps({
   title: {
     type: String,

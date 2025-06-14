@@ -20,15 +20,7 @@
                                     {{ $t('BannerHomeComponent.secondaryCta') }}
                                 </a>
                             </div>
-
-                            <div class="btn-stort-group">
-                                <a :href="primaryCta.link">
-                                    <img :src="imageHome" alt="Security" class="btn-stort" />
-                                </a>
-                                <a :href="secondaryCta.link">
-                                    <img :src="playStore" alt="Security" class="btn-stort" />
-                                </a>
-                            </div>
+                            <StoreComponent/>
                         </div>
                     </div>
                     <div class="col-lg-6 col-xxl-6 offset-xxl-1">
@@ -44,6 +36,7 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import StoreComponent from '@/components/StoreComponent.vue'
 
 // Importing the i18n instance for translations
 const { t } = useI18n()
@@ -92,19 +85,6 @@ const illustrationPath = resolveAssetPath(props.illustration)
 .hero {
     padding-top: 180px;
     padding-bottom: 120px;
-}
-
-.btn-stort-group {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 6px;
-    margin-top: 64px;
-    flex-direction: column;
-}
-
-.btn-stort {
-    width: 162px;
 }
 
 @media (min-width: 1400px) {
