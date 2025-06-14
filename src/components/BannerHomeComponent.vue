@@ -6,7 +6,10 @@
                 <div class="row">
                     <div class="col-lg-6 col-xxl-5">
                         <div class="hero__content">
-                            <h5 class="neutral-top">{{ $t('BannerHomeComponent.subtitle') }}</h5>
+                            <h5 class="neutral-top">
+                                {{ $t('BannerHomeComponent.subtitle.part1') }}<br>
+                                {{ $t('BannerHomeComponent.subtitle.part2') }}
+                            </h5>
                             <h1 v-html="$t('BannerHomeComponent.title')"></h1>
                             <p class="primary neutral-bottom">{{ $t('BannerHomeComponent.description') }}</p>
                             <div class="hero__cta__group">
@@ -86,9 +89,8 @@ const illustrationPath = resolveAssetPath(props.illustration)
 </script>
 
 <style scoped>
-
 .hero {
-    padding-top: 120px;
+    padding-top: 180px;
     padding-bottom: 120px;
 }
 
@@ -103,5 +105,12 @@ const illustrationPath = resolveAssetPath(props.illustration)
 
 .btn-stort {
     width: 162px;
+}
+
+@media (min-width: 1400px) {
+    .col-xxl-5 {
+        flex: 0 0 auto;
+        width: 53%;
+    }
 }
 </style>

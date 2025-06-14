@@ -1,13 +1,13 @@
 export default {
     fr: {
         AnnonceComponent: {
-        annoncesALaUne: 'Annonces à la une',
-        voirToutes: 'Voir toutes les annonces',
-        chargement: 'Chargement des annonces...',
-        meuble: 'Meublé',
-        nonMeuble: 'Non meublé',
-        nonCommunique: 'N.C.',
-        erreurChargement: 'Erreur lors du chargement des logements:'
+            annoncesALaUne: 'Annonces à la une',
+            voirToutes: 'Voir toutes les annonces',
+            chargement: 'Chargement des annonces...',
+            meuble: 'Meublé',
+            nonMeuble: 'Non meublé',
+            nonCommunique: 'N.C.',
+            erreurChargement: 'Erreur lors du chargement des logements:'
         },
         CardHorizontalComponent: {
             disponibilite: 'Disponibilité',
@@ -22,8 +22,11 @@ export default {
             details: 'Détails'
         },
         BannerHomeComponent: {
-            subtitle: 'La plateforme intelligente pour trouver ou louer une colocation en toute simplicité',
-            title: 'Les bons <span>locataires</span>, tout simplement',
+            subtitle: {
+                part1: 'La plateforme intelligente pour trouver',
+                part2: 'ou louer une colocation en toute simplicité'
+            },
+            title: 'Les bons <span>colocataires</span>, tout simplement',
             description: 'Accélérez vos démarches, sécurisez vos biens et connectez-vous à des locataires qualifiés.',
             primaryCta: 'Déposer une annonce',
             secondaryCta: 'Trouver une colocation'
