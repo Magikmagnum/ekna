@@ -49,7 +49,7 @@ const loading = ref(true)
 
 
 // Background image for BannerSecondComponent
-const backgroundImageBannerSecond = new URL('@/assets/images/market-illustration.png', import.meta.url).href
+const backgroundImageBannerSecond = new URL('@/assets/images/ekna/App.png', import.meta.url).href
 
 
 // Background image and stats for Home5Component
@@ -74,6 +74,4 @@ const statsComponent5 = [
         label: 'des annonces trouvent un candidat qualifié en moins de 7 jours',
     }
 ];
-
-
 </script>

@@ -78,4 +78,8 @@ p, th, td, li, input, textarea, select, label, blockquote, span {
     }
 }
 
+.section__space {
+    padding: 0px; 
+}
+
 </style>
