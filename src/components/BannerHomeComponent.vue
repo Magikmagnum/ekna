@@ -45,7 +45,6 @@ import { useI18n } from 'vue-i18n'
 // Importing the i18n instance for translations
 const { t } = useI18n()
 
-
 const imageHome = new URL('@/assets/images/logo/app-store.png', import.meta.url).href
 const playStore = new URL('@/assets/images/logo/play-store.png', import.meta.url).href
 
@@ -87,6 +86,12 @@ const illustrationPath = resolveAssetPath(props.illustration)
 </script>
 
 <style scoped>
+
+.hero {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
 .btn-stort-group {
     display: flex;
     justify-content: center;
