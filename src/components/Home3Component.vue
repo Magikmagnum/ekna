@@ -47,7 +47,7 @@ const items = [
     [
         {
             image: income,
-            title: 'Des profils fiables et compatibles.',
+            title: 'Des profils fiables et compatibles',
             description: 'grâce à un algorithme de matching relationnel.',
             alt: true,
         },
@@ -61,7 +61,7 @@ const items = [
     [
         {
             image: transparency,
-            title: 'Moins de turnover',
+            title: 'Moins de turnover,',
             description: 'plus de stabilité et de tranquillité.',
             alt: true,
         },
