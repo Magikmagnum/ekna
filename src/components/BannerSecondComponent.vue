@@ -42,7 +42,7 @@ defineProps({
   },
   ctaText: {
     type: String,
-    default: 'Join As a Affiliate',
+    default: 'Télécharger l’app',
   },
   ctaLink: {
     type: String,
