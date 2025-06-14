@@ -59,7 +59,7 @@ const statsComponent5 = [
         image: new URL('@/assets/images/platforms.png', import.meta.url).href,
         alt: 'Platform',
         value: '73%',
-        label: 'de matching réussi grace à notre scoring de compatiblebilité',
+        label: 'de matching réussi grâce à notre scoring de compatibilité',
     },
     {
         image: new URL('@/assets/images/returns.png', import.meta.url).href,
