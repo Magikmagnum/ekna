@@ -4,7 +4,7 @@
         <BannerHomeComponent :primaryCta="{ label: 'Déposer une annonce', link: '/explore' }"
             :secondaryCta="{ label: 'Trouver une colocation', link: '/funding' }"
             backgroundImage="@/assets/images/hero/light-bg.png.png"
-            illustration="@/assets/images/hero/hero-illustration.png" />
+            illustration="@/assets/images/ekna/homepage.png" />
         <AnnonceComponent />
         <PropositionComponent />
         <Home3Component />

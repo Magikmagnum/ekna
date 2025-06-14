@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-lg-6 col-xxl-6 offset-xxl-1">
                         <div class="hero__illustration d-none d-lg-block">
-                            <img src="@/assets/images/hero/hero-illustration.png" alt="Hero Illustration" />
+                            <img src="@/assets/images/ekna/homepage.png" alt="Hero Illustration" />
                         </div>
                     </div>
                 </div>
@@ -40,9 +40,6 @@ import StoreComponent from '@/components/StoreComponent.vue'
 
 // Importing the i18n instance for translations
 const { t } = useI18n()
-
-const imageHome = new URL('@/assets/images/logo/app-store.png', import.meta.url).href
-const playStore = new URL('@/assets/images/logo/play-store.png', import.meta.url).href
 
 // Utilitaire pour résoudre les imports avec alias `@` à l'exécution
 function resolveAssetPath(path) {
@@ -93,4 +90,26 @@ const illustrationPath = resolveAssetPath(props.illustration)
         width: 53%;
     }
 }
+.hero {
+    background-color: #fcfbff;
+}
+
+.hero__illustration {
+    top: 96px;
+}
+
+.hero__illustration img{
+    margin-top: 200px;
+    width: 677px;
+}
+
+@media only screen and (max-width: 1399px) {
+    .hero__illustration {
+        bottom: unset;
+        top: 530px;
+        -webkit-transform: translateY(-65%);
+        transform: translateY(-65%);
+    }
+}
+
 </style>
