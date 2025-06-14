@@ -64,4 +64,16 @@ p, th, td, li, input, textarea, select, label, blockquote, span {
     margin-bottom: 36px;
 }
 
+@media (min-width: 1200px) {
+    .offset-xl-1 {
+        margin-left: 3.333333%;
+    }
+}
+@media (min-width: 1200px) {
+    .col-xl-6 {
+        flex: 0 0 auto;
+        width: 55%;
+    }
+}
+
 </style>

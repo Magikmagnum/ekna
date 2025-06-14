@@ -14,7 +14,7 @@
 
         <TestimonialsComponent />
         <BannerSecondComponent title="L'app EKNA t'accompagne partout."
-            subtitle="Trouvez une colocation ou ton futur colocataire en quelques clics"
+            subtitle="Trouve une colocation ou ton futur colocataire en quelques clics"
             :imageSrc="backgroundImageBannerSecond" :description="`<p style='margin-bottom: 24px;'>Grâce à notre algorithme de matching et notre scoring de dossier, finis les recherches interminables et les mauvaises surprises.</p>
             <ul style='list-style: disc;margin-left: 52px;'>
             <li>Navigue parmi des profils qualifiés.</li>
