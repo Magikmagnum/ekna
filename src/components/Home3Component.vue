@@ -54,8 +54,7 @@ const items = [
         {
             image: secure,
             title: 'Gain de temps',
-            description:
-                'dans la recherche comme dans la sélection.',
+            description: 'dans la recherche comme dans la sélection.',
             alt: false,
         },
     ],
@@ -63,7 +62,7 @@ const items = [
         {
             image: transparency,
             title: 'Moins de turnover',
-            description: 'Plus de stabilité et de tranquillité.',
+            description: 'plus de stabilité et de tranquillité.',
             alt: true,
         },
         {
