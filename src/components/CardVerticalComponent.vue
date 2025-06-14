@@ -85,4 +85,9 @@ const props = defineProps < PropertyCard > ()
     text-transform: capitalize;
     font-weight: 700;
 }
+
+.property__grid__single .sub__info {
+    margin-top: 12px;
+    min-height: 60px;
+}
 </style>
