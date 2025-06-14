@@ -75,3 +75,10 @@ const items = [
     ],
 ]
 </script>
+
+<style scoped>
+.profit__single__item{
+    min-height: 228px;
+}
+
+</style>
