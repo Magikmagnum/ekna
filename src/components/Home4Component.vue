@@ -3,8 +3,8 @@
         <div class="container">
             <div class="start__area wow fadeInUp">
                 <div class="section__header">
-                    <h5 class="neutral-top">Comment ça fonctionne ?</h5>
-                    <h2>Louez ou trouvez votre colocataire en 3 étapes simple.</h2>
+                    <h2>Comment ça fonctionne ?</h2>
+                    <h5 class="neutral-top">Louez ou trouvez votre colocataire en 3 étapes simple.</h5>
                     <!-- <p class="neutral-bottom">
                         Signing up with Revest is simple and only takes a few minutes. We can
                         automatically connect with more than 3,500 banks, so no complicated paperwork is required to
