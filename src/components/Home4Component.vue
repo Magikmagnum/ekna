@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                             <h4>{{ step.title }}</h4>
-                            <p class="neutral-bottom">{{ step.description }}</p>
+                            <p class="neutral-bottom" v-html="step.description"></p>
                         </div>
                     </div>
                 </div>
@@ -66,15 +66,15 @@ const steps = [
         image: image2,
         title: 'Recevez des profils ou des offres compatibles',
         description:
-            'Accedez au meuilleurs correspondances selon votre profil ou vos critères.',
+            'Accédez aux meilleures correspondances selon votre profil ou vos critères.',
         hasArrow: true,
     },
     {
         number: "03",
         image: image3,
-        title: 'Finalisez et emménagez en toutes sérénité',
+        title: 'Finalisez et emménagez en toute sérénité',
         description:
-            'Gérez vos démarches en ligne, en toute sécurité.',
+            'Gérez vos démarches en ligne,</br>en toute sécurité.',
         hasArrow: false,
     },
 ]
