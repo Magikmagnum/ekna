@@ -28,8 +28,8 @@
 
 <script setup>
 
-import { ref, onMounted } from 'vue'
-import axios from 'axios'
+import { ref } from 'vue'
+
 // Importing components
 import HeaderComponent from '@/components/HeaderComponent.vue'
 import BannerHomeComponent from '@/components/BannerHomeComponent.vue'
@@ -59,7 +59,7 @@ const statsComponent5 = [
         image: new URL('@/assets/images/ekna/matching-modified.png', import.meta.url).href,
         alt: 'Platform',
         value: '73%',
-        label: 'de matching réussi grâce à notre scoring de compatibilité',
+        label: 'de matching réussi </br> grâce à notre scoring </br> de compatibilité',
     },
     {
         image: new URL('@/assets/images/ekna/partenair-modified.png', import.meta.url).href,
@@ -71,7 +71,7 @@ const statsComponent5 = [
         image: new URL('@/assets/images/ekna/annonce-modified.png', import.meta.url).href,
         alt: 'Experience',
         value: '95%',
-        label: 'des annonces trouvent un candidat qualifié en moins de 7 jours',
+        label: 'des annonces trouvent </br> un candidat qualifié </br> en moins de 7 jours',
     }
 ];
 </script>

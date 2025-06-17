@@ -18,19 +18,19 @@
                                 <div class="numbers__single shadow__effect">
                                     <img :src="stats[0].image" :alt="stats[0].alt" />
                                     <h3><span class="counter">{{ stats[0].value }}</span>{{ stats[0].unit || '' }}</h3>
-                                    <p class="neutral-bottom">{{ stats[0].label }}</p>
+                                    <p class="neutral-bottom" v-html="stats[0].label"></p>
                                 </div>
                                 <div class="numbers__single shadow__effect__secondary">
                                     <img :src="stats[1].image" :alt="stats[1].alt" />
                                     <h3><span class="counter">{{ stats[1].value }}</span>{{ stats[1].unit || '' }}</h3>
-                                    <p class="neutral-bottom">{{ stats[1].label }}</p>
+                                    <p class="neutral-bottom" v-html="stats[1].label"></p>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="numbers__single alt shadow__effect__secondary">
                                     <img :src="stats[2].image" :alt="stats[2].alt" />
                                     <h3 class="counter">{{ stats[2].value }}</h3>
-                                    <p class="neutral-bottom">{{ stats[2].label }}</p>
+                                    <p class="neutral-bottom" v-html="stats[2].label"></p>
                                 </div>
                             </div>
                         </div>
