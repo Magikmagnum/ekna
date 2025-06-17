@@ -84,4 +84,13 @@ const items = [
     min-width: 434px;
 }
 
+
+@media only screen and (max-width: 767px) {
+    .profit__single__item {
+        max-width: none;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+}
 </style>
