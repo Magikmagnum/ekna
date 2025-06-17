@@ -121,7 +121,7 @@ const investLinks = [
 ];
 
 const insightsLinks = [
-    { text: 'Déposer annonce', href: '/home' },
+    { text: 'Déposer une annonce', href: '/home' },
     { text: 'Le fonctionnement', href: '/home' },
     { text: 'Espace bailleurs', href: '/home' },
 ];
@@ -132,3 +132,19 @@ const legalLinks = [
     { text: 'Cookies', href: '/home' },
 ];
 </script>
+
+<style scoped>  
+@media (min-width: 1200px) {
+    .col-xl-4 {
+        flex: 0 0 auto;
+        width: 28%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-xl-2 {
+        flex: 0 0 auto;
+        width: 18%;
+    }
+}
+</style>

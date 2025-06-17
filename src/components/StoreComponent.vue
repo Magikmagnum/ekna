@@ -28,4 +28,5 @@ const playStore = new URL('@/assets/images/logo/play-store.png', import.meta.url
 .btn-stort {
     width: 162px;
 }
+
 </style>
