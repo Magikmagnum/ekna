@@ -4,6 +4,7 @@
       <div class="market__area">
         <div class="row d-flex align-items-center">
           <div class="col-lg-6 col-xl-5">
+            
             <div class="market__thumb thumb__rtl column__space d-none d-lg-block">
               <img :src="imageSrc" :alt="imageAlt" />
             </div>
@@ -13,11 +14,19 @@
               <h5 class="neutral-top">{{ subtitle }}</h5>
               <h2>{{ title }}</h2>
               <div v-html="description"></div>
-              <router-link :to="ctaLink" class="button button--effect">
-                {{ ctaText }}
-              </router-link>
+
+              <div class="btn-group">
+                <router-link :to="ctaLink" class="button button--effect">
+                  {{ ctaText }}
+                </router-link>
+                <div>
+                  <img src="@/assets/images/ekna/arrow.svg" alt="Play Store" />
+                </div>
+                <div>
+                  <Store2Component/>
+                </div>
+              </div>
             </div>
-            <StoreComponent/>
           </div>
         </div>
       </div>
@@ -26,7 +35,7 @@
 </template>
 
 <script setup>
-import StoreComponent from '@/components/StoreComponent.vue';
+import Store2Component from '@/components/Store2Component.vue';
 defineProps({
   title: {
     type: String,
@@ -60,7 +69,6 @@ defineProps({
 </script>
 
 <style scoped>
-/* Tu peux ajouter ici des styles supplémentaires si nécessaire */
 
 p, th, td, li, input, textarea, select, label, blockquote, span {
     margin-bottom: 36px;
@@ -83,4 +91,25 @@ p, th, td, li, input, textarea, select, label, blockquote, span {
     }
 }
 
+.market__thumb img {
+  max-width: 24vw;
+}
+
+
+.btn-group {
+    display: flex;
+    justify-content: start;
+    gap: 37px;
+    align-items: center;
+    margin: 32px 0;
+}
+
+.button {
+    margin-top: 0 !important;
+}
+
+.market .content img {
+    position: unset;
+    margin-left: 0px;
+}
 </style>
