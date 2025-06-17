@@ -5,6 +5,7 @@
             :secondaryCta="{ label: 'Trouver une colocation', link: '/funding' }"
             backgroundImage="@/assets/images/hero/light-bg.png.png"
             illustration="@/assets/images/ekna/homepage.png" />
+        <FilterComponent/>
         <AnnonceComponent />
         <PropositionComponent />
         <Home3Component />
@@ -41,6 +42,7 @@ import Home5Component from '@/components/Home5Component.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 import BannerSecondComponent from '@/components/BannerSecondComponent.vue';
 import TestimonialsComponent from '@/components/TestimonialsComponent.vue';
+import FilterComponent from '@/components/FilterComponent.vue';
 
 
 
