@@ -25,7 +25,6 @@
                   {{ loc.label }}
                 </option>
               </select>
-
               <div
                 class="nice-select location__select"
                 :class="{ open: isOpen.location }"

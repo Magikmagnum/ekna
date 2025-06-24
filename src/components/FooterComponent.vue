@@ -15,6 +15,7 @@
                             <form @submit.prevent="handleSubmit">
                                 <div class="footer__newsletter__input__group">
                                     <div class="input">
+                                        <img src="@/assets/images/ekna/72.png" alt="Logo" class="logo" />
                                         <input v-model="email" type="email" name="news__letter" id="newsLetterMail"
                                             placeholder="Entrez votre email" required />
                                     </div>
@@ -146,5 +147,23 @@ const legalLinks = [
         flex: 0 0 auto;
         width: 18%;
     }
+}
+
+.input {
+    position: relative;
+    /* width: 100%; */
+}
+
+.input img.logo {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+}
+
+.input input {
+    padding-left: 60px;  /* Adjusted for logo */
 }
 </style>
