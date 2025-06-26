@@ -11,7 +11,7 @@
           </div>
           <div class="col-lg-6 col-xl-6 offset-xl-1">
             <div class="content">
-              <h5 class="neutral-top">{{ subtitle }}</h5>
+              <h5 class="neutral-top" v-html="subtitle"></h5>
               <h2>{{ title }}</h2>
               <div v-html="description"></div>
 

@@ -6,7 +6,7 @@
                 <div class="row d-flex align-items-center">
                     <div class="col-lg-6">
                         <div class="content column__space">
-                            <h5 class="neutral-top">{{ subtitle }}</h5>
+                            <h5 class="neutral-top" v-html="subtitle"></h5>
                             <h2>{{ title }}</h2>
                             <p>{{ description }}</p>
                             <a :href="buttonLink" class="button button--effect">{{ buttonText }}</a>
@@ -49,7 +49,7 @@ defineProps({
     },
     subtitle: {
         type: String,
-        default: 'Plus qu\'une plateforme, un véritable outil de sélection.',
+        default: 'Plus qu\'une plateforme, <br/>un véritable outil de sélection.',
     },
     title: {
         type: String,
