@@ -9,10 +9,10 @@
             <div class="property__search__wrapper">
               <form @submit.prevent="handleSearch">
                 <div class="input">
-                  <input type="search" v-model="search" placeholder="Search for properties" />
+                  <input type="search" v-model="search" placeholder="Rechercher une colocation" />
                   <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
-                <button type="submit" class="button button--effect">Search</button>
+                <button type="submit" class="button button--effect">Chercher</button>
               </form>
             </div>
           </div>
@@ -96,7 +96,7 @@ const propertyType = ref('')
 
 // Dropdown options
 const locations = ref([
-  { value: '', label: 'Select Location' },
+  { value: '', label: 'Ville' },
   { value: 'angeles', label: 'Los Angeles' },
   { value: 'francis', label: 'San Francisco, CA' },
   { value: 'weldon', label: 'The Weldon' },
@@ -104,7 +104,7 @@ const locations = ref([
 ])
 
 const propertyTypes = ref([
-  { value: '', label: 'Property Type' },
+  { value: '', label: 'Typologie' },
   { value: 'commercial', label: 'Commercial' },
   { value: 'residential', label: 'Residential' }
 ])
