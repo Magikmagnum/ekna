@@ -11,8 +11,9 @@ import Terme from '../views/Terme.vue'
 import Stat from '../views/Stat.vue'
 import Error from '../views/Error.vue'
 import Support from '../views/Support.vue'
-import Alert from '../views/alert.vue'
+import Alert from '../views/Alert.vue'
 import Affiliate from '../views/Affiliate.vue'
+import Annonces from '../views/Annonces.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -27,6 +28,7 @@ const routes = [
   { path: '/support', name: 'Support', component: Support },
   { path: '/alert', name: 'Alert', component: Alert },
   { path: '/affiliate', name: 'Affiliate', component: Affiliate },
+  { path: '/annonces', name: 'Annonces', component: Annonces },
   // Ajouter ici d'autres routes si nécessaires
 ]
 

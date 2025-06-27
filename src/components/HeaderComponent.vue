@@ -76,6 +76,7 @@ const menu = [
       { label: 'Support', to: '/support' },
       { label: 'Alert', to: '/alert' },
       { label: 'Affiliate', to: '/affiliate' },
+      { label: 'Annonces', to: '/annonces' },
     ],
   },
   {
