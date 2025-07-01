@@ -116,7 +116,7 @@ p {
 
 
 .mail-social-icons {
-  margin-top: 20px;
+  margin-top: 32px;
   display: flex;
   justify-content: center;
   gap: 20px;
