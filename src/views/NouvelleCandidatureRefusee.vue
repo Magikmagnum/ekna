@@ -98,6 +98,7 @@ p {
   color: #666;
   text-align: center;
   font-size: 0.84em;
+  font-size: inherit;
 }
 
 .mail-footer a {
@@ -105,7 +106,14 @@ p {
   text-decoration: none;
   font-weight: 300;
   display: block;
+  font-size: inherit;
+
 }
+
+.mail-footer p {
+  font-size: 0.84em;
+}
+
 
 .mail-social-icons {
   margin-top: 20px;
