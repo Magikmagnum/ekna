@@ -35,16 +35,10 @@
 </template>
 
 <script setup>
-defineProps({
-  name: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true
-  }
-})
+
+const name = "Florine"; 
+const email = "contact@ekna.fr";
+
 </script>
 
 <style scoped>

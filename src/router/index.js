@@ -14,7 +14,7 @@ import Support from '../views/Support.vue'
 import Alert from '../views/Alert.vue'
 import Affiliate from '../views/Affiliate.vue'
 import Annonces from '../views/Annonces.vue'
-import Mail from '../views/Mail.vue'
+import AlerteSignalement from '../views/AlerteSignalement.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -30,8 +30,7 @@ const routes = [
   { path: '/alert', name: 'Alert', component: Alert },
   { path: '/affiliate', name: 'Affiliate', component: Affiliate },
   { path: '/annonces', name: 'Annonces', component: Annonces },
-  { path: '/mail', name: 'Mail', component: Mail },
-
+  { path: '/alerte-signalement', name: 'AlerteSignalement', component: AlerteSignalement }
   // Ajouter ici d'autres routes si nécessaires
 ]
 
