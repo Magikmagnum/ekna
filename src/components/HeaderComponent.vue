@@ -78,6 +78,7 @@ const menu = [
       { label: 'Affiliate', to: '/affiliate' },
       { label: 'Annonces', to: '/annonces' },
       { label: 'Signalement', to: '/alerte-signalement' },
+      { label: 'Nouvelle candidature refusée', to: '/nouvelle-candidature-refusee' }
     ],
   },
   {

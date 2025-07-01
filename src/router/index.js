@@ -15,6 +15,9 @@ import Alert from '../views/Alert.vue'
 import Affiliate from '../views/Affiliate.vue'
 import Annonces from '../views/Annonces.vue'
 import AlerteSignalement from '../views/AlerteSignalement.vue'
+import NouvelleCandidatureRefusee from '../views/NouvelleCandidatureRefusee.vue'
+
+
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -30,7 +33,9 @@ const routes = [
   { path: '/alert', name: 'Alert', component: Alert },
   { path: '/affiliate', name: 'Affiliate', component: Affiliate },
   { path: '/annonces', name: 'Annonces', component: Annonces },
-  { path: '/alerte-signalement', name: 'AlerteSignalement', component: AlerteSignalement }
+  { path: '/alerte-signalement', name: 'AlerteSignalement', component: AlerteSignalement },
+  { path: '/nouvelle-candidature-refusee', name: 'NouvelleCandidatureRefusee', component: NouvelleCandidatureRefusee },
+
   // Ajouter ici d'autres routes si nécessaires
 ]
 
