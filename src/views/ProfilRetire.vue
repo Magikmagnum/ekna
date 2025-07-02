@@ -12,7 +12,7 @@
       <a href="#" class="cta-button">Rechercher une nouvelle colocation</a>
     </div>
 
-    <p>Bonne courage,</p>
+    <p>Bon courage,</p>
     <p class="mail-signature mail-bold">L’équipe EKNA</p>
 
     <div class="mail-footer">
