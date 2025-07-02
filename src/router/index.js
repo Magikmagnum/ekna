@@ -14,10 +14,10 @@ import Support from '../views/Support.vue'
 import Alert from '../views/Alert.vue'
 import Affiliate from '../views/Affiliate.vue'
 import Annonces from '../views/Annonces.vue'
-import AlerteSignalement from '../views/AlerteSignalement.vue'
-import NouvelleCandidatureRefusee from '../views/NouvelleCandidatureRefusee.vue'
-import ProfilRetire from '../views/ProfilRetire.vue'
-import Felicitation from '../views/Felicitation.vue'
+import AlerteSignalement from '../views/email/AlerteSignalement.vue'
+import NouvelleCandidatureRefusee from '../views/email/NouvelleCandidatureRefusee.vue'
+import ProfilRetire from '../views/email/ProfilRetire.vue'
+import Felicitation from '../views/email/Felicitation.vue'
 
 
 
