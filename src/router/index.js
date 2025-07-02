@@ -17,6 +17,8 @@ import Annonces from '../views/Annonces.vue'
 import AlerteSignalement from '../views/AlerteSignalement.vue'
 import NouvelleCandidatureRefusee from '../views/NouvelleCandidatureRefusee.vue'
 import ProfilRetire from '../views/ProfilRetire.vue'
+import Felicitation from '../views/Felicitation.vue'
+
 
 
 
@@ -37,6 +39,7 @@ const routes = [
   { path: '/alerte-signalement', name: 'AlerteSignalement', component: AlerteSignalement },
   { path: '/nouvelle-candidature-refusee', name: 'NouvelleCandidatureRefusee', component: NouvelleCandidatureRefusee },
   { path: '/profil-retire', name: 'ProfilRetire', component: ProfilRetire },
+  { path: '/felicitation', name: 'felicitation', component: Felicitation }
 
 
   // Ajouter ici d'autres routes si nécessaires

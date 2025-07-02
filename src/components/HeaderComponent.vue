@@ -79,9 +79,10 @@ const menu = [
       { label: 'Annonces', to: '/annonces' },
       { label: 'Signalement', to: '/alerte-signalement' },
       { label: 'Nouvelle candidature refusée', to: '/nouvelle-candidature-refusee' },
-      { label: 'Profil retiré', to: '/profil-retire' }
+      { label: 'Profil retiré', to: '/profil-retire' },
+      { label: 'Félicitations', to: '/felicitation' }
 
-    ],
+    ]
   },
   {
     label: 'Bailleurs',
