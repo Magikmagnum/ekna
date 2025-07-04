@@ -40,7 +40,7 @@ const email = "contact@ekna.fr"
 
 <style scoped>
 .mail-container {
-  max-width: 546px;
+  max-width: 535px;;
   margin: 50px auto;
   padding: 0 20px;
   font-family: "Helvetica Neue", Arial, sans-serif;
