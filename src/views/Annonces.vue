@@ -21,6 +21,7 @@ import FooterComponent from '@/components/FooterComponent.vue';
 import FilterComponent from '@/components/FilterComponent.vue';
 
 
+
 const backgroundImage = new URL('@/assets/images/banner/banner-bg.png', import.meta.url).href
 // const bannerThumb = new URL('@/assets/images/banner/key-illustration.png', import.meta.url).href
 

@@ -21,7 +21,7 @@
                 <!-- Propriétés regroupées par ligne de 3 -->
                 <div v-for="(chunk, index) in chunkedProperties" :key="index" class="property__grid__wrapper">
                     <div class="row">
-                        <CardVerticalComponent
+                        <CardVertical2Component
                             v-for="(property, idx) in chunk"
                             :key="property.id"
                             v-bind="property"
@@ -37,7 +37,7 @@
 import { ref, onMounted, computed } from 'vue'
 import axios from 'axios'
 import { useI18n } from 'vue-i18n'
-import CardVerticalComponent from './CardVerticalComponent.vue'
+import CardVertical2Component from './CardVertical2Component.vue'
 
 // i18n
 const { t } = useI18n()

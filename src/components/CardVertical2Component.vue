@@ -2,16 +2,24 @@
 <template>
     <div class="col-lg-4 col-xl-4">
         <div class="property__grid__single">
-            <div class="img__effect">
-                <a :href="detailsUrl">
-                    <img :src="imageUrl" :alt="title">
-                </a>
+            <div class="img__effect-wrapper">
+                <div class="img__effect">
+                    <div class="avatar"
+                        :style="{ backgroundImage: `url('https://randomuser.me/api/portraits/women/48.jpg')` }">
+                    </div>
+                    <a :href="detailsUrl">
+                        <img :src="imageUrl" :alt="title">
+                    </a>
+                    <CircularGauge :percentage="25" :outerPercentage="75" :innerPercentage="50" />
+                </div>
+                <AvatarGroup :avatars="users" />
             </div>
             <div class="property__grid__single__inner">
                 <h4>{{ title }}</h4>
                 <p class="sub__info"><i class="fa-solid fa-location-dot"></i> {{ address }}</p>
 
                 <div class="progress__type">
+
                     <!-- <div class="progress">
                         <div class="progress-bar" role="progressbar" :style="{ width: progressPercent + '%' }"
                             :aria-valuenow="progressPercent" aria-valuemin="0" aria-valuemax="100">
@@ -58,6 +66,9 @@
 
 <script setup lang="ts">
 
+import AvatarGroup from './AvatarGroup.vue';
+import CircularGauge from './CircularGauge.vue'
+
 interface Countdown {
     days: string;
     month: string;
@@ -77,7 +88,15 @@ interface PropertyCard {
     countdown: Countdown;
 }
 
-const props = defineProps < PropertyCard > ()
+const props = defineProps<PropertyCard>()
+
+
+const users = [
+    'https://randomuser.me/api/portraits/women/65.jpg',
+    'https://randomuser.me/api/portraits/men/32.jpg',
+    'https://randomuser.me/api/portraits/men/12.jpg'
+]
+
 </script>
 
 
@@ -91,5 +110,29 @@ const props = defineProps < PropertyCard > ()
 .property__grid__single .sub__info {
     margin-top: 12px;
     min-height: 60px;
+}
+
+.img__effect-wrapper {
+    position: relative;
+}
+
+.img__effect {
+    /* overflow: visible; */
+    margin-bottom: 40px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    top: 12px;
+    left: 24px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid white;
+    margin-left: -12px;
+    position: absolute;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    z-index: 4;
 }
 </style>
