@@ -13,7 +13,7 @@
       <a href="#" class="cta-button">Voir mon espace</a>
     </div>
 
-    <p>Merci pour votre confiance.</p>
+    <p>Merci pour votre confiance,</p>
     <p class="mail-signature mail-bold">L’équipe EKNA</p>
 
     <div class="mail-footer">
