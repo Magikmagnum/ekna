@@ -18,43 +18,42 @@
                 <h4>{{ title }}</h4>
                 <p class="sub__info"><i class="fa-solid fa-location-dot"></i> {{ address }}</p>
 
-                <div class="progress__type">
-
-                    <!-- <div class="progress">
-                        <div class="progress-bar" role="progressbar" :style="{ width: progressPercent + '%' }"
-                            :aria-valuenow="progressPercent" aria-valuemin="0" aria-valuemax="100">
-                        </div>
-                    </div> -->
-
-                    <p class="project__has">
-                        <span class="project__has__investors">{{ investors }} € CC</span>
-                    </p>
-                </div>
-
-                <div class="item__info">
-                    <div class="item__info__single">
-                        <p>Nb de chambres</p>
-                        <h6>{{ chambres }} chambres</h6>
+                <div class="property-info">
+                    <!-- Ligne du haut -->
+                    <div class="info-row">
+                        <span>{{ type }}</span>
+                        <div class="separator" />
+                        <span>{{ chambres }} chambres</span>
+                        <div class="separator" />
+                        <span>salle de bains</span>
                     </div>
-                    <div class="item__info__single">
-                        <p>Type d'habitat</p>
-                        <h6>{{ type }}</h6>
+
+                    <!-- Ligne du bas -->
+                    <div class="info-details">
+                        <div class="column">
+                            <span class="label">Disponible<br />à partir de</span>
+                            <span class="value date">{{ countdown.days }}/{{ countdown.month }}/{{ countdown.years }}</span>
+                        </div>
+
+                        <div class="separator" />
+                        <!-- <div class="vertical-separator" /> -->
+
+                        <div class="column">
+                            <span class="value">102 m²</span>
+                            <span class="label">{{ type }}</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="invest__cta__wrapper">
                     <div class="countdown__wrapper">
-                        <p class="secondary"><i class="fa-solid fa-clock"></i> Disponibilité</p>
                         <div class="countdown">
-                            <h5>Immédiate</h5>
-                            <!-- <h5><span class="days">{{ countdown.days }}</span><span class="seperator">/</span></h5>
-                            <h5><span class="hours">{{ countdown.month }}</span><span class="seperator">/</span></h5>
-                            <h5><span class="minutes">{{ countdown.years }}</span></h5> -->
+                            <h5>{{ investors }} € </h5>
                         </div>
                     </div>
                     <div class="invest__cta">
                         <a :href="detailsUrl" class="button button--effect">
-                            Réserver
+                            En savoir plus
                         </a>
                     </div>
                 </div>
@@ -135,4 +134,89 @@ const users = [
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
     z-index: 4;
 }
+
+
+
+
+
+.property-info {
+    font-family: 'Arial', sans-serif;
+    color: #2e3192;
+    background: white;
+    border-radius: 8px;
+    max-width: 600px;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.separator {
+    height: 1rem;
+    width: 1px;
+    background-color: #ccc;
+    margin: 0 0.5rem;
+}
+
+.info-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+    gap: 1rem;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 14px;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.label {
+    color: #2e3192;
+    opacity: 0.8;
+    line-height: 1.2;
+}
+
+.value {
+    color: #2e3192;
+}
+
+.value.date {
+    color: #645bff;
+    font-size: 21px;
+}
+
+.vertical-separator {
+    width: 1px;
+    background-color: #ddd;
+    height: 100%;
+}
+
+@media only screen and (max-width: 767px) {
+    p, th, td, li, input, textarea, select, label, blockquote, span {
+        font-size: 20px;
+        line-height: 28px;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    .property__grid__single .sub__info {
+        margin-top: 5px;
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+}
+
+
 </style>
