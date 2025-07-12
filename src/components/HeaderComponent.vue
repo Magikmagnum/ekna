@@ -80,7 +80,8 @@ const menu = [
       { label: 'Signalement', to: '/alerte-signalement' },
       { label: 'Nouvelle candidature refusée', to: '/nouvelle-candidature-refusee' },
       { label: 'Profil retiré', to: '/profil-retire' },
-      { label: 'Félicitations', to: '/felicitation' }
+      { label: 'Félicitations', to: '/felicitation' },
+      { label: 'Détails', to: '/detail' },
 
     ]
   },
