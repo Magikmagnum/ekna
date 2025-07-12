@@ -109,18 +109,10 @@
             <a href="#" class="button">
                 DOWNLOAD TITLE REPORT <i class="fa-solid fa-download"></i>
             </a>
+            
         </div> -->
 
-        <div class="group birinit">
-            <h6>Share via Social</h6>
-            <div class="social text-start">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </div>
-
+       
         <div class="group brini">
             <h5 class="neutral-top">Les avantages EKNA</h5>
             <hr />
@@ -131,6 +123,18 @@
             </ul>
             <a href="blog.html">Nos partenaires</a>
         </div>
+
+         <div class="group birinit">
+            <h6 style="width: 150px;">Paratage via les réseaux sociaux</h6>
+            <div class="social text-start">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+
     </div>
 </template>
 
