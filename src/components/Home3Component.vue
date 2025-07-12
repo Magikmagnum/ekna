@@ -82,6 +82,7 @@ const items = [
 
 .profit__single__item p{
     min-width: 434px;
+    display: inline;
 }
 
 
@@ -93,4 +94,5 @@ const items = [
         text-align: center;
     }
 }
+
 </style>
