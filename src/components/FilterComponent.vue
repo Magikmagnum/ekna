@@ -146,4 +146,10 @@ const handleSearch = () => {
 
 <style scoped>
 /* Optionnel : styles personnalisés pour override nice-select */
+
+@media only screen and (max-width: 575px) {
+    .property__filter {
+        padding-top: 42px;
+    }
+}
 </style>

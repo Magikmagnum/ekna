@@ -112,4 +112,11 @@ const illustrationPath = resolveAssetPath(props.illustration)
     }
 }
 
+
+
+@media only screen and (max-width: 575px) {
+    .hero {
+        padding-bottom: 40px;
+    }
+}
 </style>
