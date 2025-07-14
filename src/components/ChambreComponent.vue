@@ -17,143 +17,75 @@
             </div>
             <div class="details__block chambre-block">
                 <h5>Les chambres</h5>
-
-
                 <!-- SLIDE DE BASE -->
-
-
-                <div class="chambre-card">
-                    <div class="image-section">
-                        <div class="image-placeholder">4096X2304</div>
-                        <!-- v-for="n in 3" :key="n" -->
-                    </div>
-                    <div class="info-section">
-                        <div class="title">
-                            <!-- <span class="size"></span> -->
-                            <h2>Chambre 01 de 12m²</h2>
-                            <div class="price">650€<span class="per">/mois</span></div>
-                        </div>
-                        <p class="subtitle">Meublée - SDB individuelle</p>
-
-                        <div class="equipements">
-                            <h3>Équipements</h3>
-                            <div class="equipements-bloc">
-                                <div class="equipement-item">
-                                    <div class="icon-placeholder"></div>
-                                    <span>Douche</span>
-                                </div>
-
-                                <a href="/logement/6d1b65aa-6437-3000-8bc2-651b06265bbf" class="button button--effect btn-blanc">
-                                    voir tous les équipements
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="details">
-                            <div class="detail-row">
-                                <div class="detail-row-item">
-                                    <span class="dot-green"></span>
-                                    <span>Disponible à partir du |</span>
-                                    <strong>09 avril 2025</strong>
-                                </div>
-                                <div class="detail-row-item">
-                                    <span class="dot-green"></span>
-                                    <span>Dépôt de garantie |</span>
-                                    <strong>580€</strong>
-                                </div>
-                            </div>
-                            <button class="button button--effect">Louer</button>
-                        </div>
-                    </div>
-                </div>
-
-
+                <ChambreCardComponent v-for="(chambre, index) in chambres" :key="index" :titre="chambre.titre"
+                    :prix="chambre.prix" :sousTitre="chambre.sousTitre" :equipements="chambre.equipements"
+                    :dateDispo="chambre.dateDispo" :depotGarantie="chambre.depotGarantie"
+                    :lienEquipements="chambre.lienEquipements" :texteLienEquipements="chambre.texteLienEquipements"
+                    @louer="handleLouer(chambre.titre)" />
                 <!-- FIN DU SLIDE -->
-
-
-
-
-
-
             </div>
         </div>
     </div>
 </template>
 
-<script>
-import ChambreCard from './ChambreCard.vue';
+<script setup>
+import ChambreCardComponent from '@/components/ChambreCardComponent.vue'
 
-export default {
-    name: 'PropertyDetailsMain',
-    data() {
-        return {
-            interestRates: [13, 13.25, 13.5, 14],
-            earnings: [
-                { period: '01 Month', amount: '0.72' },
-                { period: '12 Month', amount: '11.72' },
-                { period: '24 Month', amount: '17.72' },
-            ],
-            loanInfo: {
-                'Amount of funding': '40,000 €',
-                Risk: 'C (Higher)',
-                'Payment of interest': 'Every Month',
-                'Loan Repayment': 'Every Month',
-                'Loan Repayment postponement': '3',
-                'Loan Period': '24 Months',
-                'Minimum Loan Period': '4 Months',
-                Collateral: 'Guarantes/ Surety',
-                'Mortgage Rank': 'Other Pledge',
-            },
-            interestDetails: [
-                { from: 100, rate: 13 },
-                { from: 500, rate: 13.25 },
-                { from: 1500, rate: 13.5 },
-                { from: 2500, rate: 14 },
-            ],
-            repaymentTerms: {
-                'Loan Repayment': 'Every Month',
-                'Loan Repayment postponement': '3',
-                'Loan Period': '24 Months',
-                'Minimum Loan Period': '4 Months',
-                'Estimated start date of the loan': '2022-01-28',
-            },
-            elements: [
-                'Dépôt de garantie;',
-                'Premier mois de loyer;',
-                "Frais d'agence éventuels;",
-                'Assurance habitation;',
-            ],
-            avantages: [
-                'Maison entièrement rénovée;',
-                '3 chambres avec salle de bain privative;',
-                'Cuisine ultra-équipée;',
-                'Espaces communs optimisés;',
-                'Équipements complets dans chaque chambre;',
-                'Buanderie dédiée;',
-                'Convivialité et sérénité;',
-            ],
-            conditions: [
-                {
-                    icon: 'D', // pour "Durée"
-                    label: 'Durée max. du bail',
-                    value: '12 mois',
-                },
-                {
-                    icon: 'G', // pour "Garantie"
-                    label: 'Garantie',
-                    value: 'Visale ou garant familial',
-                },
-                {
-                    icon: '€', // pour "Dossier"
-                    label: 'Dossier',
-                    value: 'Complet et conforme',
-                },
-            ]
-        };
+const avantages = [
+    'Maison entièrement rénovée;',
+    '3 chambres avec salle de bain privative;',
+    'Cuisine ultra-équipée;',
+    'Espaces communs optimisés;',
+    'Équipements complets dans chaque chambre;',
+    'Buanderie dédiée;',
+    'Convivialité et sérénité;',
+]
+
+const chambres = [
+    {
+        titre: 'Chambre 01 de 15m²',
+        prix: '750€',
+        sousTitre: 'Non meublée - SDB partagée',
+        equipements: [
+            { icon: '/src/assets/images/icons/douche.png', label: 'Douche' }
+        ],
+        dateDispo: '01 mai 2025',
+        depotGarantie: '620€',
+        lienEquipements: '/logement/uuid-xyz',
+        texteLienEquipements: 'Consulter les équipements'
     },
+    {
+        titre: 'Chambre 02 de 13m²',
+        prix: '700€',
+        sousTitre: 'Meublée - SDB privative',
+        equipements: [
+            { icon: '/src/assets/images/icons/douche.png', label: 'Douche' }
+        ],
+        dateDispo: '15 mai 2025',
+        depotGarantie: '600€',
+        lienEquipements: '/logement/uuid-abc',
+        texteLienEquipements: 'Voir les équipements'
+    },
+    {
+        titre: 'Chambre 03 de 12m²',
+        prix: '680€',
+        sousTitre: 'Meublée - SDB partagée',
+        equipements: [
+            { icon: '/src/assets/images/icons/douche.png', label: 'Douche' }
+        ],
+        dateDispo: '01 juin 2025',
+        depotGarantie: '580€',
+        lienEquipements: '/logement/uuid-def',
+        texteLienEquipements: 'Tous les équipements'
+    }
+]
 
-};
+function handleLouer() {
+    console.log('Chambre louée !')
+}
 </script>
+
 
 <style scoped>
 /* Ajoutez ici les styles personnalisés si nécessaire */
@@ -308,7 +240,10 @@ export default {
 
 
 
-
+.detail-row {
+    flex: 1;
+    margin-right: 32px;
+}
 
 .chambre-card {
     display: flex;
@@ -330,7 +265,7 @@ export default {
 }
 
 .info-section {
-    flex: 2 1 400px;
+    flex: 2 1 530px;
     padding: 24px;
     display: flex;
     flex-direction: column;
@@ -379,7 +314,7 @@ export default {
 }
 
 .equipements h3 {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     font-size: 1em;
     line-height: 24px;
     text-align: left;
@@ -404,7 +339,9 @@ export default {
 .equipements .icon-placeholder {
     background: #f3f3f3;
     border-radius: 4px;
-    flex: 1
+    flex: 1;
+    width: 85px;
+    height: 30px;
 }
 
 .btn-blanc {
@@ -415,22 +352,26 @@ export default {
     font-size: 12px;
 }
 
+.btn-blanc:hover {
+    color: #13216e;
+}
+
 .chambre-block h5 {
     margin-bottom: 24px;
 }
 
-.equipement-item  span {
+.equipement-item span {
     font-size: 0.6em;
     line-height: 16px;
 }
 
-.details{
+.details {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.detail-row-item{
+.detail-row-item {
     display: flex;
     flex-direction: row;
     gap: 16px;
@@ -443,7 +384,7 @@ export default {
     margin-bottom: 6px;
 }
 
-.detail-row-item span{
+.detail-row-item span {
     display: flex;
     flex-direction: row;
     gap: 4px;
@@ -452,7 +393,7 @@ export default {
     line-height: 16px;
 }
 
-.detail-row-item strong{
+.detail-row-item strong {
     display: flex;
     flex-direction: row;
     gap: 4px;
@@ -461,7 +402,7 @@ export default {
     line-height: 16px;
 }
 
-.dot-green{
+.dot-green {
     background-color: #28a745;
     border-radius: 100%;
     width: 10px;
