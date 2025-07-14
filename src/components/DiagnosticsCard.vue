@@ -208,4 +208,5 @@ const gesScale = [
 .diagnostic-block {
     margin-bottom: 24px;
 }
+
 </style>

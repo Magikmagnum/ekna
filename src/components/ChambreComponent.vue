@@ -140,4 +140,14 @@ function handleLouer(titre) {
     color: #13216f;
     background: #fff;
 }
+
+
+@media (max-width: 768px) {
+    .equipements-bloc {
+        display: flex;
+        align-items: normal;
+        flex-direction: column;
+        gap: 24px;
+    }
+}
 </style>

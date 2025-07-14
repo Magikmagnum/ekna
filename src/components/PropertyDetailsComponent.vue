@@ -156,6 +156,24 @@ const elements = ref([
     gap: 24px;
 }
 
+
+@media (max-width: 768px) {
+    .bailleur_block_header {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        margin: 24px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .bailleur {
+        display: block;
+    }
+}
+
 .bailleur_block_image {
     width: 124px;
 }
