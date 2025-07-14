@@ -24,6 +24,23 @@
                     </div>
                 </div>
             </section>
+
+            <section class="p__details__two faq section__space__bottom">
+                <div class="container">
+                    <div class="p__details__area">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <!-- Include content as a component if needed -->
+                                <ChambreComponent />
+                            </div>
+
+                            <div class="col-lg-5">
+                                <PropertyDetailsSidebar />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
         <Proposition2Component />
         <FooterComponent />
@@ -40,6 +57,8 @@ import Proposition2Component from '@/components/Proposition2Component.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 import PropertyDetailsComponent from '@/components/PropertyDetailsComponent.vue';
 import PropertyDetailsSidebar from '@/components/PropertyDetailsSidebar.vue'
+import ChambreComponent from '@/components/ChambreComponent.vue';
+
 
 import constructionImage from '@/assets/images/construction.png';
 
