@@ -1,7 +1,7 @@
 <template>
     <div class="p__details__content">
         <a href="#gallery" class="button button--effect button--secondary">
-            <i class="fa-solid fa-images"></i> Browse Gallery
+            <i class="fa-solid fa-images"></i> Voir la galerie
         </a>
 
         <div class="intro">
