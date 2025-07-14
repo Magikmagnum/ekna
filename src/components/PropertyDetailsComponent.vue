@@ -130,6 +130,10 @@ const elements = ref([
 </script>
 
 <style scoped>
+
+.details__color{
+    color: #645afc;
+}
 /* Tes styles sont conservés sans modification */
 .details__intro {
     margin-bottom: 40px;
