@@ -202,11 +202,10 @@ defineEmits(['louer'])
 }
 
 .btn-blanc {
-    padding: 14px 30px 16px;
-    background-color: #fff;
-    color: #13216e;
-    height: 52px;
-    font-size: 12px;
+    font-size: 0.6em;
+    padding: 10px 20px;
+    color: #13216f;
+    background: #fff;
 }
 
 .btn-blanc:hover {

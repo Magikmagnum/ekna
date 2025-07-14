@@ -91,27 +91,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div class="group alt__brin__last">
-            <h5>Reports</h5>
-            <hr />
-            <h6>Investment Note</h6>
-            <p>Property Share's Detailed Investment Note</p>
-            <a href="#" class="button">
-                DOWNLOAD INVESTMENT NOTE <i class="fa-solid fa-download"></i>
-            </a>
-
-            <h6>Legal Title Report</h6>
-            <p>
-                Detailed Report on the Title diligence of the property by Amarchand
-                Mangaldas
-            </p>
-            <a href="#" class="button">
-                DOWNLOAD TITLE REPORT <i class="fa-solid fa-download"></i>
-            </a>
-            
-        </div> -->
-
        
         <div class="group brini">
             <h5 class="neutral-top">Les avantages EKNA</h5>
