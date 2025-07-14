@@ -4,7 +4,7 @@
          <BannerComponent :title="title" :backgroundImage="backgroundImage" :bannerThumb="bannerThumb"
       :breadcrumbs="breadcrumbs" />
         <FilterComponent/>
-        <PropositionComponent />
+        <Proposition2Component />
         <FooterComponent />
     </div>
 </template>
@@ -16,7 +16,7 @@ import { ref } from 'vue'
 // Importing components
 import HeaderComponent from '@/components/HeaderComponent.vue'
 import BannerComponent from '@/components/BannerComponent.vue'
-import PropositionComponent from '@/components/PropositionComponent.vue';
+import Proposition2Component from '@/components/Proposition2Component.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 import FilterComponent from '@/components/FilterComponent.vue';
 

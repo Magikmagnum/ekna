@@ -1,23 +1,10 @@
 <!-- components/PropositionComponent.vue -->
 <template>
-    <section class="properties__grid section__space">
+    <section style="margin-bottom: 100px;">
         <div class="container">
             <div class="properties__grid__area wow fadeInUp">
-                <div class="title__with__cta">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-lg-8">
-                            <h2>Annonces Similaires</h2>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="text-start text-lg-end">
-                                <a href="/properties" class="button button--secondary button--effect">
-                                    Voir les annonces
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                
+                <PropertiesFilter/>
                 <!-- Propriétés regroupées par ligne de 3 -->
                 <div v-for="(chunk, index) in chunkedProperties" :key="index" class="property__grid__wrapper">
                     <div class="row">
@@ -38,7 +25,7 @@ import { ref, onMounted, computed } from 'vue'
 import axios from 'axios'
 import { useI18n } from 'vue-i18n'
 import CardVertical2Component from './CardVertical2Component.vue'
-
+import PropertiesFilter from './PropertiesFilter.vue';
 // i18n
 const { t } = useI18n()
 
