@@ -1,5 +1,9 @@
 export default {
     fr: {
+        HeaderComponent: {
+            espaceBailleur: 'Espace bailleur',
+            deposerUneAnnonce: 'Déposer une annonce',
+        },
         AnnonceComponent: {
             annoncesALaUne: 'Annonces à la une',
             voirToutes: 'Voir toutes les annonces',
@@ -33,6 +37,7 @@ export default {
         },
     },
     en: {
+        HeaderComponent: {},
         AnnonceComponent: {
             annoncesALaUne: 'Featured Listings',
             voirToutes: 'See all listings',
