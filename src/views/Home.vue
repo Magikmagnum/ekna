@@ -1,22 +1,24 @@
 <template>
     <div id="app">
         <HeaderComponent />
-        <BannerHomeComponent :primaryCta="{ label: 'Déposer une annonce', link: '/explore' }"
-            :secondaryCta="{ label: 'Trouver une colocation', link: '/funding' }"
-            backgroundImage="@/assets/images/hero/light-bg.png.png"
-            illustration="@/assets/images/ekna/homepage.png" />
-        <FilterComponent/>
+        <BannerHomeComponent 
+            :primaryCta="{ label: t('Home.primaryCta'), link: '/explore' }"
+            :secondaryCta="{ label: t('Home.secondaryCta'), link: '/annonces' }"
+            backgroundImage="@/assets/images/hero/light-bg.png.png" 
+            illustration="@/assets/images/ekna/homepage.png" 
+        />
+        <FilterComponent />
         <AnnonceComponent />
         <PropositionComponent />
         <Home3Component />
         <Home4Component />
-        <Home5Component :stats="statsComponent5" buttonLink="/properties"
-            :backgroundImage="backgroundImageComponent5" />
-
+        <Home5Component/>
         <TestimonialsComponent />
-        <BannerSecondComponent title="L'app EKNA t'accompagne partout."
+        <BannerSecondComponent 
+            title="L'app EKNA t'accompagne partout."
             subtitle="Trouve une colocation ou ton futur <br/>colocataire en quelques clics"
-            :imageSrc="backgroundImageBannerSecond" :description="`<p style='margin-bottom: 24px;'>Grâce à notre algorithme de matching et notre scoring de dossier, finis les recherches interminables et les mauvaises surprises.</p>
+            :imageSrc="backgroundImageBannerSecond" 
+            :description="`<p style='margin-bottom: 24px;'>Grâce à notre algorithme de matching et notre scoring de dossier, finis les recherches interminables et les mauvaises surprises.</p>
             <ul style='list-style: disc;margin-left: 52px;'>
             <li>Navigue parmi des profils qualifiés.</li>
             <li>Échange directement avec les bons candidats ou propriétaires.</li>
@@ -28,8 +30,9 @@
 </template>
 
 <script setup>
-
-import { ref } from 'vue'
+// Importing the i18n instance for translations
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 // Importing components
 import HeaderComponent from '@/components/HeaderComponent.vue'
@@ -44,36 +47,7 @@ import BannerSecondComponent from '@/components/BannerSecondComponent.vue';
 import TestimonialsComponent from '@/components/TestimonialsComponent.vue';
 import FilterComponent from '@/components/FilterComponent.vue';
 
-
-
-const logements = ref([])
-const loading = ref(true)
-
-
 // Background image for BannerSecondComponent
 const backgroundImageBannerSecond = new URL('@/assets/images/ekna/App.png', import.meta.url).href
 
-
-// Background image and stats for Home5Component
-const backgroundImageComponent5 = new URL('@/assets/images/globe.png', import.meta.url).href
-const statsComponent5 = [
-    {
-        image: new URL('@/assets/images/ekna/matching-modified.png', import.meta.url).href,
-        alt: 'Platform',
-        value: '73%',
-        label: 'de matching réussi </br> grâce à notre scoring </br> de compatibilité',
-    },
-    {
-        image: new URL('@/assets/images/ekna/partenair-modified.png', import.meta.url).href,
-        alt: 'Returns',
-        value: '+50',
-        label: 'bailleurs partenaires nous font déjà confiance',
-    },
-    {
-        image: new URL('@/assets/images/ekna/annonce-modified.png', import.meta.url).href,
-        alt: 'Experience',
-        value: '95%',
-        label: 'des annonces trouvent </br> un candidat qualifié </br> en moins de 7 jours',
-    }
-];
 </script>

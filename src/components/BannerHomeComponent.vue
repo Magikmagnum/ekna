@@ -75,7 +75,6 @@ const props = defineProps({
 })
 
 const backgroundImagePath = resolveAssetPath(props.backgroundImage)
-const illustrationPath = resolveAssetPath(props.illustration)
 </script>
 
 <style scoped>

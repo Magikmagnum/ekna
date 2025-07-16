@@ -6,12 +6,12 @@
                 <div class="title__with__cta">
                     <div class="row d-flex align-items-center">
                         <div class="col-lg-8">
-                            <h2>Toutes les colocations</h2>
+                            <h2>{{t('PropositionComponent.bouton')}}</h2>
                         </div>
                         <div class="col-lg-4">
                             <div class="text-start text-lg-end">
                                 <a href="/properties" class="button button--secondary button--effect">
-                                    Voir toutes les annonces
+                                    {{t("PropositionComponent.bouton")}}
                                 </a>
                             </div>
                         </div>
@@ -41,7 +41,6 @@ import CardVertical2Component from './CardVertical2Component.vue'
 
 // i18n
 const { t } = useI18n()
-
 // Reactive state
 const properties = ref([])
 

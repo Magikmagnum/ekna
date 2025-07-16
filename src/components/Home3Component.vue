@@ -3,14 +3,10 @@
         <div class="container">
             <div class="profit__area wow fadeInUp">
                 <div class="section__header">
-                    <h5 class="neutral-top">Gagnez du temps et maximisez vos chances</h5>
+                    <h5 class="neutral-top">{{ t('Home3Component.soustitre') }}</h5>
                     <h2>
-                        Pourquoi choisir EKNA ?
+                        {{ t('Home3Component.titre') }}
                     </h2>
-                    <!-- <p class="neutral-bottom">
-                        We make institutional quality real estate accessible to investors, in a
-                        simple and transparent way.
-                    </p> -->
                 </div>
 
                 <div v-for="(row, rowIndex) in items" :key="rowIndex" class="profit__item__wrapper">
@@ -36,6 +32,8 @@
 
 <script setup>
 
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 const income = new URL('@/assets/images/ekna/profilsfiables.svg', import.meta.url).href
 const secure = new URL('@/assets/images/ekna/gaindetemps.svg', import.meta.url).href

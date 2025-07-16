@@ -1,5 +1,49 @@
 export default {
     fr: {
+        FooterComponent: {
+            newsletterTitle: "Restez informé sur la colocation avec EKNA",
+            newsletterDescription: "Ne manquez aucune actualité, astuce ou opportunité !",
+            placeholderEmail: "Entrez votre email",
+            subscribeButton: "S'abonner",
+            description:
+                "EKNA simplifie la colocation avec un matching intelligent et un scoring de dossier fiable pour bailleurs et locataires.",
+            copyright: "© EKNA. Tous droits réservés.",
+            about: "À propos",
+            tenants: "Colocataires",
+            owners: "Bailleurs",
+            legal: "Légal",
+        },
+        Home5Component: {
+            titre: 'Pourquoi choisir EKNA pour votre colocation?',
+            soustitre: 'Plus qu\'une plateforme, <br/>un véritable outil de sélection.',
+            paragraphe: "Optimisez l'occupation de votre bien, réduisez la vacance locative, augmentez votre rentabilité.",
+            bouton: 'Parcourir les annonces',
+            stats: [
+                { image: 'platform.png', alt: 'Platform', value: '73%', label: 'de matching réussi grâce à notre scoring de compatibilité' },
+                { image: 'returns.png', alt: 'Returns', value: '+50', label: 'bailleurs partenaires nous font déjà confiance' },
+                { image: 'experience.png', alt: 'Experience', value: '95%', label: 'des annonces trouvent un candidat qualifié en moins de 7 jours' }
+            ]
+        },
+        Home4Component: {
+            soustitre: 'Louez ou trouvez votre colocataire en 3 étapes simples.',
+            titre: 'Comment ça fonctionne ?',
+        },
+        Home3Component: {
+            soustitre: 'Gagnez du temps et maximisez vos chances',
+            titre: 'Pourquoi choisir EKNA ?',
+        },
+        PropositionComponent: {
+            title: 'Toutes les colocations',
+            bouton: 'Voir toutes les annonces',
+        },
+        FilterComponent: {
+            boutonRecherche: 'Chercher',
+            inputPlaceholder: 'Rechercher une colocation',
+        },
+        Home: {
+            primaryCta: 'Déposer une annonce',
+            secondaryCta: 'Trouver une colocation',
+        },
         HeaderComponent: {
             espaceBailleur: 'Espace bailleur',
             deposerUneAnnonce: 'Déposer une annonce',
