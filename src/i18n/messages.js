@@ -37,7 +37,7 @@ export default {
             bouton: 'Voir toutes les annonces',
         },
         FilterComponent: {
-            boutonRecherche: 'Chercher',
+            boutonRecherche: 'Ville',
             inputPlaceholder: 'Rechercher une colocation',
         },
         Home: {
