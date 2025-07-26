@@ -10,7 +10,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="text-start text-lg-end">
-                                <a href="/properties" class="button button--secondary button--effect">
+                                <a href="/annonces" class="button button--secondary button--effect">
                                     {{t("PropositionComponent.bouton")}}
                                 </a>
                             </div>

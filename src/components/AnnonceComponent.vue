@@ -9,7 +9,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="text-start text-lg-end">
-                                <a href="/home" class="button button--secondary button--effect">
+                                <a href="/annonces" class="button button--secondary button--effect">
                                     {{ $t('AnnonceComponent.voirToutes') }}
                                 </a>
                             </div>
