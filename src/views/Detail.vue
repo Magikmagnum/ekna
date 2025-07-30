@@ -14,7 +14,6 @@
                     <div class="p__details__area">
                         <div class="row">
                             <div class="col-lg-7">
-                                <!-- Include content as a component if needed -->
                                 <PropertyDetailsComponent v-if="logement" :logement="logement" />
                             </div>
 
@@ -35,7 +34,6 @@
                     <div class="p__details__area">
                         <div class="row">
                             <div class="col-lg-7">
-                                <!-- Include content as a component if needed -->
                                 <ChambreComponent v-if="logement" :logement="logement" />
                             </div>
 

@@ -28,6 +28,7 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import ChambreCardComponent from '@/components/ChambreCardComponent.vue'
 
 const props = defineProps({
@@ -42,41 +43,25 @@ const logement = props.logement
 
 console.log('image props:', logement)
 
+// dans logement on a un tableau d'équipements dans principaux_equipements qui se presente comme ça:
+// "principaux_equipements": [
+//            "canape",
+//            "cuisiniere",
+//            "balcon"
+//        ],
 
-const chambres = [
-    {
-        titre: 'Chambre 01 de 15m²',
-        prix: '750€',
-        sousTitre: 'Non meublée - SDB partagée',
-        equipements: [{ icon: '/src/assets/images/icons/douche.png', label: 'Douche' }],
-        dateDispo: '01 mai 2025',
-        depotGarantie: '620€',
-        lienEquipements: '/detail/uuid-xyz',
-        texteLienEquipements: 'Consulter les équipements',
-    },
-    {
-        titre: 'Chambre 02 de 13m²',
-        prix: '700€',
-        sousTitre: 'Meublée - SDB privative',
-        equipements: [{ icon: '/src/assets/images/icons/douche.png', label: 'Douche' }],
-        dateDispo: '15 mai 2025',
-        depotGarantie: '600€',
-        lienEquipements: '/detail/uuid-abc',
-        texteLienEquipements: 'Voir les équipements',
-    },
-    {
-        titre: 'Chambre 03 de 12m²',
-        prix: '680€',
-        sousTitre: 'Meublée - SDB partagée',
-        equipements: [{ icon: '/src/assets/images/icons/douche.png', label: 'Douche' }],
-        dateDispo: '01 juin 2025',
-        depotGarantie: '580€',
-        lienEquipements: '/detail/uuid-def',
-        texteLienEquipements: 'Tous les équipements',
-    },
-]
+// je metre ca dans une boucle comme ça:<div class="equipement">
+                //     <div class="equipement-item" v-for="(item, index) in equipements" :key="index">
+                //         <img class="equipement-item-icon" :src="item.icon" :alt="item.label" />
+                //         <span>{{ item.label }}</span>
+                //     </div>
+                // </div>
 
-const equipements = [
+// le lien vers les équipements sera dynamique, par exemple : `https://mydev.espacebailleurekna.fr/svg/canape.svg`
+// je veux que la sorti  s'affiche comme ca: 
+
+
+const equipement = [
     {
         icon: new URL('@/assets/images/icons/canape.png', import.meta.url).href,
         label: 'Canapé',
@@ -98,6 +83,35 @@ const equipements = [
 function handleLouer(titre) {
     console.log(`Chambre louée : ${titre}`)
 }
+
+console.log('principaux_equipements:', logement.principaux_equipements)
+
+
+// Table de correspondance des labels
+const labelMap = {
+    canape: 'Canapé',
+    cuisiniere: 'Gazinière',
+    balcon: 'Balcon',
+    douches: 'Douche italienne',
+    terasse: 'Terrasse'
+    // ajoute d'autres ici si besoin
+}
+
+// Générer le tableau final des équipements
+const equipements = computed(() => {
+    return logement.principaux_equipements.map((nom) => {
+        console.log('nom:', nom)
+        return {
+            icon: `https://mydev.espacebailleurekna.fr/svg/${nom}.svg`,
+            label: nom // fallback si non trouvé
+        }
+    })
+})
+
+
+console.log('Equipements:', equipements.value) 
+
+
 </script>
 
 <style scoped>

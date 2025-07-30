@@ -1,9 +1,9 @@
 <template>
     <div class="chambre-card">
-        <div class="image-section">
+        <div class="image-section image-container">
             <template v-if="props.images && props.images.length">
-                <img v-for="image in props.images" :key="image.id" :src="image.file" alt="Image du logement"
-                    class="image" />
+                <img v-for="image in props.images.slice(0, 3)" :key="image.id" :src="image.file" alt="Image du logement"
+                    :class="['image', `count-${props.images.length > 3 ? 3 : props.images.length}`]" />
             </template>
             <div v-else class="image-placeholder">{{ imagePlaceholder }}</div>
         </div>
@@ -54,7 +54,7 @@
                         <span>|</span>
                         <strong>{{ Array.isArray(dateDispo) && dateDispo.length > 0 ? extraireDateFin(dateDispo[0]) :
                             'Non définie'
-                            }}</strong>
+                        }}</strong>
                     </div>
                     <div class="detail-row-item">
                         <span class="dot-green"></span>
@@ -186,6 +186,36 @@ function extraireDateFin(periode) {
     overflow: hidden;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     margin-bottom: 24px;
+}
+
+
+.image-container {
+    height: 348px;
+    /* gap: 10px; */
+}
+
+.image-container .count-1{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-container .count-2 {
+    /* width: calc(100% / 2); */
+    /* height: 200px; */
+    flex: 1;
+    object-fit: cover;
+    width: 100%;
+    height:  calc(100% / 2);
+}
+
+.image-container .count-3 {
+    /* width: calc(100% / 3); */
+    /* height: 200px; */
+    flex: 1;
+    object-fit: cover;
+    width: 100%;
+    height: calc(100% / 3);
 }
 
 .image-section {

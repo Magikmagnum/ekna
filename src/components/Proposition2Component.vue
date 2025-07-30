@@ -8,11 +8,11 @@
                 <!-- Propriétés regroupées par ligne de 3 -->
                 <div v-for="(chunk, index) in chunkedProperties" :key="index" class="property__grid__wrapper">
                     <div class="row">
-                        <!-- <CardVertical2Component
+                        <CardVertical2Component
                             v-for="(property, idx) in chunk"
                             :key="property.id"
                             v-bind="property"
-                        /> -->
+                        />
                     </div>
                 </div>
             </div>
