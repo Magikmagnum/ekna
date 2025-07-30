@@ -76,7 +76,7 @@ const menu = [
             { label: 'Nouvelle candidature refusée', to: '/nouvelle-candidature-refusee' },
             { label: 'Profil retiré', to: '/profil-retire' },
             { label: 'Félicitations', to: '/felicitation' },
-            { label: 'Détails', to: '/detail' },
+            // { label: 'Détails', to: '/detail' },
 
         ]
     },

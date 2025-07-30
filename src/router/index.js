@@ -40,7 +40,7 @@ const routes = [
   { path: '/nouvelle-candidature-refusee', name: 'NouvelleCandidatureRefusee', component: NouvelleCandidatureRefusee },
   { path: '/profil-retire', name: 'ProfilRetire', component: ProfilRetire },
   { path: '/felicitation', name: 'felicitation', component: Felicitation },
-  { path: '/detail', name: 'Detail', component: Detail },
+  { path: '/detail/:id', name: 'Detail', component: Detail },
 
 
   // Ajouter ici d'autres routes si nécessaires

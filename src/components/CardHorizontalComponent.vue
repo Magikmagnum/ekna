@@ -4,9 +4,9 @@
         <div class="col-lg-5">
             <div class="property__item__image column__space--secondary">
                 <div class="img__effect">
-                    <a href="property-details.html">
+                    <router-link :to="`/detail/${property.id}`">
                         <img :src="property.image" :alt="property.title" />
-                    </a>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -20,7 +20,8 @@
                     </div>
                     <div class="item__head__right">
                         <div class="countdown__wrapper">
-                            <p class="secondary"><i class="fa-solid fa-clock"></i> {{ $t('CardHorizontalComponent.disponibilite') }}</p>
+                            <p class="secondary"><i class="fa-solid fa-clock"></i> {{
+                                $t('CardHorizontalComponent.disponibilite') }}</p>
                             <div class="countdown">
                                 <h5>{{ $t('CardHorizontalComponent.immediate') }}</h5>
                             </div>
@@ -68,8 +69,10 @@
                         </div>
                     </div>
                     <div class="item__cta__group">
-                        <a href="registration.html" class="button button--effect">{{ $t('CardHorizontalComponent.reserver') }}</a>
-                        <a href="property-details.html" class="button button--secondary button--effect">{{ $t('CardHorizontalComponent.details') }}</a>
+                        <a href="registration.html" class="button button--effect">{{
+                            $t('CardHorizontalComponent.reserver') }}</a>
+                        <a href="detail" class="button button--secondary button--effect">{{
+                            $t('CardHorizontalComponent.details') }}</a>
                     </div>
                 </div>
             </div>

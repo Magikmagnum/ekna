@@ -57,7 +57,7 @@ onMounted(async () => {
             progressPercent: annonce.avancement || 0,
             chambres: annonce.total_chambre?.toString() || 'N.C.',
             type: annonce.type_logement || 'N.C.',
-            detailsUrl: `/logement/${annonce.reference || ''}`,
+            detailsUrl: `/detail/${annonce.reference || ''}`,
             countdown: { days: '10', month: '08', years: '24' }, // à ajuster dynamiquement si nécessaire
         }))
     } catch (error) {

@@ -1,25 +1,43 @@
 <template>
     <div class="chambre-card">
         <div class="image-section">
-            <div class="image-placeholder">{{ imagePlaceholder }}</div>
+            <template v-if="props.images && props.images.length">
+                <img v-for="image in props.images" :key="image.id" :src="image.file" alt="Image du logement"
+                    class="image" />
+            </template>
+            <div v-else class="image-placeholder">{{ imagePlaceholder }}</div>
         </div>
 
         <div class="info-section">
             <div class="title">
                 <h2>{{ titre }}</h2>
                 <div class="price">
-                    {{ prix }}<span class="per">/mois</span>
+                    {{ prix }}€<span class="per">/mois</span>
                 </div>
             </div>
 
-            <p class="subtitle">{{ sousTitre }}</p>
+            <p class="subtitle">
+                <template v-if="isMeuble || isSalleDeBainIndividuelle">
+                    <span v-if="isMeuble">Meublée</span>
+                    <span v-if="isMeuble && isSalleDeBainIndividuelle"> - </span>
+                    <span v-if="isSalleDeBainIndividuelle">SDB individuelle</span>
+                </template>
+                <template v-else>
+                    <span>Non meublée</span>
+                    <span> - </span>
+                    <span>Pas de SDB individuelle</span>
+                </template>
+            </p>
 
-            <div class="equipements" v-if="equipements && equipements.length">
+            <div class="equipements" v-if="equipementsActifs.length">
                 <h3>Équipements</h3>
                 <div class="equipements-bloc">
-                    <div class="equipement-item" v-for="(equipement, index) in equipements" :key="index">
+                    <div class="equipement-item" v-for="(equipement, index) in equipementsActifs.slice(0, 3)"
+                        :key="index">
                         <img class="icon-placeholder" :src="equipement.icon" :alt="equipement.label" />
-                        <span>{{ equipement.label }}</span>
+                        <span :title="equipement.label">
+                            {{ equipement.label.length > 11 ? equipement.label.slice(0, 11) + '…' : equipement.label }}
+                        </span>
                     </div>
 
                     <a :href="lienEquipements" class="button button--effect btn-blanc">
@@ -34,13 +52,15 @@
                         <span class="dot-green"></span>
                         <span>Disponible à partir du</span>
                         <span>|</span>
-                        <strong>{{ dateDispo }}</strong>
+                        <strong>{{ Array.isArray(dateDispo) && dateDispo.length > 0 ? extraireDateFin(dateDispo[0]) :
+                            'Non définie'
+                            }}</strong>
                     </div>
                     <div class="detail-row-item">
                         <span class="dot-green"></span>
                         <span>Dépôt de garantie</span>
                         <span>|</span>
-                        <strong>{{ depotGarantie }}</strong>
+                        <strong>{{ depotGarantie }}€</strong>
                     </div>
                 </div>
                 <button class="button button--effect" @click="$emit('louer')">Louer</button>
@@ -51,7 +71,9 @@
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue'
+
+const props = defineProps({
     titre: {
         type: String,
         default: 'Chambre 01 de 12m²'
@@ -60,42 +82,97 @@ defineProps({
         type: String,
         default: '650€'
     },
-    sousTitre: {
-        type: String,
-        default: 'Meublée - SDB individuelle'
-    },
     imagePlaceholder: {
         type: String,
         default: '4096X2304'
     },
     equipements: {
-        type: Array,
-        default: () => [
-            {
-                icon: '/src/assets/images/icons/douche.png',
-                label: 'Douche'
-            }
-        ]
+        type: Object,
+        default: () => ({
+            lit_double: true,
+            lit_simple: true,
+            armoire: false,
+            bureau: true,
+            table_chevet: false,
+            radiateur: true
+        })
     },
     lienEquipements: {
         type: String,
-        default: '/logement/6d1b65aa-6437-3000-8bc2-651b06265bbf'
+        default: '/detail/6d1b65aa-6437-3000-8bc2-651b06265bbf'
     },
     dateDispo: {
-        type: String,
-        default: '09 avril 2025'
+        type: Array,
+        default: () => []
+    },
+    images: {
+        type: Array,
+        default: () => []
     },
     depotGarantie: {
         type: String,
-        default: '580€'
+        default: 'Non définie'
+    },
+    isMeuble: {
+        type: Boolean,
+        default: false
+    },
+    isSalleDeBainIndividuelle: {
+        type: Boolean,
+        default: false
     }
 })
 
 defineEmits(['louer'])
+
+console.log('image props:', props.images)
+
+// Liste des icônes et labels pour chaque équipement
+const allEquipements = {
+    lit_double: {
+        label: 'Lit double',
+        icon: 'https://mydev.espacebailleurekna.fr/svg/lit_double.svg'
+    },
+    lit_simple: {
+        label: 'Lit simple',
+        icon: 'https://mydev.espacebailleurekna.fr/svg/lit_simple.svg'
+    },
+    armoire: {
+        label: 'Armoire',
+        icon: 'https://mydev.espacebailleurekna.fr/svg/armoire.svg'
+    },
+    bureau: {
+        label: 'Bureau',
+        icon: 'https://mydev.espacebailleurekna.fr/svg/bureau.svg'
+    },
+    table_chevet: {
+        label: 'Table de chevet',
+        icon: 'https://mydev.espacebailleurekna.fr/svg/table_chevet.svg'
+    },
+    radiateur: {
+        label: 'Radiateur',
+        icon: 'https://mydev.espacebailleurekna.fr/svg/radiateur.svg'
+    }
+}
+
+// Transformer les équipements actifs en tableau exploitable
+const equipementsActifs = computed(() =>
+    Object.entries(props.equipements)
+        .filter(([key, value]) => value === true)
+        .map(([key]) => ({
+            label: allEquipements[key]?.label || key,
+            icon: allEquipements[key]?.icon || ''
+        }))
+)
+
+function extraireDateFin(periode) {
+    if (!periode || typeof periode !== 'string') return ''
+    const parts = periode.split('Au')
+    return parts[1] ? parts[1].trim() : ''
+}
 </script>
 
 <style scoped>
-
 .detail-row {
     flex: 1;
     margin-right: 32px;
@@ -113,10 +190,10 @@ defineEmits(['louer'])
 
 .image-section {
     background: #ccc;
-    padding: 16px;
+    /* padding: 16px; */
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    /* gap: 16px; */
     flex: 1 1 200px;
     min-width: 150px;
 }

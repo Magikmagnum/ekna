@@ -17,19 +17,31 @@
             </div>
         </div>
 
-        <div class="details__block chambre-block">
-            <h5>Les chambres</h5>
-            <ChambreCardComponent v-for="(chambre, index) in chambres" :key="index" :titre="chambre.titre"
-                :prix="chambre.prix" :sousTitre="chambre.sousTitre" :equipements="chambre.equipements"
-                :dateDispo="chambre.dateDispo" :depotGarantie="chambre.depotGarantie"
-                :lienEquipements="chambre.lienEquipements" :texteLienEquipements="chambre.texteLienEquipements"
-                @louer="handleLouer(chambre.titre)" />
-        </div>
+        <ChambreCardComponent v-for="(chambre, index) in logement.chambres_for_mobile" :key="chambre.id"
+            :titre="`Chambre ${index + 1}`" :prix="chambre.loyer_hors_charge" :sousTitre="`${chambre.surface} m²`"
+            :equipements="chambre.equipements" :dateDispo="chambre.date_disponibilites"
+            :images="chambre.images" :depotGarantie="chambre.depot_garantie"
+            :lienEquipements="`/equipements/${chambre.reference}`" :texteLienEquipements="'Voir les équipements'"
+            :isSalleDeBainIndividuelle="chambre.is_salle_de_bain_individuelle" :isMeuble="chambre.is_meuble"
+            @louer="handleLouer(`Chambre ${index + 1}`)" />
     </div>
 </template>
 
 <script setup>
 import ChambreCardComponent from '@/components/ChambreCardComponent.vue'
+
+const props = defineProps({
+    logement: {
+        type: Object,
+        required: false,
+    },
+})
+
+const logement = props.logement
+
+
+console.log('image props:', logement)
+
 
 const chambres = [
     {
@@ -39,7 +51,7 @@ const chambres = [
         equipements: [{ icon: '/src/assets/images/icons/douche.png', label: 'Douche' }],
         dateDispo: '01 mai 2025',
         depotGarantie: '620€',
-        lienEquipements: '/logement/uuid-xyz',
+        lienEquipements: '/detail/uuid-xyz',
         texteLienEquipements: 'Consulter les équipements',
     },
     {
@@ -49,7 +61,7 @@ const chambres = [
         equipements: [{ icon: '/src/assets/images/icons/douche.png', label: 'Douche' }],
         dateDispo: '15 mai 2025',
         depotGarantie: '600€',
-        lienEquipements: '/logement/uuid-abc',
+        lienEquipements: '/detail/uuid-abc',
         texteLienEquipements: 'Voir les équipements',
     },
     {
@@ -59,7 +71,7 @@ const chambres = [
         equipements: [{ icon: '/src/assets/images/icons/douche.png', label: 'Douche' }],
         dateDispo: '01 juin 2025',
         depotGarantie: '580€',
-        lienEquipements: '/logement/uuid-def',
+        lienEquipements: '/detail/uuid-def',
         texteLienEquipements: 'Tous les équipements',
     },
 ]

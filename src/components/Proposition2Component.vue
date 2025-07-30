@@ -8,11 +8,11 @@
                 <!-- Propriétés regroupées par ligne de 3 -->
                 <div v-for="(chunk, index) in chunkedProperties" :key="index" class="property__grid__wrapper">
                     <div class="row">
-                        <CardVertical2Component
+                        <!-- <CardVertical2Component
                             v-for="(property, idx) in chunk"
                             :key="property.id"
                             v-bind="property"
-                        />
+                        /> -->
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@ onMounted(async () => {
             progressPercent: annonce.avancement || 0,
             chambres: annonce.total_chambre?.toString() || 'N.C.',
             type: annonce.type_logement || 'N.C.',
-            detailsUrl: `/logement/${annonce.reference || ''}`,
+            detailsUrl: `/detail/${annonce.reference || ''}`,
             countdown: { days: '10', month: '08', years: '24' }, // à ajuster dynamiquement si nécessaire
         }))
     } catch (error) {

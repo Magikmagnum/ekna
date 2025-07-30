@@ -7,9 +7,19 @@
         <div class="intro">
             <div>
                 <span class="secondary details__color">Professionnel</span>
-                <h3>Colocation - Moulin, Lille</h3>
-                <p>
-                    Meublé • Studio au T3 • de 19m<sup>2</sup> à 50m<sup>2</sup>
+                <h3 v-if="logement">
+                    {{ logement.titre_annonce }} - Colocation - {{ logement.ville }}, Lille
+                </h3>
+                <h3 v-else>
+                    Chargement...
+                </h3>
+
+                <p v-if="logement">
+                    {{ logement.is_meuble ? 'Meublé' : 'Non meublé' }} • {{ logement.type_logement === 'studio' ? 'Studio' : 'Studio au T' + logement.chambres_for_mobile?.length }} • de 19m<sup>2</sup> à {{ logement.surface_total }}m<sup>2</sup>
+                    <!-- Meublé • Studio au T3 • de 19m<sup>2</sup> à 50m<sup>2</sup> -->
+                </p>
+                <p v-else>
+                    Chargement...
                 </p>
             </div>
 
@@ -17,22 +27,16 @@
 
             <div>
                 <h4>Description</h4>
-                <p>
-                    Maison composée d'un RDc comprenant une cuisine entièrement équipée
-                    ouverte sur un salon. La cuisine se compose d'un lave-vaisselle, d’un réfrigérateur, d’un
-                    micro-ondes,
-                    d’un four, de plaques de cuisson et d’une hotte. Le salon est équipé d’un canapé, d’une table basse
-                    et
-                    d’une télévision. Le premier étage comprend 3 chambres avec salle de bain privative et un bureau. Le
-                    deuxième étage comprend 2 chambres avec salle de bain privative et un espace détente.
+                <p v-if="logement">
+                    {{ logement.description }}</p>
+                <p v-else>
+                    Chargement...
                 </p>
 
-                <div class="group__one">
+                <div class="group__one" v-if="logement && logement.lat && logement.lon">
                     <div class="map__wrapper">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20342.411046372905!2d-74.16638039276373!3d40.719832743885284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1649562691355!5m2!1sen!2sbd"
-                            width="746" height="312" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe :src="mapUrl" width="746" height="312" style="border:0;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
@@ -60,26 +64,26 @@
         </div>
 
         <div class="group__one">
-            <div class="tabular__group bailleur">
+            <div class="tabular__group bailleur" v-if="logement && logement.proprietaire">
                 <div class="bailleur_block_image">
-                    <div class="bailleur_image"></div>
+                    <img class="bailleur_image" :src="logement.proprietaire.photo" alt="Photo du bailleur" />
                 </div>
                 <div class="bailleur_block_body">
                     <div class="bailleur_block_header">
-                        <h5>Jean Marck (bailleur)</h5>
+                        <h5>{{ logement.proprietaire.first_name }} {{ logement.proprietaire.name }} (bailleur)</h5>
                         <div class="invest__cta">
-                            <a href="/logement/6d1b65aa-6437-3000-8bc2-651b06265bbf" class="button button--effect">
+                            <a :href="`/detail/${logement.proprietaire.id}`" class="button button--effect">
                                 + d'info
                             </a>
                         </div>
                     </div>
                     <div class="bailleur_block_content">
                         <p class="neutral-bottom">
-                            "Bailleur privé expérimenté, attentif à la qualité de ses
+                            // Je prend ces info ou
+                            Bailleur privé expérimenté, attentif à la qualité de ses
                             biens et du confort de ses locataires. Propose des
                             logements rénovés, bien entretenus, dans un cadre sécurisé et convivial. Disponible et
-                            réactif pour
-                            assurer une gestion locative fluide et sereine."
+                            réactif pour assurer une gestion locative fluide et sereine.
                         </p>
                     </div>
                 </div>
@@ -91,6 +95,14 @@
 <script setup>
 import { ref } from 'vue'
 import AvantagesList from '@/components/AvantagesList.vue'
+import { computed } from 'vue'
+
+const { logement } = defineProps({
+  logement: {
+    type: Object,
+    required: true,
+  },
+})
 
 
 const avantages = ref([
@@ -127,13 +139,19 @@ const elements = ref([
     "Frais d'agence éventuels;",
     'Assurance habitation;',
 ])
+
+const mapUrl = computed(() => {
+  if (!logement || !logement.lat || !logement.lon) return ''
+  return `https://www.google.com/maps?q=${logement.lat},${logement.lon}&hl=fr&z=14&output=embed`
+})
+
 </script>
 
 <style scoped>
-
-.details__color{
+.details__color {
     color: #645afc;
 }
+
 /* Tes styles sont conservés sans modification */
 .details__intro {
     margin-bottom: 40px;
@@ -275,5 +293,9 @@ const elements = ref([
     font-weight: bold;
     color: #0f172a;
     text-align: inherit;
+}
+
+.invest__cta{
+    min-width: 140px;
 }
 </style>

@@ -4,7 +4,7 @@
             <div class="countdown__wrapper">
                 <p class="secondary">A partir de</p>
                 <div class="countdown">
-                    <h5><span class="days">650 €</span></h5>
+                    <h5><span class="days">{{ prixMin !== null ? prixMin + ' €' : '—' }}</span></h5>
                 </div>
                 <p class="secondary">Charges comprises</p>
             </div>
@@ -16,55 +16,32 @@
         <div class="group brin">
             <div class="acus__content">
                 <form @submit.prevent>
-                    <div class="input input--secondary">
-                        <label for="anNumTwo">Les colocataires:</label>
+                    <div class="input input--secondary" v-if="logement && logement.locataires_for_mobile">
+                        <label>Les colocataires :</label>
                         <div class="colocataire_image_bloc">
-                            <div class="colocataire_image"></div>
-                            <div class="colocataire_image"></div>
-                            <div class="colocataire_image"></div>
-                        </div>
-                        <!-- <input type="number" name="an__num__two" id="anNumTwo" placeholder="7.00%" required /> -->
-                    </div>
-                    <div class="input input--secondary">
-                        <label for="anNumIn">Les chambres disponibles</label>
-                        <div class="chambres_diplonibles_badge_bloc">
-                            <div class="chambre_diplonible_badge">1 chambre disponibles</div>
-                            <div class="chambre_diplonible_prix">€ 350</div>
+                            <img v-for="(locataire, index) in logement.locataires_for_mobile" :key="index"
+                                :src="locataire.user_for_mobile.photo"
+                                :alt="`${locataire.user_for_mobile.first_name} ${locataire.user_for_mobile.name}`"
+                                class="colocataire_image"
+                                :title="`${locataire.user_for_mobile.first_name} ${locataire.user_for_mobile.name}`" />
                         </div>
                     </div>
+                    <div class="input input--secondary"
+                        v-if="logement && logement.chambres_for_mobile && logement.chambres_for_mobile.length">
+                        <label>Les chambres disponibles</label>
 
-                    <!-- <div class="hab">
-                        <div class="anti">
-                            <p>Loan Period</p>
-                            <div class="inti">
-                                <p>24 mo.</p>
+                        <div class="chambres_diplonibles_badge_bloc"
+                            v-for="(chambre, index) in logement.chambres_for_mobile" :key="index">
+                            <div class="chambre_diplonible_badge">
+                                {{ chambre.nom || `Chambre ${index + 1}` }} disponible
+                            </div>
+                            <div class="chambre_diplonible_prix">
+                                {{ chambre.loyer_hors_charge || '—' }} €
                             </div>
                         </div>
-                        <div class="anti">
-                            <p>Risk</p>
-                            <div class="inti">
-                                <p>C (Higher)</p>
-                            </div>
-                        </div>
-                        <div class="anti">
-                            <p>Purpose Of Loan</p>
-                            <div class="inti">
-                                <p>Business Loan</p>
-                            </div>
-                        </div>
-                    </div> -->
+                    </div>
 
                     <div class="collat">
-                        <!-- <div class="single">
-                            <p>Collateral</p>
-                            <p>Guarantees/Surety</p>
-                        </div>
-                        <div class="single">
-                            <p>Country</p>
-                            <p>
-                                <img src="@/assets/images/icons/flag.png" alt="flag" /> Lithunia
-                            </p>
-                        </div> -->
                     </div>
 
                     <div class="suby">
@@ -73,9 +50,6 @@
                     </div>
                 </form>
             </div>
-            <!-- <p class="text-center neutral-bottom">
-                <a href="contact-us.html">Request a free callback</a>
-            </p> -->
         </div>
 
         <div class="group alt__brin">
@@ -91,7 +65,7 @@
                 </div>
             </div>
         </div>
-       
+
         <div class="group brini">
             <h5 class="neutral-top">Les avantages EKNA</h5>
             <hr />
@@ -103,46 +77,80 @@
             <a href="blog.html">Nos partenaires</a>
         </div>
 
-         <div class="group birinit">
-            <h6 style="width: 150px;">Paratage via les réseaux sociaux</h6>
+        <div class="group birinit">
+            <h6 style="width: 150px;">Partage via les réseaux sociaux</h6>
             <div class="social text-start">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a :href="`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`" target="_blank" rel="noopener"
+                    title="Partager sur Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a :href="`https://twitter.com/intent/tweet?url=${currentUrl}`" target="_blank" rel="noopener"
+                    title="Partager sur Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a :href="`https://www.instagram.com`" target="_blank" rel="noopener"
+                    title="Instagram (page d’accueil)">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a :href="`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`" target="_blank"
+                    rel="noopener" title="Partager sur LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
             </div>
         </div>
-
-
     </div>
 </template>
 
-<script>
-export default {
-    name: 'PropertyDetailsSidebar',
-    data() {
-        return {
-            keyUpdates: [
-                {
-                    date: '01-Mai-2022',
-                    text: 'Signature du bail',
-                    link: 'terms-conditions.html',
-                },
-                {
-                    date: '31-Sep-2025',
-                    text: 'Fin du bail',
-                    link: 'privacy-policy.html',
-                },
-            ],
-            avantages: [
-                'Colocataires compatibles grâce au matching intelligent.',
-                'Temps gagné avec des annonces vérifiées',
-                'Sécurité renforcée avec des profils fiables.',
-                'Démarches simplifiées 100% en ligne',
-            ]
-        };
+<script setup>
+import { ref } from 'vue'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+
+
+const props = defineProps({
+    logement: {
+        type: Object,
+        required: false,
     },
-};
+})
+
+const logement = props.logement
+
+const keyUpdates = ref([
+    {
+        date: '01-Mai-2022',
+        text: 'Signature du bail',
+        link: 'terms-conditions.html',
+    },
+    {
+        date: '31-Sep-2025',
+        text: 'Fin du bail',
+        link: 'privacy-policy.html',
+    },
+])
+
+const avantages = ref([
+    'Colocataires compatibles grâce au matching intelligent.',
+    'Temps gagné avec des annonces vérifiées',
+    'Sécurité renforcée avec des profils fiables.',
+    'Démarches simplifiées 100% en ligne',
+])
+
+const prixMin = computed(() => {
+    if (
+        logement &&
+        logement.chambres_for_mobile &&
+        logement.chambres_for_mobile.length
+    ) {
+        return Math.min(
+            ...logement.chambres_for_mobile
+                .map((c) => Number(c.loyer_hors_charge))
+                .filter((v) => !isNaN(v))
+        )
+    }
+    return null
+})
+
 </script>
 
 <style scoped>
@@ -177,6 +185,7 @@ export default {
     padding: 10px 30px;
     line-height: 3em;
     border-radius: 12px;
+    margin-bottom: 22px;
 }
 
 .chambre_diplonible_prix {
@@ -186,16 +195,15 @@ export default {
 }
 
 .bullet-list {
-  list-style-type: disc;
-  padding-left: 1.5rem;
-  color: #1e293b;
-  line-height: 1.6;
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    color: #1e293b;
+    line-height: 1.6;
 }
 
 
-.bullet-list li{
+.bullet-list li {
 
-  margin: 32px 0;
+    margin: 32px 0;
 }
-
 </style>

@@ -70,7 +70,6 @@ const form = reactive({
 })
 
 function handleSubmit() {
-    console.log('Form submitted:', { ...form })
     Object.keys(form).forEach((key) => (form[key] = ''))
 }
 </script>

@@ -33,9 +33,8 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { useI18n } from 'vue-i18n'
-
-// Importing the CardHorizontalComponent for displaying property details
 import CardHorizontalComponent from './CardHorizontalComponent.vue'
+
 
 // Importing the i18n instance for translations
 const { t } = useI18n()
@@ -46,6 +45,7 @@ onMounted(async () => {
     try {
         const response = await axios.post('https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements')
         properties.value = response.data.result.data.map(annonce => ({
+            id: annonce.id,
             title: annonce.ville,
             location: annonce.adresse + ' ' + annonce.code_postal + ', ' + annonce.ville,
             image: annonce.image,
