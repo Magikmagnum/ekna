@@ -3,12 +3,11 @@
         <div class="group brini">
             <h5 class="neutral-top">Chauffage et diagnostics</h5>
             <hr />
-            <DiagnosticsCard :dpe="logement.dpe_diagnostic" :ges="logement.ges_diagnostic"/>
+            <DiagnosticsCard :dpe="logement.dpe_diagnostic" :ges="logement.ges_diagnostic" />
         </div>
         <div class="group brini">
             <h5 class="neutral-top">Connectivité</h5>
             <hr />
-            <!-- si connectivite est vide -->
             <AvantagesList v-if="connectivite.length" :avantages="connectivite" />
             <p v-else>Aucune information de connectivité disponible</p>
         </div>
@@ -23,7 +22,8 @@
         <div class="group brini">
             <h5 class="neutral-top">Autres équipements</h5>
             <hr />
-            <AvantagesList :avantages="autres" />
+            <AvantagesList v-if="autres.length" :avantages="autres" />
+            <p v-else>Aucune information sur les autres équipements disponible</p>
         </div>
     </div>
 </template>
@@ -73,8 +73,26 @@ const charges = computed(() => {
         .map(([, label]) => label)
 })
 
-// Autres avantages, modifiable selon besoin
-const autres = ref(['Places de parking: 2', 'Ascenseur', 'Netflix', 'Amazon Prime'])
+// 6. Avantages divers (ex: ascenseur, parking, abonnements...)
+const autres = computed(() => {
+    const results: string[] = []
+
+    if (logement.is_ascenseur) {
+        results.push('Ascenseur')
+    }
+
+    if (typeof logement.place_parking === 'number' && logement.place_parking > 0) {
+        results.push(`Places de parking: ${logement.place_parking}`)
+    }
+
+    // Ajout des services digitaux éventuels
+    if (logement.netflix) results.push('Netflix')
+    if (logement.amazon_prime) results.push('Amazon Prime')
+
+    return results
+})
+
+
 
 </script>
 
