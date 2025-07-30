@@ -1,6 +1,4 @@
 <template>
-
-
     <div class="diagnostic-block">
         <p class="label">DIAGNOSTIC PERFORMANCE ÉNERGÉTIQUE (DPE)</p>
         <div class="bar">
@@ -25,18 +23,29 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import { computed } from 'vue'
 
 const props = defineProps({
-    dpeLetter: {
-        type: String,
-        default: 'D',
+    dpe: {
+        type: Object,
+        required: true,
     },
-    gesLetter: {
-        type: String,
-        default: 'C',
+    ges: {
+        type: Object,
+        required: true,
     },
 })
+
+// Fonction utilitaire pour extraire la lettre active
+function extractActiveLetter(diag) {
+    if (!diag) return ''
+    const lettres = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+    const active = lettres.find((key) => diag[key] === true)
+    return active ? active.toUpperCase() : ''
+}
+
+const dpeLetter = computed(() => extractActiveLetter(props.dpe))
+const gesLetter = computed(() => extractActiveLetter(props.ges))
 
 const dpeScale = [
     { letter: 'A', color: 'green-a' },
@@ -208,5 +217,4 @@ const gesScale = [
 .diagnostic-block {
     margin-bottom: 24px;
 }
-
 </style>
