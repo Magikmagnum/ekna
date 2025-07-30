@@ -27,7 +27,7 @@ import { useI18n } from 'vue-i18n'
 import CardVertical2Component from './CardVertical2Component.vue'
 import PropertiesFilter from './PropertiesFilter.vue';
 // i18n
-const { t } = useI18n()
+const { t } = useI18n();
 
 // Reactive state
 const properties = ref([])

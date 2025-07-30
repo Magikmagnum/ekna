@@ -40,52 +40,9 @@ const props = defineProps({
 
 const logement = props.logement
 
-
-console.log('image props:', logement)
-
-// dans logement on a un tableau d'équipements dans principaux_equipements qui se presente comme ça:
-// "principaux_equipements": [
-//            "canape",
-//            "cuisiniere",
-//            "balcon"
-//        ],
-
-// je metre ca dans une boucle comme ça:<div class="equipement">
-                //     <div class="equipement-item" v-for="(item, index) in equipements" :key="index">
-                //         <img class="equipement-item-icon" :src="item.icon" :alt="item.label" />
-                //         <span>{{ item.label }}</span>
-                //     </div>
-                // </div>
-
-// le lien vers les équipements sera dynamique, par exemple : `https://mydev.espacebailleurekna.fr/svg/canape.svg`
-// je veux que la sorti  s'affiche comme ca: 
-
-
-const equipement = [
-    {
-        icon: new URL('@/assets/images/icons/canape.png', import.meta.url).href,
-        label: 'Canapé',
-    },
-    {
-        icon: new URL('@/assets/images/icons/gazinier.png', import.meta.url).href,
-        label: 'Gazinière',
-    },
-    {
-        icon: new URL('@/assets/images/icons/douches.png', import.meta.url).href,
-        label: 'Douche italienne',
-    },
-    {
-        icon: new URL('@/assets/images/icons/terasse.png', import.meta.url).href,
-        label: 'Terrasse',
-    },
-]
-
 function handleLouer(titre) {
     console.log(`Chambre louée : ${titre}`)
 }
-
-console.log('principaux_equipements:', logement.principaux_equipements)
-
 
 // Table de correspondance des labels
 const labelMap = {
@@ -100,7 +57,6 @@ const labelMap = {
 // Générer le tableau final des équipements
 const equipements = computed(() => {
     return logement.principaux_equipements.map((nom) => {
-        console.log('nom:', nom)
         return {
             icon: `https://mydev.espacebailleurekna.fr/svg/${nom}.svg`,
             label: nom // fallback si non trouvé
@@ -108,8 +64,6 @@ const equipements = computed(() => {
     })
 })
 
-
-console.log('Equipements:', equipements.value) 
 
 
 </script>
