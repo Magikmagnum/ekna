@@ -47,7 +47,7 @@ onMounted(async () => {
             type: annonce.type_logement || 'N.C.',
             detailsUrl: `/detail/${annonce.id || ''}`,
             countdown: { days: '10', month: '08', years: '24' }, // à ajuster dynamiquement si nécessaire
-            locataires: annonce.locataire || [],
+            locataires: annonce.locataires || [],
         }))
     } catch (error) {
         console.error('Erreur lors du chargement des logements:', error)

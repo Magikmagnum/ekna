@@ -96,15 +96,8 @@ interface PropertyCard {
 
 const props = defineProps<PropertyCard>()
 
-const photos = props.locataires.map(locataire => locataire.user?.photo).filter(Boolean);
+const users = props.locataires.map(locataire => locataire.user?.photo).filter(Boolean);
 
-console.log(photos);
-
-const users = [
-    'https://randomuser.me/api/portraits/women/65.jpg',
-    'https://randomuser.me/api/portraits/men/32.jpg',
-    'https://randomuser.me/api/portraits/men/12.jpg'
-]
 
 </script>
 
