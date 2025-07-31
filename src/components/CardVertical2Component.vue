@@ -74,6 +74,12 @@ interface Countdown {
     years: string;
 }
 
+interface Locataire {
+    user?: {
+        photo?: string;
+    };
+}
+
 interface PropertyCard {
     id: number;
     title: string;
@@ -85,10 +91,14 @@ interface PropertyCard {
     type: string;
     detailsUrl: string;
     countdown: Countdown;
+    locataires: Locataire[];
 }
 
 const props = defineProps<PropertyCard>()
 
+const photos = props.locataires.map(locataire => locataire.user?.photo).filter(Boolean);
+
+console.log(photos);
 
 const users = [
     'https://randomuser.me/api/portraits/women/65.jpg',
