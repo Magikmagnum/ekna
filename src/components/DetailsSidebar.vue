@@ -22,8 +22,7 @@
         <div class="group brini">
             <h5 class="neutral-top">Autres équipements</h5>
             <hr />
-            <AvantagesList v-if="autres.length" :avantages="autres" />
-            <p v-else>Aucune information sur les autres équipements disponible</p>
+            <p>{{ logement.description_autre_equipement }}</p>
         </div>
     </div>
 </template>
