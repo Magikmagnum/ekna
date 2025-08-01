@@ -79,11 +79,7 @@
                     </div>
                     <div class="bailleur_block_content">
                         <p class="neutral-bottom">
-                            // Je prend ces info ou
-                            Bailleur privé expérimenté, attentif à la qualité de ses
-                            biens et du confort de ses locataires. Propose des
-                            logements rénovés, bien entretenus, dans un cadre sécurisé et convivial. Disponible et
-                            réactif pour assurer une gestion locative fluide et sereine.
+                            {{ logement.proprietaire.description || 'Aucune description disponible.' }}
                         </p>
                     </div>
                 </div>
