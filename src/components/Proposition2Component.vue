@@ -48,6 +48,7 @@ onMounted(async () => {
             detailsUrl: `/detail/${annonce.id || ''}`,
             countdown: { days: '10', month: '08', years: '24' }, // à ajuster dynamiquement si nécessaire
             locataires: annonce.locataires || [],
+            proprietaire: annonce.proprietaire || {}
         }))
     } catch (error) {
         console.error('Erreur lors du chargement des logements:', error)

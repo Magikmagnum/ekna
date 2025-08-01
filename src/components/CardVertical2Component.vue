@@ -5,7 +5,7 @@
             <div class="img__effect-wrapper">
                 <div class="img__effect">
                     <div class="avatar"
-                        :style="{ backgroundImage: `url('https://randomuser.me/api/portraits/women/48.jpg')` }">
+                        :style="{ backgroundImage: `url(${proprietaire.photo || ''})` }">
                     </div>
                     <a :href="detailsUrl">
                         <img :src="imageUrl" :alt="title">
@@ -92,6 +92,9 @@ interface PropertyCard {
     detailsUrl: string;
     countdown: Countdown;
     locataires: Locataire[];
+    proprietaire?: {
+        photo?: string;
+    };
 }
 
 const props = defineProps<PropertyCard>()
