@@ -5,9 +5,16 @@
             <span>+</span>
         </div>
 
-        <!-- Liste des avatars -->
-        <div v-for="(avatar, index) in avatars" :key="index" class="avatar"
-            :style="{ zIndex: avatars.length - index, backgroundImage: `url(${avatar})` }"></div>
+        <!-- Liste des avatars (limités à 6) -->
+        <div
+            v-for="(avatar, index) in avatars.slice(0, 6)"
+            :key="index"
+            class="avatar"
+            :style="{
+                zIndex: avatars.length - index,
+                backgroundImage: `url(${avatar})`
+            }"
+        ></div>
     </div>
 </template>
 
