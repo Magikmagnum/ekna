@@ -48,11 +48,7 @@ const loadProperties = async () => {
 
 
         const response = await axios.post('https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements', {
-            params: {
-                type_logement: 'appartement',
-                ville: 'lille',
-                page: currentPage.value
-            }
+            page: currentPage.value
         })
 
         const annonces = response.data.result?.data || []
@@ -86,29 +82,6 @@ const loadProperties = async () => {
 onMounted(() => {
     loadProperties()
 })
-
-// API fetch on mount
-// onMounted(async () => {
-//     try {
-//         const response = await axios.post('https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements')
-//         properties.value = response.data.result.data.map((annonce, index) => ({
-//             id: annonce.id || index,
-//             title: annonce.ville || 'Ville inconnue',
-//             address: `${annonce.adresse || ''} ${annonce.code_postal || ''}, ${annonce.ville || ''}`.trim(),
-//             imageUrl: annonce.image || '/assets/images/default.jpg',
-//             investors: annonce.loyer_hors_charge || 0,
-//             progressPercent: annonce.avancement || 0,
-//             chambres: annonce.total_chambre?.toString() || 'N.C.',
-//             type: annonce.type_logement || 'N.C.',
-//             detailsUrl: `/detail/${annonce.id || ''}`,
-//             countdown: { days: '10', month: '08', years: '24' }, // à ajuster dynamiquement si nécessaire
-//             locataires: annonce.locataires || [],
-//             proprietaire: annonce.proprietaire || {}
-//         }))
-//     } catch (error) {
-//         console.error('Erreur lors du chargement des logements:', error)
-//     }
-// })
 
 // Fonction pour grouper les propriétés par ligne de 3
 function chunkArray(array, size) {

@@ -157,7 +157,7 @@ const users = props.locataires.map(locataire => locataire.user?.photo).filter(Bo
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.4rem;
+    gap: 0.2rem;
     font-weight: 500;
     margin-bottom: 1rem;
     flex-wrap: wrap;
