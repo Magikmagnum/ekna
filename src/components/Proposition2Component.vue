@@ -3,17 +3,20 @@
     <section style="margin-bottom: 100px;">
         <div class="container">
             <div class="properties__grid__area wow fadeInUp">
-                
-                <PropertiesFilter/>
+
+                <PropertiesFilter />
                 <!-- Propriétés regroupées par ligne de 3 -->
                 <div v-for="(chunk, index) in chunkedProperties" :key="index" class="property__grid__wrapper">
                     <div class="row">
-                        <CardVertical2Component
-                            v-for="(property, idx) in chunk"
-                            :key="property.id"
-                            v-bind="property"
-                        />
+                        <CardVertical2Component v-for="(property, idx) in chunk" :key="property.id" v-bind="property" />
                     </div>
+                </div>
+                <!-- Bouton "Afficher plus" -->
+                <div class="text-center mt-4" v-if="hasMore">
+                    <button @click="loadProperties" :disabled="isLoading" class="button button--effect">
+                        <span v-if="!isLoading">Afficher plus</span>
+                        <span v-else>Chargement...</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -31,29 +34,81 @@ const { t } = useI18n();
 
 // Reactive state
 const properties = ref([])
+const currentPage = ref(1)
+const hasMore = ref(true) // pour savoir s’il y a encore des annonces
+const isLoading = ref(false)
 
-// API fetch on mount
-onMounted(async () => {
+
+const loadProperties = async () => {
+    if (isLoading.value || !hasMore.value) return
+
+    isLoading.value = true
+
     try {
-        const response = await axios.post('https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements')
-        properties.value = response.data.result.data.map((annonce, index) => ({
-            id: annonce.id || index,
-            title: annonce.ville || 'Ville inconnue',
-            address: `${annonce.adresse || ''} ${annonce.code_postal || ''}, ${annonce.ville || ''}`.trim(),
-            imageUrl: annonce.image || '/assets/images/default.jpg',
-            investors: annonce.loyer_hors_charge || 0,
-            progressPercent: annonce.avancement || 0,
-            chambres: annonce.total_chambre?.toString() || 'N.C.',
-            type: annonce.type_logement || 'N.C.',
-            detailsUrl: `/detail/${annonce.id || ''}`,
-            countdown: { days: '10', month: '08', years: '24' }, // à ajuster dynamiquement si nécessaire
-            locataires: annonce.locataires || [],
-            proprietaire: annonce.proprietaire || {}
-        }))
+
+
+        const response = await axios.post('https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements', {
+            params: {
+                type_logement: 'appartement',
+                ville: 'lille',
+                page: currentPage.value
+            }
+        })
+
+        const annonces = response.data.result?.data || []
+        if (annonces.length === 0) {
+            hasMore.value = false
+        } else {
+            properties.value.push(...annonces.map((annonce, index) => ({
+                id: annonce.id || `${currentPage.value}-${index}`,
+                title: annonce.ville || 'Ville inconnue',
+                address: `${annonce.adresse || ''} ${annonce.code_postal || ''}, ${annonce.ville || ''}`.trim(),
+                imageUrl: annonce.image || '/assets/images/default.jpg',
+                investors: annonce.loyer_hors_charge || 0,
+                progressPercent: annonce.avancement || 0,
+                chambres: annonce.total_chambre?.toString() || 'N.C.',
+                type: annonce.type_logement || 'N.C.',
+                detailsUrl: `/detail/${annonce.id || ''}`,
+                countdown: { days: '10', month: '08', years: '24' },
+                locataires: annonce.locataires || [],
+                proprietaire: annonce.proprietaire || {}
+            })))
+
+            currentPage.value++
+        }
     } catch (error) {
         console.error('Erreur lors du chargement des logements:', error)
+    } finally {
+        isLoading.value = false
     }
+}
+
+onMounted(() => {
+    loadProperties()
 })
+
+// API fetch on mount
+// onMounted(async () => {
+//     try {
+//         const response = await axios.post('https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements')
+//         properties.value = response.data.result.data.map((annonce, index) => ({
+//             id: annonce.id || index,
+//             title: annonce.ville || 'Ville inconnue',
+//             address: `${annonce.adresse || ''} ${annonce.code_postal || ''}, ${annonce.ville || ''}`.trim(),
+//             imageUrl: annonce.image || '/assets/images/default.jpg',
+//             investors: annonce.loyer_hors_charge || 0,
+//             progressPercent: annonce.avancement || 0,
+//             chambres: annonce.total_chambre?.toString() || 'N.C.',
+//             type: annonce.type_logement || 'N.C.',
+//             detailsUrl: `/detail/${annonce.id || ''}`,
+//             countdown: { days: '10', month: '08', years: '24' }, // à ajuster dynamiquement si nécessaire
+//             locataires: annonce.locataires || [],
+//             proprietaire: annonce.proprietaire || {}
+//         }))
+//     } catch (error) {
+//         console.error('Erreur lors du chargement des logements:', error)
+//     }
+// })
 
 // Fonction pour grouper les propriétés par ligne de 3
 function chunkArray(array, size) {
@@ -67,3 +122,10 @@ function chunkArray(array, size) {
 // Propriétés découpées pour l'affichage en lignes
 const chunkedProperties = computed(() => chunkArray(properties.value, 3))
 </script>
+
+<style scoped>
+.button span {
+    color: #fff;
+    font-weight: 600;
+}
+</style>
