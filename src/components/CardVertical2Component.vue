@@ -4,8 +4,7 @@
         <div class="property__grid__single">
             <div class="img__effect-wrapper">
                 <div class="img__effect">
-                    <div class="avatar"
-                        :style="{ backgroundImage: `url(${proprietaire.photo || ''})` }">
+                    <div class="avatar" :style="{ backgroundImage: `url(${proprietaire.photo || ''})` }">
                     </div>
                     <a :href="detailsUrl">
                         <img :src="imageUrl" :alt="title">
@@ -32,7 +31,8 @@
                     <div class="info-details">
                         <div class="column">
                             <span class="label">Disponible<br />à partir de</span>
-                            <span class="value date">{{ countdown.days }}/{{ countdown.month }}/{{ countdown.years }}</span>
+                            <span class="value date">{{ countdown.days }}/{{ countdown.month }}/{{ countdown.years
+                                }}</span>
                         </div>
 
                         <div class="separator" />
@@ -86,21 +86,17 @@ interface PropertyCard {
     address: string;
     imageUrl: string;
     investors: number;
-    // progressPercent: number;
     chambres: string;
     type: string;
     detailsUrl: string;
     countdown: Countdown;
     locataires: Locataire[];
-    proprietaire?: {
-        photo?: string;
-    };
+    proprietaire?: { photo?: string };
 }
 
 const props = defineProps<PropertyCard>()
 
 const users = props.locataires.map(locataire => locataire.user?.photo).filter(Boolean);
-
 
 </script>
 
@@ -210,7 +206,17 @@ const users = props.locataires.map(locataire => locataire.user?.photo).filter(Bo
 }
 
 @media only screen and (max-width: 767px) {
-    p, th, td, li, input, textarea, select, label, blockquote, span {
+
+    p,
+    th,
+    td,
+    li,
+    input,
+    textarea,
+    select,
+    label,
+    blockquote,
+    span {
         font-size: 20px;
         line-height: 28px;
     }
@@ -223,6 +229,4 @@ const users = props.locataires.map(locataire => locataire.user?.photo).filter(Bo
         margin-bottom: 16px;
     }
 }
-
-
 </style>

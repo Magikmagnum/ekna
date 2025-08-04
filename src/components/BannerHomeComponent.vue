@@ -10,7 +10,11 @@
                                 {{ $t('BannerHomeComponent.subtitle.part1') }}<br>
                                 {{ $t('BannerHomeComponent.subtitle.part2') }}
                             </h5>
-                            <h1 v-html="$t('BannerHomeComponent.title')"></h1>
+                            <h1>
+                                {{ $t('BannerHomeComponent.title1') }}
+                                <span>{{ $t('BannerHomeComponent.title2') }}</span>
+                                {{ $t('BannerHomeComponent.title3') }}
+                            </h1>
                             <p class="primary neutral-bottom">{{ $t('BannerHomeComponent.description') }}</p>
                             <div class="hero__cta__group">
                                 <a :href="primaryCta.link" class="button button--effect">

@@ -22,10 +22,13 @@
                     <!-- Location Dropdown -->
                     <div class="col-lg-6 col-xl-3">
                         <div class="property__select__wrapper">
-                            <div class="nice-select location__select" :class="{ open: isOpen.location }" tabindex="0"
-                                @click="toggleDropdown('location')">
-                                <span class="current">{{ currentLabel(locations, location) }}</span>
-                                <ul class="list" v-show="isOpen.location">
+                            <div class="nice-select location__select"
+                                :class="{ open: isOpen.location, disabled: isLoadingVilles }" tabindex="0"
+                                @click="!isLoadingVilles && toggleDropdown('location')">
+                                <span class="current">{{
+                                    isLoadingVilles ? 'Chargement...' : currentLabel(locations, location)
+                                    }}</span>
+                                <ul class="list" v-show="isOpen.location && !isLoadingVilles">
                                     <li v-for="loc in locations" :key="loc.value"
                                         :class="['option', { selected: loc.value === location }]"
                                         @click.stop="selectOption('location', loc.value)">
@@ -92,28 +95,8 @@ const location = ref('')
 const propertyType = ref('')
 
 // Dropdown options
-const locations = ref([
-    { value: '', label: 'Ville' },
-
-    // Villes dans le Nord de la France
-    { value: 'lille', label: 'Lille' },
-    { value: 'roubaix', label: 'Roubaix' },
-    { value: 'tourcoing', label: 'Tourcoing' },
-    { value: 'douai', label: 'Douai' },
-    { value: 'arras', label: 'Arras' },
-    { value: 'lens', label: 'Lens' },
-    { value: 'valenciennes', label: 'Valenciennes' },
-
-    // Autres grandes villes de France
-    { value: 'paris', label: 'Paris' },
-    { value: 'lyon', label: 'Lyon' },
-    { value: 'marseille', label: 'Marseille' },
-    { value: 'toulouse', label: 'Toulouse' },
-    { value: 'bordeaux', label: 'Bordeaux' },
-    { value: 'strasbourg', label: 'Strasbourg' },
-    { value: 'nantes', label: 'Nantes' },
-    { value: 'nice', label: 'Nice' },
-])
+const locations = ref([{ value: '', label: 'Ville' }])
+const isLoadingVilles = ref(false)
 
 const propertyTypes = ref([
     { value: '', label: 'Typologie' },
@@ -162,6 +145,7 @@ const handleSearch = () => {
         location: location.value,
         propertyType: propertyType.value
     }
+
     currentPage.value = 1
     hasMore.value = true
     properties.value = []
@@ -174,12 +158,14 @@ const loadProperties = async () => {
     isLoading.value = true
 
     try {
-        const response = await axios.post('https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements', {
-            page: currentPage.value,
-            ville: filters.value.search || '',
-            //   ville: filters.value.location || '',
-            type_logement: filters.value.propertyType || 'appartement'
-        })
+        const response = await axios.post(
+            'https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements',
+            {
+                page: currentPage.value,
+                ville: filters.value.location || '',
+                type_logement: filters.value.propertyType || 'appartement'
+            }
+        )
 
         const annonces = response.data.result?.data || []
         if (annonces.length === 0) {
@@ -211,8 +197,34 @@ const loadProperties = async () => {
     }
 }
 
+// Chargement des villes
+const loadVilles = async () => {
+    isLoadingVilles.value = true
+    try {
+        const response = await axios.get(
+            'https://mydevapi.espacebailleurekna.fr/api/v2/mobile/users/zones/zones-recherches'
+        )
+        const result = response.data.result || []
+
+        const villes = result
+            .filter((item) => item.ville)
+            .map((item) => ({
+                value: item.ville.toLowerCase(),
+                label: item.ville
+            }))
+            .sort((a, b) => a.label.localeCompare(b.label))
+
+        locations.value = [{ value: '', label: 'Ville' }, ...villes]
+    } catch (error) {
+        console.error('Erreur lors du chargement des villes :', error)
+    } finally {
+        isLoadingVilles.value = false
+    }
+}
+
 onMounted(() => {
     loadProperties()
+    loadVilles()
 })
 
 function chunkArray(array, size) {
@@ -234,6 +246,11 @@ const chunkedProperties = computed(() => chunkArray(properties.value, 3))
 
 .property__filter {
     margin-bottom: 0px;
+}
+
+.nice-select.disabled {
+    pointer-events: none;
+    opacity: 0.6;
 }
 
 @media only screen and (max-width: 575px) {

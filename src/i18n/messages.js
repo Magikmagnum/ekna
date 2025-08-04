@@ -15,7 +15,8 @@ export default {
         },
         Home5Component: {
             titre: 'Pourquoi choisir EKNA pour votre colocation?',
-            soustitre: 'Plus qu\'une plateforme, <br/>un véritable outil de sélection.',
+            soustitre1: 'Plus qu\'une plateforme,',
+            soustitre2: ' un véritable outil de sélection.',
             paragraphe: "Optimisez l'occupation de votre bien, réduisez la vacance locative, augmentez votre rentabilité.",
             bouton: 'Parcourir les annonces',
             stats: [
@@ -74,7 +75,9 @@ export default {
                 part1: 'La plateforme intelligente pour trouver',
                 part2: 'ou louer une colocation en toute simplicité'
             },
-            title: 'Les bons <span>colocataires,</span> tout simplement',
+            title1: 'Les bons',
+            title2: ' colocataires,',
+            title3: ' tout simplement',
             description: 'Accélérez vos démarches, sécurisez vos biens et connectez-vous à des locataires qualifiés.',
             primaryCta: 'Déposer une annonce',
             secondaryCta: 'Trouver une colocation'

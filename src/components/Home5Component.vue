@@ -7,7 +7,7 @@
                 <div class="row d-flex align-items-center">
                     <div class="col-lg-6">
                         <div class="content column__space">
-                            <h5 class="neutral-top" v-html="t('Home5Component.soustitre')"></h5>
+                            <h5 class="neutral-top">{{ t('Home5Component.soustitre1') }}<br/>{{ t('Home5Component.soustitre2') }}</h5>
                             <h2>{{ t('Home5Component.titre') }}</h2>
                             <p>{{ t('Home5Component.paragraphe') }}</p>
                             <a href="/annonces" class="button button--effect">{{ t('Home5Component.bouton') }}</a>
