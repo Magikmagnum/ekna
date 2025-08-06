@@ -72,7 +72,7 @@
 
                 <div class="text-center mt-4" v-if="hasMore">
                     <button @click="loadProperties" :disabled="isLoading" class="button button--effect">
-                        <span v-if="!isLoading">Afficher plus</span>
+                        <span v-if="!isLoading">Voir plus</span>
                         <span v-else>Chargement...</span>
                     </button>
                 </div>
