@@ -3,7 +3,7 @@
 import { ref } from 'vue'
 
 export const typeLogements = ref([
-  // { value: '', label: 'Typologie' },
+  { value: '', label: 'Tous' }, // option "tout sélectionner"
   { value: 'appartement', label: 'Appartement' },
   { value: 'maison', label: 'Maison' }
 ])
