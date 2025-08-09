@@ -8,13 +8,24 @@
                     <div class="col-lg-12 col-xl-6">
                         <div class="property__search__wrapper">
                             <form @submit.prevent="handleSearch">
-                                <div class="input">
+                                <div class="input" style="position: relative;">
                                     <input type="search" v-model="search"
-                                        :placeholder="t('FilterComponent.inputPlaceholder')" />
+                                        :placeholder="t('FilterComponent.inputPlaceholder')" @focus="onFocusSearch"
+                                        @blur="onBlurAutocomplete" @input="filterVilles" autocomplete="off" />
                                     <i class="fa-solid fa-magnifying-glass"></i>
+
+                                    <ul v-if="showAutocomplete && filteredVilles.length" class="autocomplete-list"
+                                        tabindex="0" @mousedown.prevent>
+                                        <li v-for="ville in filteredVilles" :key="ville.value"
+                                            @click="selectVille(ville)" class="autocomplete-item">
+                                            {{ ville.label }}
+                                        </li>
+                                    </ul>
                                 </div>
-                                <button type="submit"
-                                    class="button button--effect">{{ t('FilterComponent.boutonRecherche') }}</button>
+
+                                <button type="submit" class="button button--effect">
+                                    {{ t('FilterComponent.boutonRecherche') }}
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -28,6 +39,7 @@
                                     {{ loc.label }}
                                 </option>
                             </select>
+
                             <div class="nice-select location__select" :class="{ open: isOpen.location }" tabindex="0"
                                 @click="toggleDropdown('location')">
                                 <span class="current">{{ currentLabel(locations, location) }}</span>
@@ -35,7 +47,7 @@
                                     <li v-for="loc in locations" :key="loc.value" :data-value="loc.value"
                                         :data-display="loc.label"
                                         :class="['option', { selected: loc.value === location, focus: loc.value === location }]"
-                                        @click.stop="selectOption('location', loc.value)">
+                                        @click.stop="onSelectLocation(loc)">
                                         {{ loc.label }}
                                     </li>
                                 </ul>
@@ -52,7 +64,6 @@
                                     {{ type.label }}
                                 </option>
                             </select>
-
                             <div class="nice-select property__select" :class="{ open: isOpen.propertyType }"
                                 tabindex="0" @click="toggleDropdown('propertyType')">
                                 <span class="current">{{ currentLabel(propertyTypes, propertyType) }}</span>
@@ -75,71 +86,158 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { fetchVilles } from '@/services/villesMapper'
+import { typeLogements } from '@/services/typeLogementsMapper'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
 const { t } = useI18n()
 
-// Form state
 const search = ref('')
 const location = ref('')
 const propertyType = ref('')
 
-// Dropdown options
-const locations = ref([
-    { value: '', label: 'Ville' },
-    { value: 'angeles', label: 'Los Angeles' },
-    { value: 'francis', label: 'San Francisco, CA' },
-    { value: 'weldon', label: 'The Weldon' },
-    { value: 'diego', label: 'San Diego' }
-])
+const locations = ref([{ value: '', label: 'Ville' }])
+const propertyTypes = ref(typeLogements)
 
-const propertyTypes = ref([
-    { value: '', label: 'Typologie' },
-    { value: 'commercial', label: 'Commercial' },
-    { value: 'residential', label: 'Residential' }
-])
-
-// Open state for each dropdown
 const isOpen = ref({
     location: false,
     propertyType: false
 })
 
-// Toggle dropdown visibility
-const toggleDropdown = (key) => {
-    isOpen.value[key] = !isOpen.value[key]
-    // Fermer les autres
-    for (const k in isOpen.value) {
-        if (k !== key) isOpen.value[k] = false
+/* Autocomplete state */
+const showAutocomplete = ref(false)
+const filteredVilles = ref([])
+
+/* Load villes */
+const loadVilles = async () => {
+    locations.value = await fetchVilles()
+    // initial filtered list = toutes les villes (hors placeholder)
+    filteredVilles.value = locations.value.filter(v => v.value !== '')
+}
+
+onMounted(() => {
+    loadVilles()
+})
+
+/* Called on input focus */
+const onFocusSearch = () => {
+    showAutocomplete.value = true
+    // show all villes when focusing and no search text
+    if (!search.value.trim()) {
+        filteredVilles.value = locations.value.filter(v => v.value !== '')
     }
 }
 
-// Sélectionner une option et fermer le dropdown
+/* Filter list as user types.
+   Important: always set showAutocomplete = true so typing re-opens suggestions,
+   même si un select a été choisi auparavant. */
+const filterVilles = () => {
+    const term = (search.value || '').trim().toLowerCase()
+    showAutocomplete.value = true
+
+    if (!term) {
+        filteredVilles.value = locations.value.filter(v => v.value !== '')
+        return
+    }
+
+    filteredVilles.value = locations.value.filter(
+        ville => ville.value !== '' && ville.label.toLowerCase().includes(term)
+    )
+}
+
+/* Hide autocomplete on blur (delay to allow click) */
+const onBlurAutocomplete = () => {
+    setTimeout(() => {
+        showAutocomplete.value = false
+    }, 150)
+}
+
+/* When user clicks an item in autocomplete */
+const selectVille = (ville) => {
+    search.value = ville.label
+    location.value = ville.value
+    showAutocomplete.value = false
+    // restore filtered list so next typing works
+    filteredVilles.value = locations.value.filter(v => v.value !== '')
+}
+
+/* When user selects from the location dropdown we sync the search too:
+   this guarantees that if the select isn't the placeholder, the autocomplete
+   will still function on subsequent edits. */
+const onSelectLocation = (loc) => {
+    // set location + sync search to the label so user can continue editing
+    location.value = loc.value
+    search.value = loc.label
+    isOpen.value.location = false
+    // make sure autocomplete suggestions are available if user focuses/touches search
+    filteredVilles.value = locations.value.filter(v => v.value !== '')
+}
+
+/* generic dropdown helpers */
+const toggleDropdown = (key) => {
+    isOpen.value[key] = !isOpen.value[key]
+    for (const k in isOpen.value) if (k !== key) isOpen.value[k] = false
+}
+
 const selectOption = (key, value) => {
     if (key === 'location') location.value = value
     if (key === 'propertyType') propertyType.value = value
     isOpen.value[key] = false
 }
 
-// Label courant affiché
+/* Display current label */
 const currentLabel = (list, selectedValue) => {
-    return list.find((item) => item.value === selectedValue)?.label || list[0].label
+    return list.find(item => item.value === selectedValue)?.label || list[0].label
 }
 
-// Search handler
+/* Search submit */
 const handleSearch = () => {
-    console.log('Search:', search.value)
-    console.log('Location:', location.value)
-    console.log('Property Type:', propertyType.value)
+  router.push({
+    path: '/annonces',
+    query: {
+      search: search.value || '',
+      location: location.value || '',
+      propertyType: propertyType.value || ''
+    }
+  })
 }
 </script>
 
 <style scoped>
-/* Optionnel : styles personnalisés pour override nice-select */
-
 @media only screen and (max-width: 575px) {
     .property__filter {
         padding-top: 42px;
     }
+}
+
+.property__filter__area form button {
+    width: auto;
+}
+
+.autocomplete-list {
+    position: absolute;
+    z-index: 10;
+    background: white;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 2px;
+    list-style: none;
+    padding-left: 0;
+    border-radius: 4px;
+}
+
+.autocomplete-item {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.autocomplete-item:hover {
+    background-color: #eee;
 }
 </style>
