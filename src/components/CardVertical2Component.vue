@@ -1,106 +1,102 @@
 <!-- components/CardVerticalComponent.vue -->
 <template>
-    <div class="col-lg-4 col-xl-4">
-        <div class="property__grid__single">
-            <div class="img__effect-wrapper">
-                <div class="img__effect">
-                    <div class="avatar" :style="{ backgroundImage: `url(${proprietaire.photo || ''})` }">
-                    </div>
-                    <a :href="detailsUrl">
-                        <img :src="imageUrl" :alt="title">
-                    </a>
-                    <!-- <CircularGauge :percentage="25" :outerPercentage="75" :innerPercentage="50" /> -->
-                </div>
-                <div class="avatar-group">
-                    <AvatarGroup :avatars="users" />
-                </div>
-            </div>
-            <div class="property__grid__single__inner">
-                <h4>{{ title }}</h4>
-                <p class="sub__info"><i class="fa-solid fa-location-dot"></i> {{ address }}</p>
-                <p class="sub__info"> {{ is_occupant }}</p>
-                <p class="sub__info"> 5 pièces - {{ chambres }} chambres - {{ surface }}</p>
-                <p class="sub__info price"> {{ loyer_hors_charge}}</p>
-
-
-                <div class="property-info">
-
-                    <div class="info-details">
-                        <div class="column">
-                            <span class="label">Chambres disponibles</span>
-                            <span class="value date">{{ chambres }} chambres</span>
-                        </div>
-
-                        <div class="separator" />
-                        <!-- <div class="vertical-separator" /> -->
-
-                        <div class="column">
-                            <span class="label">Type d'habitat</span>
-                            <span class="value date">{{ type_logement }}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="invest__cta__wrapper">
-                    <div class="countdown__wrapper">
-                            <p class="secondary"><i class="fa-solid fa-clock"></i> {{
-                                $t('CardHorizontalComponent.disponibilite') }}</p>
-                            <div class="countdown">
-                                <h5>{{ countdown.days }}/{{ countdown.month }}/{{ countdown.years}}</h5>
-                            </div>
-                        </div>
-                    <div class="invest__cta">
-                        <a :href="detailsUrl" class="button button--effect">
-                            En savoir plus
-                        </a>
-                    </div>
-                </div>
-            </div>
+  <div class="col-lg-4 col-xl-4">
+    <div class="property__grid__single">
+      <div class="img__effect-wrapper">
+        <div class="img__effect">
+          <div class="avatar" :style="{ backgroundImage: `url(${proprietaire?.photo || ''})` }"></div>
+          <RouterLink :to="detailsUrl">
+            <img :src="imageUrl" :alt="title" />
+          </RouterLink>
         </div>
+        <div class="avatar-group">
+          <AvatarGroup :avatars="users" />
+        </div>
+      </div>
+
+      <div class="property__grid__single__inner">
+        <h4>{{ title }}</h4>
+        <p class="sub__info"><i class="fa-solid fa-location-dot"></i> {{ address }}</p>
+        <p class="sub__info">{{ is_occupant }}</p>
+        <p class="sub__info">5 pièces - {{ chambres }} chambres - {{ surface }}</p>
+        <p class="sub__info price">{{ loyer_hors_charge }}</p>
+
+        <div class="property-info">
+          <div class="info-details">
+            <div class="column">
+              <span class="label">Chambres disponibles</span>
+              <span class="value date">{{ chambres }} chambres</span>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="column">
+              <span class="label">Type d'habitat</span>
+              <span class="value date">{{ type_logement }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="invest__cta__wrapper">
+          <div class="countdown__wrapper">
+            <p class="secondary">
+              <i class="fa-solid fa-clock"></i>
+              {{ $t('CardHorizontalComponent.disponibilite') }}
+            </p>
+            <div class="countdown">
+              <h5>{{ countdown?.days }}/{{ countdown?.month }}/{{ countdown?.years }}</h5>
+            </div>
+          </div>
+          <div class="invest__cta">
+            <RouterLink :to="detailsUrl" class="button button--effect">
+              En savoir plus
+            </RouterLink>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
-
 <script setup lang="ts">
-
-import AvatarGroup from './AvatarGroup.vue';
-import CircularGauge from './CircularGauge.vue'
+import { RouterLink } from 'vue-router'  // Important d'importer RouterLink explicitement
+import AvatarGroup from './AvatarGroup.vue'
 
 interface Countdown {
-    days: string;
-    month: string;
-    years: string;
+  days: string
+  month: string
+  years: string
 }
 
 interface Locataire {
-    user?: {
-        photo?: string;
-    };
+  user?: {
+    photo?: string
+  }
 }
 
 interface PropertyCard {
-    id: number;
-    title: string;
-    address: string;
-    imageUrl: string;
-    loyer_hors_charge: string;
-    chambres: string;
-    type: string;
-    detailsUrl: string;
-    countdown: Countdown;
-    locataires: Locataire[];
-    proprietaire?: { photo?: string };
-    surface: string;
-    type_logement: string;
-    is_occupant: string;
+  id: number
+  title: string
+  address: string
+  imageUrl: string
+  loyer_hors_charge: string
+  chambres: string
+  type: string
+  detailsUrl: string
+  countdown?: Countdown
+  locataires?: Locataire[]
+  proprietaire?: { photo?: string }
+  surface: string
+  type_logement: string
+  is_occupant: string
 }
 
 const props = defineProps<PropertyCard>()
 
-const users = props.locataires.map(locataire => locataire.user?.photo).filter(Boolean);
-
+const users = (props.locataires || [])
+  .map(locataire => locataire.user?.photo)
+  .filter(Boolean)
 </script>
-
 
 
 <style scoped>
@@ -115,9 +111,9 @@ const users = props.locataires.map(locataire => locataire.user?.photo).filter(Bo
 }
 
 .price{
-        font-weight: 600;
-    font-size: x-large;
-    margin-bottom: 32px;
+    font-weight: 700;
+    color: #13216f;
+    font-size: 24px;
 }
 
 .img__effect-wrapper {
@@ -143,10 +139,6 @@ const users = props.locataires.map(locataire => locataire.user?.photo).filter(Bo
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
     z-index: 4;
 }
-
-
-
-
 
 .property-info {
     font-family: 'Arial', sans-serif;

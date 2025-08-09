@@ -16,8 +16,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Propriétés regroupées par ligne de 3 -->
                 <div v-for="(chunk, index) in chunkedProperties" :key="index" class="property__grid__wrapper">
                     <div class="row">
                         <CardVertical2Component v-for="property in chunk" :key="property.id" v-bind="property" />
@@ -29,51 +27,21 @@
 </template>
 
 <script setup>
+
 import { ref, onMounted, computed } from 'vue'
 import axios from 'axios'
 import { useI18n } from 'vue-i18n'
 import CardVertical2Component from './CardVertical2Component.vue'
+import { mapApiAnnonceToProperty } from '@/services/annonceMapper'
 
 // i18n
 const { t } = useI18n()
 
-// Données réactives
 const properties = ref([])
-
-// Fetch des données au montage
 onMounted(async () => {
     try {
-        const response = await axios.post('https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements')
-
-        const now = new Date()
-
-        properties.value = response.data.result.data.map((annonce, index) => {
-            // Fallback simple si une date de dispo n'est pas fournie
-            return {
-                id: annonce.id,
-                title: annonce.ville || 'Ville inconnue',
-                address: `${annonce.adresse || 'Adresse inconnue'}`.trim(),
-                imageUrl: annonce.image,
-                loyer_hors_charge: annonce.loyer_hors_charge ? `${annonce.loyer_hors_charge} €` : 'Loyer inconnu',
-                chambres: annonce.total_chambre?.toString() || 'N.C.',
-                bail: annonce.is_meuble ? 'Meublé' : 'Non meublé',
-                type_logement: annonce.type_logement || 'N.C.',
-                surface: annonce.surface_total ? `${annonce.surface_total} m²` : 'N.C.',
-                security: annonce.loyer_hors_charge ? `${annonce.loyer_hors_charge} € HC` : 'N.C.',
-                reference: annonce.reference,
-                is_occupant: annonce.is_occupant === 1 ? 'Proprietaire occupant' : 'Proprietaire non occupant',
-                type_bail: annonce.type_bail || 'N.C.',
-                locataires: annonce.locataires || [],
-                proprietaire: annonce.proprietaire || { photo: '' },
-                detailsUrl: `/detail/${annonce.id || ''}`,
-                type: annonce.type || 'N.C.', // <- AJOUT
-                countdown: {
-                    days: String(now.getDate()).padStart(2, '0'),
-                    month: String(now.getMonth() + 1).padStart(2, '0'),
-                    years: String(now.getFullYear()).slice(-2),
-                },
-            }
-        })
+        const { data } = await axios.post('https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements')
+        properties.value = data.result.data.map(mapApiAnnonceToProperty)
     } catch (error) {
         console.error('Erreur lors du chargement des logements:', error)
     }

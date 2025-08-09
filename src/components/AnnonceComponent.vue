@@ -33,44 +33,21 @@ import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { useI18n } from 'vue-i18n'
 import CardHorizontalComponent from './CardHorizontalComponent.vue'
+import { mapApiAnnonceToProperty } from '@/services/annonceMapper'
 
 
 // Importing the i18n instance for translations
 const { t } = useI18n()
 
-const now = new Date()
-
 // Reactive reference to hold the list of properties
 const properties = ref([])
 onMounted(async () => {
-    try {
-        const response = await axios.post('https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements')
-        properties.value = response.data.result.data.map(annonce => ({
-            id: annonce.id,
-            title: annonce.ville || 'Ville inconnue',
-            address: `${annonce.adresse || 'Adresse inconnue'}`.trim(),
-            image: annonce.image,
-            loyer_hors_charge: annonce.loyer_hors_charge ? `${annonce.loyer_hors_charge} €` : 'Loyer inconnu',
-            chambres: annonce.total_chambre?.toString() || 'N.C.',
-            bail: annonce.is_meuble ? 'Meublé' : 'Non meublé',
-            type_logement: annonce.type_logement || 'N.C.',
-            surface: annonce.surface_total ? `${annonce.surface_total} m²` : 'Surface inconnue',
-            security: annonce.loyer_hors_charge ? `${annonce.loyer_hors_charge} € HC` : 'N.C.',
-            reference: annonce.reference,
-            is_occupant: annonce.is_occupant === 1 ? 'Proprietaire occupant' : 'Proprietaire non occupant',
-            type_bail: annonce.type_bail || 'N.C.',
-            locataires: annonce.locataires || [],
-            proprietaire: annonce.proprietaire || {},
-            detailsUrl: `/detail/${annonce.id || ''}`,
-            countdown: {
-                days: String(now.getDate()).padStart(2, '0'),
-                month: String(now.getMonth() + 1).padStart(2, '0'),
-                years: String(now.getFullYear()).slice(-2),
-            },
-        }))
-    } catch (error) {
-        console.error('Erreur lors du chargement des logements:', error)
-    }
+  try {
+    const { data } = await axios.post('https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements')
+    properties.value = data.result.data.map(mapApiAnnonceToProperty)
+  } catch (error) {
+    console.error('Erreur lors du chargement des logements:', error)
+  }
 })
 
 </script>

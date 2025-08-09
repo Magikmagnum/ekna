@@ -1,43 +1,57 @@
-<!-- CardHorizontalComponent -->
 <template>
     <div class="row d-flex align-items-center">
-
+        <!-- Colonne image -->
         <div class="col-lg-5">
             <div class="property__item__image column__space--secondary img__effect-wrapper">
                 <div class="img__effect">
-                    <div class="avatar" :style="{ backgroundImage: `url(${props.property.proprietaire.photo || ''})` }">
+                    <!-- Avatar propriétaire -->
+                    <div class="avatar" :style="{ backgroundImage: `url(${property.proprietaire?.photo || ''})` }">
                     </div>
-                    <router-link :to="`/detail/${property.id}`">
-                        <img :src="property.image" :alt="property.title" />
+
+                    <!-- Image principale -->
+                    <router-link :to="property.detailsUrl">
+                        <img :src="property.imageUrl" :alt="property.title" />
                     </router-link>
-                    <!-- <CircularGauge :percentage="25" :outerPercentage="75" :innerPercentage="50" /> -->
                 </div>
-                 <div class="avatar-group">
+
+                <!-- Groupe avatars locataires -->
+                <div class="avatar-group">
                     <AvatarGroup :avatars="users" />
                 </div>
             </div>
         </div>
 
+        <!-- Colonne infos -->
         <div class="col-lg-7">
             <div class="property__item__content">
                 <div class="item__head">
                     <div class="item__head__left">
                         <h4>{{ property.title }}</h4>
-                        <p class="sub__title"><i class="fa-solid fa-location-dot"></i> {{ property.address }}</p>
-                        <p class="sub__title">{{ property.is_occupant}}</p>
-                        <p class="sub__title">5 pièces - {{ property.chambres }} chambres - {{ property.surface }}</p>
+                        <p class="sub__title">
+                            <i class="fa-solid fa-location-dot"></i> {{ property.address }}
+                        </p>
+                        <p class="sub__title">{{ property.is_occupant }}</p>
+                        <p class="sub__title">
+                            5 pièces - {{ property.chambres }} chambres - {{ property.surface }}
+                        </p>
                     </div>
                     <div class="item__head__right">
                         <div class="countdown__wrapper">
-                            <p class="secondary"><i class="fa-solid fa-clock"></i> {{
-                                $t('CardHorizontalComponent.disponibilite') }}</p>
+                            <p class="secondary">
+                                <i class="fa-solid fa-clock"></i>
+                                {{ $t('CardHorizontalComponent.disponibilite') }}
+                            </p>
                             <div class="countdown">
-                                <h5>{{ property.countdown.days }}/{{ property.countdown.month }}/{{ property.countdown.years }}</h5>
+                                <h5>
+                                    {{ property.countdown.days }}/{{ property.countdown.month }}/{{
+                                    property.countdown.years }}
+                                </h5>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Prix -->
                 <div class="progress__type">
                     <div class="project__info">
                         <p class="project__has">
@@ -46,6 +60,7 @@
                     </div>
                 </div>
 
+                <!-- Détails -->
                 <div class="item__info">
                     <div class="item__info__single">
                         <p>{{ $t('CardHorizontalComponent.nbChambres') }}</p>
@@ -57,7 +72,7 @@
                     </div>
                     <div class="item__info__single">
                         <p>{{ $t('CardHorizontalComponent.typeHabitat') }}</p>
-                        <h6>{{ property.type_logement.charAt(0).toUpperCase() + property.type_logement.slice(1) }}</h6>
+                        <h6>{{ property.type_logement }}</h6>
                     </div>
                     <div class="item__info__single">
                         <p>{{ $t('CardHorizontalComponent.surface') }}</p>
@@ -65,19 +80,24 @@
                     </div>
                 </div>
 
+                <!-- Footer -->
                 <div class="item__footer">
                     <div class="item__security">
-                        <div class="icon__box"><img :src="imageHome" alt="Security" /></div>
+                        <div class="icon__box">
+                            <img :src="imageHome" alt="Security" />
+                        </div>
                         <div class="item__security__content">
                             <p class="secondary">{{ $t('CardHorizontalComponent.certifie') }}</p>
                             <h6>EKNA</h6>
                         </div>
                     </div>
                     <div class="item__cta__group">
-                        <a href="registration.html" class="button button--effect">{{
-                            $t('CardHorizontalComponent.reserver') }}</a>
-                        <a href="detail" class="button button--secondary button--effect">{{
-                            $t('CardHorizontalComponent.details') }}</a>
+                        <a href="registration.html" class="button button--effect">
+                            {{ $t('CardHorizontalComponent.reserver') }}
+                        </a>
+                        <router-link :to="property.detailsUrl" class="button button--secondary button--effect">
+                            {{ $t('CardHorizontalComponent.details') }}
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -88,40 +108,31 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import CircularGauge from './CircularGauge.vue'
-import AvatarGroup from './AvatarGroup.vue';
-
+import AvatarGroup from './AvatarGroup.vue'
 
 const { t } = useI18n()
 const imageHome = new URL('@/assets/images/home.png', import.meta.url).href
 
+// Prop unifiée
 const props = defineProps({
-    property: Object
+    property: {
+        type: Object,
+        required: true
+    }
 })
 
-// computed pour dériver les avatars des locataires
+// Avatars locataires
 const users = computed(() => {
-    return props.property.locataires?.map(locataire => locataire.user?.photo).filter(Boolean) || []
+    return props.property.locataires?.map(l => l.user?.photo).filter(Boolean) || []
 })
-
-// console.log pour vérifier
-console.log('Users:', props.property.proprietaire.photo)
 </script>
 
-
 <style scoped>
-
 .img__effect-wrapper {
     position: relative;
 }
 
-.img__effect {
-    /* overflow: visible; */
-    /* margin-bottom: 40px; */
-}
-
 .countdown h5 {
-    text-transform: capitalize;
     font-weight: 700;
 }
 
@@ -155,17 +166,17 @@ console.log('Users:', props.property.proprietaire.photo)
     align-items: center;
     position: absolute;
     bottom: 0px;
-   
 }
 
-.sub__title{
+.sub__title {
     margin-top: 6px !important;
     font-size: 19px !important;
 }
 
-.item__footer, .item__info {
-    margin-top: 0;
+.property__item__content .item__info {
+    gap: 15px;
+    padding: 12px 0px 5px;
+    border-top: 1px solid #e9ecef;
+    margin-top: 14px;
 }
-
-
 </style>
