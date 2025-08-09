@@ -28,26 +28,36 @@
     </section>
 </template>
 
+
 <script setup>
-import { ref, onMounted } from 'vue'
+
+import { ref, onMounted, computed } from 'vue'
 import axios from 'axios'
 import { useI18n } from 'vue-i18n'
 import CardHorizontalComponent from './CardHorizontalComponent.vue'
 import { mapApiAnnonceToProperty } from '@/services/annonceMapper'
 
-
-// Importing the i18n instance for translations
+// i18n
 const { t } = useI18n()
 
-// Reactive reference to hold the list of properties
 const properties = ref([])
 onMounted(async () => {
-  try {
-    const { data } = await axios.post('https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements')
-    properties.value = data.result.data.map(mapApiAnnonceToProperty)
-  } catch (error) {
-    console.error('Erreur lors du chargement des logements:', error)
-  }
+    try {
+        const { data } = await axios.post('https://mydevapi.espacebailleurekna.fr/api/v2/mobile/logements')
+        properties.value = data.result.data.map(mapApiAnnonceToProperty)
+    } catch (error) {
+        console.error('Erreur lors du chargement des logements:', error)
+    }
 })
 
+// Découper les propriétés par ligne de 3
+function chunkArray(array, size) {
+    const chunks = []
+    for (let i = 0; i < array.length; i += size) {
+        chunks.push(array.slice(i, i + size))
+    }
+    return chunks
+}
+
+const chunkedProperties = computed(() => chunkArray(properties.value, 3))
 </script>

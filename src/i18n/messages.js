@@ -58,6 +58,13 @@ export default {
             nonCommunique: 'N.C.',
             erreurChargement: 'Erreur lors du chargement des logements:'
         },
+        CardVerticalComponent: {
+            pieces: 'pièce(s)',
+            chambres: 'chambre(s)',
+            chambresDisponibles: 'Chambres disponibles',
+            typeHabitat: 'Type d\'habitat',
+            EnSavoirPlus: 'En savoir plus',
+        },
         CardHorizontalComponent: {
             disponibilite: 'Disponibilité',
             immediate: 'Immédiate',
@@ -68,7 +75,8 @@ export default {
             surface: 'Surface',
             certifie: 'Annonce certifiée',
             reserver: 'Réserver',
-            details: 'Détails'
+            details: 'Détails',
+            pieces: "pièce(s)",
         },
         BannerHomeComponent: {
             subtitle: {

@@ -32,7 +32,8 @@
                         </p>
                         <p class="sub__title">{{ property.is_occupant }}</p>
                         <p class="sub__title">
-                            {{ Number(chambres) + 1 }} pièces - {{ chambres }} chambres - {{ surface }}
+                            {{ Number(property.chambres) + 1 }} {{ $t('CardHorizontalComponent.pieces') }} - {{ property.chambres }} {{ $t('CardHorizontalComponent.chambres') }} - {{
+                            property.surface }}
                         </p>
                     </div>
                     <div class="item__head__right">
@@ -42,10 +43,7 @@
                                 {{ $t('CardHorizontalComponent.disponibilite') }}
                             </p>
                             <div class="countdown">
-                                <h5>
-                                    {{ property.countdown.days }}/{{ property.countdown.month }}/{{
-                                    property.countdown.years }}
-                                </h5>
+                                <h5>{{ property.min_date }}</h5>
                             </div>
                         </div>
                     </div>
@@ -64,7 +62,7 @@
                 <div class="item__info">
                     <div class="item__info__single">
                         <p>{{ $t('CardHorizontalComponent.nbChambres') }}</p>
-                        <h6>{{ property.chambres }} {{ $t('CardHorizontalComponent.chambres') }}</h6>
+                        <h6>{{ property.chambres_dispobibles }} {{ $t('CardHorizontalComponent.chambres') }}</h6>
                     </div>
                     <div class="item__info__single">
                         <p>{{ $t('CardHorizontalComponent.typeBail') }}</p>
@@ -105,26 +103,43 @@
     </div>
 </template>
 
-<script setup>
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
+<script setup lang="ts">
+import { RouterLink } from 'vue-router'
 import AvatarGroup from './AvatarGroup.vue'
 
-const { t } = useI18n()
-const imageHome = new URL('@/assets/images/home.png', import.meta.url).href
-
-// Prop unifiée
-const props = defineProps({
-    property: {
-        type: Object,
-        required: true
+interface Locataire {
+    user?: {
+        photo?: string
     }
-})
+}
 
-// Avatars locataires
-const users = computed(() => {
-    return props.property.locataires?.map(l => l.user?.photo).filter(Boolean) || []
-})
+interface PropertyCard {
+    id: number
+    title: string
+    address: string
+    imageUrl: string
+    loyer_hors_charge: string
+    chambres: string
+    type_bail: string
+    detailsUrl: string
+    locataires?: Locataire[]
+    proprietaire?: { photo?: string }
+    surface: string
+    type_logement: string
+    is_occupant: string
+    min_date: string
+    chambres_dispobibles: number
+}
+
+const props = defineProps<{ property: PropertyCard }>()
+
+const property = props.property
+
+const users = (property.locataires || [])
+    .map(locataire => locataire.user?.photo)
+    .filter(Boolean)
+
+const imageHome = new URL('@/assets/images/home.png', import.meta.url).href
 </script>
 
 <style scoped>

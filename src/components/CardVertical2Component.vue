@@ -19,25 +19,26 @@
         <p class="sub__info"><i class="fa-solid fa-location-dot"></i> {{ address }}</p>
         <p class="sub__info">{{ is_occupant }}</p>
         <p class="sub__info">
-          {{ Number(chambres) + 1 }} pièces - {{ chambres }} chambres - {{ surface }}
+          {{ Number(chambres) + 1 }} {{ $t('CardVerticalComponent.pieces') }} - {{ chambres }} {{
+            $t('CardVerticalComponent.chambres') }} - {{ surface }}
         </p>
         <p class="sub__info price">{{ loyer_hors_charge }}</p>
-
         <div class="property-info">
           <div class="info-details">
             <div class="column">
-              <span class="label">Chambres disponibles</span>
-              <span class="value date">{{ chambres }} chambres</span>
+              <span class="label">{{ $t('CardVerticalComponent.chambresDisponibles') }}</span>
+              <span class="value date">{{ chambres_dispobibles }} {{ $t('CardVerticalComponent.chambres') }}</span>
             </div>
 
             <div class="separator"></div>
 
             <div class="column">
-              <span class="label">Type d'habitat</span>
+              <span class="label">{{ $t('CardVerticalComponent.typeHabitat') }}</span>
               <span class="value date">{{ type_logement }}</span>
             </div>
           </div>
         </div>
+
 
         <div class="invest__cta__wrapper">
           <div class="countdown__wrapper">
@@ -46,12 +47,12 @@
               {{ $t('CardHorizontalComponent.disponibilite') }}
             </p>
             <div class="countdown">
-              <h5>{{ countdown?.days }}/{{ countdown?.month }}/{{ countdown?.years }}</h5>
+              <h5>{{ min_date }}</h5>
             </div>
           </div>
           <div class="invest__cta">
             <RouterLink :to="detailsUrl" class="button button--effect">
-              En savoir plus
+              {{ $t('CardVerticalComponent.EnSavoirPlus') }}
             </RouterLink>
           </div>
         </div>
@@ -63,6 +64,9 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'  // Important d'importer RouterLink explicitement
 import AvatarGroup from './AvatarGroup.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 interface Countdown {
   days: string
@@ -77,23 +81,25 @@ interface Locataire {
 }
 
 interface PropertyCard {
-  id: number
-  title: string
-  address: string
-  imageUrl: string
-  loyer_hors_charge: string
-  chambres: string
-  type: string
-  detailsUrl: string
-  countdown?: Countdown
-  locataires?: Locataire[]
-  proprietaire?: { photo?: string }
-  surface: string
-  type_logement: string
-  is_occupant: string
+  id: number;
+  title: string;
+  address: string;
+  imageUrl: string;
+  loyer_hors_charge: string;
+  chambres: string;
+  type_bail: string;
+  detailsUrl: string;
+  locataires?: Locataire[];
+  proprietaire?: { photo?: string; };
+  surface: string;
+  type_logement: string;
+  is_occupant: string;
+  min_date: string;
+  chambres_dispobibles: number;
 }
 
 const props = defineProps<PropertyCard>()
+console.log('CardVerticalComponent props:', props)
 
 const users = (props.locataires || [])
   .map(locataire => locataire.user?.photo)
@@ -107,10 +113,7 @@ const users = (props.locataires || [])
   font-weight: 700;
 }
 
-.property__grid__single .sub__info {
-  /* margin-top: 12px; */
-  /* min-height: 60px; */
-}
+.property__grid__single .sub__info {}
 
 .price {
   font-weight: 700;
@@ -123,7 +126,6 @@ const users = (props.locataires || [])
 }
 
 .img__effect {
-  /* overflow: visible; */
   margin-bottom: 40px;
 }
 
@@ -197,7 +199,9 @@ const users = (props.locataires || [])
 
 .value.date {
   color: #645bff;
-  font-size: 21px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
 }
 
 .vertical-separator {

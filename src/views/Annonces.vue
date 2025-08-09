@@ -20,7 +20,7 @@ import FooterComponent from '@/components/FooterComponent.vue'
 
 const route = useRoute()
 
-const backgroundImage = new URL('@/assets/images/banner/banner-bg.png', import.meta.url).href
+const backgroundImage = new URL('@/assets/images/banner-two-bg.png', import.meta.url).href
 const title = "Parcourir les colocations"
 
 // Filtres globaux
