@@ -32,7 +32,7 @@
                         </p>
                         <p class="sub__title">{{ property.is_occupant }}</p>
                         <p class="sub__title">
-                            5 pièces - {{ property.chambres }} chambres - {{ property.surface }}
+                            {{ Number(chambres) + 1 }} pièces - {{ chambres }} chambres - {{ surface }}
                         </p>
                     </div>
                     <div class="item__head__right">

@@ -45,7 +45,7 @@
                 </div>
             </section>
         </div>
-        <Proposition2Component />
+        <!-- <Proposition2Component /> -->
         <FooterComponent />
     </div>
 </template>
