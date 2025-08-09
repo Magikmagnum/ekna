@@ -9,48 +9,46 @@
                     <a :href="detailsUrl">
                         <img :src="imageUrl" :alt="title">
                     </a>
-                    <CircularGauge :percentage="25" :outerPercentage="75" :innerPercentage="50" />
+                    <!-- <CircularGauge :percentage="25" :outerPercentage="75" :innerPercentage="50" /> -->
                 </div>
-                <AvatarGroup :avatars="users" />
+                <div class="avatar-group">
+                    <AvatarGroup :avatars="users" />
+                </div>
             </div>
             <div class="property__grid__single__inner">
                 <h4>{{ title }}</h4>
                 <p class="sub__info"><i class="fa-solid fa-location-dot"></i> {{ address }}</p>
+                <p class="sub__info"> {{ is_occupant }}</p>
+                <p class="sub__info"> 5 pièces - {{ chambres }} chambres - {{ surface }}</p>
+                <p class="sub__info price"> {{ loyer_hors_charge}}</p>
+
 
                 <div class="property-info">
-                    <!-- Ligne du haut -->
-                    <div class="info-row">
-                        <span>{{ type }}</span>
-                        <div class="separator" />
-                        <span>{{ chambres }} chambres</span>
-                        <div class="separator" />
-                        <span>salle de bains</span>
-                    </div>
 
-                    <!-- Ligne du bas -->
                     <div class="info-details">
                         <div class="column">
-                            <span class="label">Disponible<br />à partir de</span>
-                            <span class="value date">{{ countdown.days }}/{{ countdown.month }}/{{ countdown.years
-                                }}</span>
+                            <span class="label">Chambres disponibles</span>
+                            <span class="value date">{{ chambres }} chambres</span>
                         </div>
 
                         <div class="separator" />
                         <!-- <div class="vertical-separator" /> -->
 
                         <div class="column">
-                            <span class="value">102 m²</span>
-                            <span class="label">{{ type }}</span>
+                            <span class="label">Type d'habitat</span>
+                            <span class="value date">{{ type_logement }}</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="invest__cta__wrapper">
                     <div class="countdown__wrapper">
-                        <div class="countdown">
-                            <h5>{{ investors }} € </h5>
+                            <p class="secondary"><i class="fa-solid fa-clock"></i> {{
+                                $t('CardHorizontalComponent.disponibilite') }}</p>
+                            <div class="countdown">
+                                <h5>{{ countdown.days }}/{{ countdown.month }}/{{ countdown.years}}</h5>
+                            </div>
                         </div>
-                    </div>
                     <div class="invest__cta">
                         <a :href="detailsUrl" class="button button--effect">
                             En savoir plus
@@ -85,13 +83,16 @@ interface PropertyCard {
     title: string;
     address: string;
     imageUrl: string;
-    investors: number;
+    loyer_hors_charge: string;
     chambres: string;
     type: string;
     detailsUrl: string;
     countdown: Countdown;
     locataires: Locataire[];
     proprietaire?: { photo?: string };
+    surface: string;
+    type_logement: string;
+    is_occupant: string;
 }
 
 const props = defineProps<PropertyCard>()
@@ -109,8 +110,14 @@ const users = props.locataires.map(locataire => locataire.user?.photo).filter(Bo
 }
 
 .property__grid__single .sub__info {
-    margin-top: 12px;
-    min-height: 60px;
+    /* margin-top: 12px; */
+    /* min-height: 60px; */
+}
+
+.price{
+        font-weight: 600;
+    font-size: x-large;
+    margin-bottom: 32px;
 }
 
 .img__effect-wrapper {
@@ -228,5 +235,12 @@ const users = props.locataires.map(locataire => locataire.user?.photo).filter(Bo
         font-size: 20px;
         margin-bottom: 16px;
     }
+}
+.avatar-group {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: -46px;
+   
 }
 </style>

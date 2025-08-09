@@ -1,21 +1,21 @@
 <template>
-    <div class="avatar-group">
-        <!-- Bouton "+" -->
-        <div class="avatar add-button">
-            <span>+</span>
-        </div>
-
-        <!-- Liste des avatars (limités à 6) -->
-        <div
-            v-for="(avatar, index) in avatars.slice(0, 6)"
-            :key="index"
-            class="avatar"
-            :style="{
-                zIndex: avatars.length - index,
-                backgroundImage: `url(${avatar})`
-            }"
-        ></div>
+    <!-- Bouton "+" -->
+    <div class="avatar add-button">
+        <span>+</span>
     </div>
+    
+    <!-- Liste des avatars (limités à 6) -->
+    <div
+    v-for="(avatar, index) in avatars.slice(0, 6)"
+    :key="index"
+    class="avatar"
+    :style="{
+        zIndex: avatars.length - index,
+        backgroundImage: `url(${avatar})`
+    }"
+        ></div>
+        <!-- <div class="avatar-group">
+    </div> -->
 </template>
 
 <script setup>
@@ -28,13 +28,13 @@ defineProps({
 </script>
 
 <style scoped>
-.avatar-group {
+/* .avatar-group {
     display: flex;
     align-items: center;
     position: absolute;
     bottom: -46px;
-   
-}
+    */
+/* } */
 
 .avatar {
     width: 50px;
