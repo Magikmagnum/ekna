@@ -9,9 +9,9 @@
                         <div class="property__search__wrapper">
                             <form @submit.prevent="handleSearch">
                                 <div class="input" style="position: relative;">
-                                    <input type="search" v-model="search"
-                                        :placeholder="t('FilterComponent.inputPlaceholder')" @focus="onFocusSearch"
-                                        @blur="onBlurAutocomplete" @input="filterVilles" autocomplete="off" />
+                                    <input type="search" :value="filters.search"
+                                        :placeholder="t('FilterComponent.inputPlaceholder')" @input="onSearchInput"
+                                        @focus="onFocusSearch" @blur="onBlurAutocomplete" autocomplete="off" />
                                     <i class="fa-solid fa-magnifying-glass"></i>
 
                                     <ul v-if="showAutocomplete && filteredVilles.length" class="autocomplete-list"
@@ -33,7 +33,7 @@
                     <!-- Location Dropdown -->
                     <div class="col-lg-6 col-xl-3">
                         <div class="property__select__wrapper">
-                            <select v-model="location" class="location__select" style="display: none;">
+                            <select v-model="filters.location" class="location__select" style="display: none;">
                                 <option v-for="loc in locations" :key="loc.value" :value="loc.value"
                                     :data-display="loc.label">
                                     {{ loc.label }}
@@ -42,11 +42,11 @@
 
                             <div class="nice-select location__select" :class="{ open: isOpen.location }" tabindex="0"
                                 @click="toggleDropdown('location')">
-                                <span class="current">{{ currentLabel(locations, location) }}</span>
+                                <span class="current">{{ currentLabel(locations, filters.location) }}</span>
                                 <ul class="list" v-show="isOpen.location">
                                     <li v-for="loc in locations" :key="loc.value" :data-value="loc.value"
                                         :data-display="loc.label"
-                                        :class="['option', { selected: loc.value === location, focus: loc.value === location }]"
+                                        :class="['option', { selected: loc.value === filters.location, focus: loc.value === filters.location }]"
                                         @click.stop="onSelectLocation(loc)">
                                         {{ loc.label }}
                                     </li>
@@ -58,7 +58,7 @@
                     <!-- Property Type Dropdown -->
                     <div class="col-lg-6 col-xl-3">
                         <div class="property__select__wrapper">
-                            <select v-model="propertyType" class="property__select" style="display: none;">
+                            <select v-model="filters.propertyType" class="property__select" style="display: none;">
                                 <option v-for="type in propertyTypes" :key="type.value" :value="type.value"
                                     :data-display="type.label">
                                     {{ type.label }}
@@ -66,11 +66,11 @@
                             </select>
                             <div class="nice-select property__select" :class="{ open: isOpen.propertyType }"
                                 tabindex="0" @click="toggleDropdown('propertyType')">
-                                <span class="current">{{ currentLabel(propertyTypes, propertyType) }}</span>
+                                <span class="current">{{ currentLabel(propertyTypes, filters.propertyType) }}</span>
                                 <ul class="list" v-show="isOpen.propertyType">
                                     <li v-for="type in propertyTypes" :key="type.value" :data-value="type.value"
                                         :data-display="type.label"
-                                        :class="['option', { selected: type.value === propertyType, focus: type.value === propertyType }]"
+                                        :class="['option', { selected: type.value === filters.propertyType, focus: type.value === filters.propertyType }]"
                                         @click.stop="selectOption('propertyType', type.value)">
                                         {{ type.label }}
                                     </li>
@@ -86,19 +86,23 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { fetchVilles } from '@/services/villesMapper'
 import { typeLogements } from '@/services/typeLogementsMapper'
 import { useRouter } from 'vue-router'
 
+const props = defineProps({
+    filters: {
+        type: Object,
+        required: true
+    }
+})
+
+const emit = defineEmits(['update:filters'])
+
 const router = useRouter()
-
 const { t } = useI18n()
-
-const search = ref('')
-const location = ref('')
-const propertyType = ref('')
 
 const locations = ref([{ value: '', label: 'Ville' }])
 const propertyTypes = ref(typeLogements)
@@ -115,7 +119,6 @@ const filteredVilles = ref([])
 /* Load villes */
 const loadVilles = async () => {
     locations.value = await fetchVilles()
-    // initial filtered list = toutes les villes (hors placeholder)
     filteredVilles.value = locations.value.filter(v => v.value !== '')
 }
 
@@ -123,20 +126,22 @@ onMounted(() => {
     loadVilles()
 })
 
+/* Watch search changes to filter autocomplete */
+watch(() => props.filters.search, (newVal) => {
+    filterVilles(newVal)
+})
+
 /* Called on input focus */
 const onFocusSearch = () => {
     showAutocomplete.value = true
-    // show all villes when focusing and no search text
-    if (!search.value.trim()) {
+    if (!props.filters.search.trim()) {
         filteredVilles.value = locations.value.filter(v => v.value !== '')
     }
 }
 
-/* Filter list as user types.
-   Important: always set showAutocomplete = true so typing re-opens suggestions,
-   même si un select a été choisi auparavant. */
-const filterVilles = () => {
-    const term = (search.value || '').trim().toLowerCase()
+/* Filter list as user types */
+const filterVilles = (termRaw = '') => {
+    const term = (termRaw || props.filters.search || '').trim().toLowerCase()
     showAutocomplete.value = true
 
     if (!term) {
@@ -156,24 +161,22 @@ const onBlurAutocomplete = () => {
     }, 150)
 }
 
+/* Emit updated filters when input changes */
+const onSearchInput = (event) => {
+    emit('update:filters', { ...props.filters, search: event.target.value })
+}
+
 /* When user clicks an item in autocomplete */
 const selectVille = (ville) => {
-    search.value = ville.label
-    location.value = ville.value
+    emit('update:filters', { ...props.filters, search: ville.label, location: ville.value })
     showAutocomplete.value = false
-    // restore filtered list so next typing works
     filteredVilles.value = locations.value.filter(v => v.value !== '')
 }
 
-/* When user selects from the location dropdown we sync the search too:
-   this guarantees that if the select isn't the placeholder, the autocomplete
-   will still function on subsequent edits. */
+/* When user selects from the location dropdown we sync the search too */
 const onSelectLocation = (loc) => {
-    // set location + sync search to the label so user can continue editing
-    location.value = loc.value
-    search.value = loc.label
+    emit('update:filters', { ...props.filters, location: loc.value, search: loc.label })
     isOpen.value.location = false
-    // make sure autocomplete suggestions are available if user focuses/touches search
     filteredVilles.value = locations.value.filter(v => v.value !== '')
 }
 
@@ -184,8 +187,9 @@ const toggleDropdown = (key) => {
 }
 
 const selectOption = (key, value) => {
-    if (key === 'location') location.value = value
-    if (key === 'propertyType') propertyType.value = value
+    if (key === 'propertyType') {
+        emit('update:filters', { ...props.filters, propertyType: value })
+    }
     isOpen.value[key] = false
 }
 
@@ -196,14 +200,14 @@ const currentLabel = (list, selectedValue) => {
 
 /* Search submit */
 const handleSearch = () => {
-  router.push({
-    path: '/annonces',
-    query: {
-      search: search.value || '',
-      location: location.value || '',
-      propertyType: propertyType.value || ''
-    }
-  })
+    router.push({
+        path: '/annonces',
+        query: {
+            search: props.filters.search || '',
+            location: props.filters.location || '',
+            propertyType: props.filters.propertyType || ''
+        }
+    })
 }
 </script>
 
