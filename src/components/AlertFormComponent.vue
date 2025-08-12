@@ -85,7 +85,7 @@ const form = reactive({
 })
 
 function handleSubmit() {
-    console.log('Form submitted:', form)
+    // console.log('Form submitted:', form)
 }
 </script>
 

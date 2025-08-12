@@ -37,6 +37,13 @@ export default {
             title: 'Toutes les colocations',
             bouton: 'Voir toutes les annonces',
         },
+        Proposition2Component: {
+            title1: 'Voir les ',
+            title2: 'colocations',
+            noResultsMessage: 'Aucun logement ne correspond à votre recherche.',   
+            chargement: 'Chargement des logements...', 
+            voirPlus: 'Voir plus',
+        },
         FilterComponent: {
             boutonRecherche: 'Rechercher',
             inputPlaceholder: 'Rechercher une colocation',

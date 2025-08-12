@@ -41,7 +41,7 @@ const props = defineProps({
 const logement = props.logement
 
 function handleLouer(titre) {
-    console.log(`Chambre louée : ${titre}`)
+    // console.log(`Chambre louée : ${titre}`)
 }
 
 // Table de correspondance des labels

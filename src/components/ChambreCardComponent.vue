@@ -125,8 +125,6 @@ const props = defineProps({
 
 defineEmits(['louer'])
 
-console.log('image props:', props.images)
-
 // Liste des icônes et labels pour chaque équipement
 const allEquipements = {
     lit_double: {

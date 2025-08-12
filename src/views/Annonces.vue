@@ -1,8 +1,7 @@
 <template>
     <div id="app">
         <HeaderComponent />
-        <BannerComponent :title="title" :backgroundImage="backgroundImage" :bannerThumb="bannerThumb"
-            :breadcrumbs="breadcrumbs" />
+        <BannerComponent :title="title" :backgroundImage="backgroundImage"/>
         <Proposition2Component :filters="filters" />
         <FooterComponent />
     </div>
@@ -25,9 +24,13 @@ const title = "Parcourir les colocations"
 
 // Filtres globaux
 const filters = ref({
-    search: '',
-    location: '',
-    propertyType: ''
+    search: route.query.search || '',
+    location: route.query.location || '',
+    propertyType: route.query.propertyType || '',
+    plus_recent: true,
+    plus_ancien: false,
+    loyer_decroissant: false,
+    loyer_croissant: false
 })
 
 

@@ -99,7 +99,6 @@ interface PropertyCard {
 }
 
 const props = defineProps<PropertyCard>()
-console.log('CardVerticalComponent props:', props)
 
 const users = (props.locataires || [])
   .map(locataire => locataire.user?.photo)
