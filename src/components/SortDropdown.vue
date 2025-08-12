@@ -26,12 +26,7 @@ const props = defineProps({
     modelValue: { type: String, default: '' },
     options: {
         type: Array,
-        default: () => [
-            { value: 'plus_recent', label: 'le plus récent' },
-            { value: 'plus_ancien', label: 'le plus ancien' },
-            { value: 'loyer_decroissant', label: 'loyer décroissant' },
-            { value: 'loyer_croissant', label: 'loyer croissant' }
-        ]
+        default: () => []
     }
 })
 
