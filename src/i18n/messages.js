@@ -43,6 +43,12 @@ export default {
             noResultsMessage: 'Aucun logement ne correspond à votre recherche.',   
             chargement: 'Chargement des logements...', 
             voirPlus: 'Voir plus',
+            sort: {
+                plus_recent: "le plus récent",
+                plus_ancien: "le plus ancien",
+                loyer_decroissant: "loyer décroissant",
+                loyer_croissant: "loyer croissant"
+            }
         },
         FilterComponent: {
             boutonRecherche: 'Rechercher',

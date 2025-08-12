@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <HeaderComponent />
-        <BannerComponent :title="title" :backgroundImage="backgroundImage"/>
+        <BannerComponent :title="title" :backgroundImage="backgroundImage" />
         <Proposition2Component :filters="filters" />
         <FooterComponent />
     </div>
@@ -27,10 +27,7 @@ const filters = ref({
     search: route.query.search || '',
     location: route.query.location || '',
     propertyType: route.query.propertyType || '',
-    plus_recent: true,
-    plus_ancien: false,
-    loyer_decroissant: false,
-    loyer_croissant: false
+    sort: route.query.sort || 'plus_recent'
 })
 
 
