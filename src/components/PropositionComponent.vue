@@ -5,7 +5,7 @@
                 <div class="title__with__cta">
                     <div class="row d-flex align-items-center">
                         <div class="col-lg-8">
-                            <h2>{{ t('PropositionComponent.bouton') }}</h2>
+                            <h2>{{ t('PropositionComponent.title') }}</h2>
                         </div>
                         <div class="col-lg-4">
                             <div class="text-start text-lg-end">

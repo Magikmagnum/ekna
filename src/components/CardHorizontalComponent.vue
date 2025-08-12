@@ -32,8 +32,7 @@
                         </p>
                         <p class="sub__title">{{ property.is_occupant }}</p>
                         <p class="sub__title">
-                            {{ Number(property.chambres) + 1 }} {{ $t('CardHorizontalComponent.pieces') }} - {{ property.chambres }} {{ $t('CardHorizontalComponent.chambres') }} - {{
-                            property.surface }}
+                            {{ Number(property.chambres) + 1 }} {{ $t('CardHorizontalComponent.pieces') }} - {{ property.chambres }} {{ $t('CardHorizontalComponent.chambres') }} - {{property.surface }}
                         </p>
                     </div>
                     <div class="item__head__right">

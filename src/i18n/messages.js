@@ -52,7 +52,7 @@ export default {
         },
         FilterComponent: {
             boutonRecherche: 'Rechercher',
-            inputPlaceholder: 'Rechercher une colocation',
+            inputPlaceholder: 'Adresses',
         },
         Home: {
             primaryCta: 'Déposer une annonce',
@@ -81,7 +81,7 @@ export default {
         CardHorizontalComponent: {
             disponibilite: 'Disponibilité',
             immediate: 'Immédiate',
-            nbChambres: 'Nb de chambres',
+            nbChambres: 'Chambres disponibles',
             chambres: 'chambre(s)',
             typeBail: 'Type de bail',
             typeHabitat: 'Type d\'habitat',

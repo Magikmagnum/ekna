@@ -6,7 +6,7 @@
     
     <!-- Liste des avatars (limités à 6) -->
     <div
-    v-for="(avatar, index) in avatars.slice(0, 6)"
+    v-for="(avatar, index) in avatars.slice(1, 6)"
     :key="index"
     class="avatar"
     :style="{
