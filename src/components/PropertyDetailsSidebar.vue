@@ -55,7 +55,7 @@
         </div>
 
         <div class="group alt__brin">
-            <h5>Disponibilité<i class="fa-solid fa-bell"></i></h5>
+            <h5>Chambres disponibles<i class="fa-solid fa-bell"></i></h5>
             <hr />
             <div class="singl__wrapper">
                 <div class="singl" v-for="update in keyUpdates" :key="update.text">
@@ -64,6 +64,17 @@
                         <p>{{ update.date }}</p>
                         <a :href="update.link">{{ update.text }}</a>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="group brini certif">
+            <div data-v-f89a1ed8="" class="item__security">
+                <div data-v-f89a1ed8="" class="icon__box"><img data-v-f89a1ed8=""
+                        src="http://localhost:5173/src/assets/images/home.png" alt="Security"></div>
+                <div data-v-f89a1ed8="" class="item__security__content">
+                    <p data-v-f89a1ed8="" class="secondary">{{ $t('CardHorizontalComponent.certifie') }}</p>
+                    <h6 data-v-f89a1ed8="">EKNA</h6>
                 </div>
             </div>
         </div>
@@ -107,6 +118,7 @@
 import { ref } from 'vue'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { RouterLink } from 'vue-router'
 
 
 const props = defineProps({
@@ -209,5 +221,14 @@ const prixMin = computed(() => {
 .bullet-list li {
 
     margin: 32px 0;
+}
+
+.p__details__sidebar .certif {
+    padding: 0px;
+    margin-top: 0px;
+}
+
+.p__details__sidebar .group .item__security{
+    padding: 20px 40px;
 }
 </style>
