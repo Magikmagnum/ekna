@@ -7,16 +7,17 @@
         <div class="intro">
             <div>
                 <span class="secondary details__color">Professionnel</span>
-                <h3 v-if="logement">
-                    {{ logement.titre_annonce }} - Colocation - {{ logement.ville }}, Lille
-                </h3>
+                <h3 v-if="logement"> {{ logement.titre_annonce }} </h3>
                 <h3 v-else>
                     Chargement...
                 </h3>
 
                 <p v-if="logement">
-                    {{ logement.is_meuble ? 'Meublé' : 'Non meublé' }} • {{ logement.type_logement === 'studio' ? 'Studio' : 'Studio au T' + logement.chambres_for_mobile?.length }} • de 19m<sup>2</sup> à {{ logement.surface_total }}m<sup>2</sup>
-                    <!-- Meublé • Studio au T3 • de 19m<sup>2</sup> à 50m<sup>2</sup> -->
+                    {{ capitalizeFirstLetter(logement.type_logement) }} •
+                    {{ logement.chambres_for_mobile?.length || 1 }} chambres •
+                    {{ logement.surface_total }}m<sup>2</sup> •
+                    Logement {{ logement.is_meuble ? 'meublé' : 'non meublé' }} •
+                    Propriétaire {{ logement.is_occupant ? 'occupant' : 'non occupant' }}
                 </p>
                 <p v-else>
                     Chargement...
@@ -58,7 +59,7 @@
             </div>
 
             <div class="details__block">
-                <h5>Les principaux éléments financiers à anticiper:</h5>
+                <h5>les principaux elements financiers a anticiper.</h5>
                 <AvantagesList :avantages="elements" />
             </div>
         </div>
@@ -71,11 +72,6 @@
                 <div class="bailleur_block_body">
                     <div class="bailleur_block_header">
                         <h5>{{ logement.proprietaire.first_name }} {{ logement.proprietaire.name }} (bailleur)</h5>
-                        <div class="invest__cta">
-                            <a :href="`/detail/${logement.proprietaire.id}`" class="button button--effect">
-                                + d'info
-                            </a>
-                        </div>
                     </div>
                     <div class="bailleur_block_content">
                         <p class="neutral-bottom">
@@ -89,38 +85,42 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import AvantagesList from '@/components/AvantagesList.vue'
-import { computed } from 'vue'
 
-const { logement } = defineProps({
-  logement: {
-    type: Object,
-    required: true,
-  },
+import { ref, computed } from 'vue'
+import AvantagesList from '@/components/AvantagesList.vue'
+import { capitalizeFirstLetter } from '@/services/capitalizeFirstLetter.js'
+
+const props = defineProps({
+    logement: {
+        type: Object,
+        required: true,
+    },
 })
 
+// Cette propriété renvoie un tableau contenant uniquement les avantages valides du logement
+const avantages = computed(() => [
+    props.logement.is_meuble ? 'Logement meublé' : null,
+    props.logement.chambres_for_mobile?.length
+        ? `${props.logement.chambres_for_mobile.length} chambres`
+        : null,
+    props.logement.is_eligible_apl ? 'Logement éligible aux APL' : null,
+    props.logement.principaux_equipements?.length > 0
+        ? 'Équipement du logement'
+        : null,
+    props.logement.minDate ? 'Les dates de disponibilité' : null
+].filter(Boolean))
 
-const avantages = ref([
-    'Maison entièrement rénovée;',
-    '3 chambres avec salle de bain privative;',
-    'Cuisine ultra-équipée;',
-    'Espaces communs optimisés;',
-    'Équipements complets dans chaque chambre;',
-    'Buanderie dédiée;',
-    'Convivialité et sérénité;',
-])
-
+// Conditions pour louer le logement
 const conditions = ref([
     {
         icon: 'D',
-        label: 'Durée max. du bail',
-        value: '12 mois',
+        label: 'Type de bail',
+        value: props.logement.type_bail || 'Pas de bail défini',
     },
     {
         icon: 'G',
         label: 'Garantie',
-        value: 'Visale ou garant familial',
+        value: props.logement.type_garantie || 'Pas de garantie définie',
     },
     {
         icon: '€',
@@ -130,18 +130,19 @@ const conditions = ref([
 ])
 
 const elements = ref([
-    'Dépôt de garantie;',
-    'Premier mois de loyer;',
-    "Frais d'agence éventuels;",
-    'Assurance habitation;',
+    'Charges locatives',
+    'Dépôt de garantie',
+    'Loyer hors charge',
+    'Assurance habitation',
+    "Frais d'agence éventuels"
 ])
 
 const mapUrl = computed(() => {
-  if (!logement || !logement.lat || !logement.lon) return ''
-  return `https://www.google.com/maps?q=${logement.lat},${logement.lon}&hl=fr&z=14&output=embed`
+    if (!props.logement || !props.logement.lat || !props.logement.lon) return ''
+    return `https://www.google.com/maps?q=${props.logement.lat},${props.logement.lon}&hl=fr&z=14&output=embed`
 })
-
 </script>
+
 
 <style scoped>
 .details__color {
@@ -291,7 +292,7 @@ const mapUrl = computed(() => {
     text-align: inherit;
 }
 
-.invest__cta{
+.invest__cta {
     min-width: 140px;
 }
 </style>
