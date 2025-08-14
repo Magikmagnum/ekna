@@ -46,7 +46,9 @@
 
                     <div class="suby">
                         <h5></h5>
-                        <button type="submit" class="button button--effect">Voir les chambres</button>
+                        <button @click="$emit('scrollToChambres')" type="button" class="button button--effect">
+                            Voir les chambres
+                        </button>
                     </div>
                 </form>
             </div>
@@ -167,6 +169,8 @@ const prixMin = computed(() => {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
 }
 
 

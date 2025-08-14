@@ -14,11 +14,11 @@
                     <div class="p__details__area">
                         <div class="row">
                             <div class="col-lg-7">
-                                <PropertyDetailsComponent v-if="logement" :logement="logement" />
+                                <PropertyDetailsComponent v-if="logement" :logement="logement"/>
                             </div>
 
                             <div class="col-lg-5">
-                                <PropertyDetailsSidebar v-if="logement" :logement="logement" />
+                                <PropertyDetailsSidebar v-if="logement" :logement="logement" @scrollToChambres="scrollToChambres"/>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     <div class="p__details__area">
                         <div class="row">
                             <div class="col-lg-7">
-                                <ChambreComponent v-if="logement" :logement="logement" />
+                                <ChambreComponent v-if="logement" :logement="logement" ref="chambresSection"/>
                             </div>
 
                             <div class="col-lg-5">
@@ -69,6 +69,7 @@ const logementId = route.params.id
 const logement = ref(null)
 const loading = ref(true)
 const error = ref(null)
+const chambresSection = ref(null)
 
 onMounted(async () => {
     try {
@@ -82,6 +83,13 @@ onMounted(async () => {
         loading.value = false
     }
 })
+
+function scrollToChambres() {
+  if (chambresSection.value) {
+    const el = chambresSection.value.$el || chambresSection.value
+    el.scrollIntoView({ behavior: 'smooth' })
+  }
+}
 </script>
 
 
