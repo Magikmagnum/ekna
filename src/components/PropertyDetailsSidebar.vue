@@ -228,6 +228,7 @@ const prixMin = computed(() => {
     margin-top: 0px;
 }
 
+
 .p__details__sidebar .group .item__security{
     padding: 20px 40px;
 }
