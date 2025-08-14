@@ -9,28 +9,41 @@
         </div>
 
         <div class="info-section">
-            <div class="title">
-                <h2>{{ titre }}</h2>
-                <div class="price">
-                    {{ prix }}€<span class="per">/mois</span>
+            <div class="info-section-header">
+                <div class="info-section whithousPadding">
+                    <div class="title">
+                        <h2>{{ titre }}</h2>
+                    </div>
+                    <p class="subtitle">
+                        <template v-if="isMeuble || isSalleDeBainIndividuelle">
+                            <div v-if="isMeuble" class="meuble">Meublée</div>
+                            <div v-if="isSalleDeBainIndividuelle">Salle de bain individuelle</div>
+                        </template>
+                        <template v-else>
+                            <span>Non meublée</span>
+                            <span> - </span>
+                            <span>Pas de SDB individuelle</span>
+                        </template>
+                    </p>
+                </div>
+                <div class="title title-right">
+                    <div class="price">
+                        {{ prix }}€<span class="per">/mois</span>
+                    </div>
+                    <div class="price">
+                        100€ <span class="per">charges locatives</span>
+                    </div>
+                    <div class="price sub">
+                        Disponible
+                    </div>
                 </div>
             </div>
 
-            <p class="subtitle">
-                <template v-if="isMeuble || isSalleDeBainIndividuelle">
-                    <span v-if="isMeuble">Meublée</span>
-                    <span v-if="isMeuble && isSalleDeBainIndividuelle"> - </span>
-                    <span v-if="isSalleDeBainIndividuelle">SDB individuelle</span>
-                </template>
-                <template v-else>
-                    <span>Non meublée</span>
-                    <span> - </span>
-                    <span>Pas de SDB individuelle</span>
-                </template>
-            </p>
+
+
 
             <div class="equipements" v-if="equipementsActifs.length">
-                <h3>Équipements</h3>
+                <h3>Équipements de la chambre</h3>
                 <div class="equipements-bloc">
                     <div class="equipement-item" v-for="(equipement, index) in equipementsActifs.slice(0, 3)"
                         :key="index">
@@ -192,7 +205,7 @@ function extraireDateFin(periode) {
     /* gap: 10px; */
 }
 
-.image-container .count-1{
+.image-container .count-1 {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -204,7 +217,7 @@ function extraireDateFin(periode) {
     flex: 1;
     object-fit: cover;
     width: 100%;
-    height:  calc(100% / 2);
+    height: calc(100% / 2);
 }
 
 .image-container .count-3 {
@@ -231,7 +244,7 @@ function extraireDateFin(periode) {
     padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .title {
@@ -249,7 +262,7 @@ function extraireDateFin(periode) {
 
 .title .price {
     font-weight: bold;
-    font-size: 1.2em;
+    /* font-size: 1.2em; */
 }
 
 .title .size {
@@ -260,7 +273,7 @@ function extraireDateFin(periode) {
 .title .per {
     font-weight: normal;
     font-weight: bold;
-    font-size: 0.8em;
+    font-size: 0.6em;
 }
 
 
@@ -272,11 +285,11 @@ function extraireDateFin(periode) {
 }
 
 .equipements {
-    margin-top: 24px;
+    margin-top: 8px;
 }
 
 .equipements h3 {
-    margin-bottom: 0px;
+    margin-bottom: 12px;
     font-size: 1em;
     line-height: 24px;
     text-align: left;
@@ -368,5 +381,39 @@ function extraireDateFin(periode) {
     border-radius: 100%;
     width: 10px;
     height: 10px;
+}
+
+.meuble {
+    margin-bottom: 8px;
+}
+
+.whithousPadding {
+    padding: 0;
+}
+
+.info-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.title-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    width: 312px;
+    flex-direction: column;
+}
+
+.title-right .price {
+    flex: 1;
+}
+
+.sub {
+    font-size: medium;
+    color: #8acfa0;
+    margin-top: 12px;
 }
 </style>
