@@ -87,7 +87,10 @@
                     {{ item }}
                 </li>
             </ul>
-            <a href="blog.html">Nos partenaires</a>
+
+            <button type="button" class="button button--effect">
+                Nos partenaires
+            </button>
         </div>
 
         <div class="group birinit">
@@ -229,7 +232,7 @@ const prixMin = computed(() => {
 }
 
 
-.p__details__sidebar .group .item__security{
+.p__details__sidebar .group .item__security {
     padding: 20px 40px;
 }
 </style>
