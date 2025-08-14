@@ -1,37 +1,40 @@
 <template>
     <div class="p__details__content">
         <a href="#gallery" class="button button--effect button--secondary">
-            <i class="fa-solid fa-images"></i> Voir la galerie
+            <i class="fa-solid fa-images"></i> {{ t('PropertyDetailsComponent.voirLaGalerie') }}
         </a>
 
         <div class="intro">
             <div>
-                <span class="secondary details__color">Professionnel</span>
+                <span class="secondary details__color">{{ t('PropertyDetailsComponent.professionnel') }}</span>
                 <h3 v-if="logement"> {{ logement.titre_annonce }} </h3>
                 <h3 v-else>
-                    Chargement...
+                    {{ t('PropertyDetailsComponent.chargement') }}
                 </h3>
 
                 <p v-if="logement">
                     {{ capitalizeFirstLetter(logement.type_logement) }} •
-                    {{ logement.chambres_for_mobile?.length || 1 }} chambres •
+                    {{ logement.chambres_for_mobile?.length || 1 }} {{ t('PropertyDetailsComponent.chambres') }} •
                     {{ logement.surface_total }}m<sup>2</sup> •
-                    Logement {{ logement.is_meuble ? 'meublé' : 'non meublé' }} •
-                    Propriétaire {{ logement.is_occupant ? 'occupant' : 'non occupant' }}
+                    {{ t('PropertyDetailsComponent.logement') }} {{ logement.is_meuble ?
+                        t('PropertyDetailsComponent.meuble') : t('PropertyDetailsComponent.nonMeuble') }} •
+                    {{ t('PropertyDetailsComponent.proprietaire') }} {{ logement.is_occupant ?
+                        t('PropertyDetailsComponent.occupant') : t('PropertyDetailsComponent.nonOccupant') }}
                 </p>
                 <p v-else>
-                    Chargement...
+                    {{ t('PropertyDetailsComponent.chargement') }}
                 </p>
             </div>
 
             <hr class="details__intro" />
 
             <div>
-                <h4>Description</h4>
+                <h4>{{ t('PropertyDetailsComponent.description') }}</h4>
                 <p v-if="logement">
-                    {{ logement.description }}</p>
+                    {{ logement.description }}
+                </p>
                 <p v-else>
-                    Chargement...
+                    {{ t('PropertyDetailsComponent.chargement') }}
                 </p>
 
                 <div class="group__one" v-if="logement && logement.lat && logement.lon">
@@ -43,12 +46,12 @@
             </div>
 
             <div class="details__block">
-                <h5>Les points forts de cette colocation:</h5>
+                <h5>{{ t('PropertyDetailsComponent.pointsFortsColocation') }}</h5>
                 <AvantagesList :avantages="avantages" />
             </div>
 
             <div class="details__block">
-                <h5>Les principales conditions pour louer ce logement:</h5>
+                <h5>{{ t('PropertyDetailsComponent.conditionsLocation') }}</h5>
                 <div class="condition-cards">
                     <div class="condition-card" v-for="(item, index) in conditions" :key="index">
                         <div class="condition-icon">{{ item.icon }}</div>
@@ -59,7 +62,7 @@
             </div>
 
             <div class="details__block">
-                <h5>les principaux elements financiers a anticiper.</h5>
+                <h5>{{ t('PropertyDetailsComponent.elementsFinanciers') }}</h5>
                 <AvantagesList :avantages="elements" />
             </div>
         </div>
@@ -67,15 +70,17 @@
         <div class="group__one">
             <div class="tabular__group bailleur" v-if="logement && logement.proprietaire">
                 <div class="bailleur_block_image">
-                    <img class="bailleur_image" :src="logement.proprietaire.photo" alt="Photo du bailleur" />
+                    <img class="bailleur_image" :src="logement.proprietaire.photo"
+                        :alt="t('PropertyDetailsComponent.photoBailleur')" />
                 </div>
                 <div class="bailleur_block_body">
                     <div class="bailleur_block_header">
-                        <h5>{{ logement.proprietaire.first_name }} {{ logement.proprietaire.name }} (bailleur)</h5>
+                        <h5>{{ logement.proprietaire.first_name }} {{ logement.proprietaire.name }} ({{
+                            t('PropertyDetailsComponent.bailleur') }})</h5>
                     </div>
                     <div class="bailleur_block_content">
                         <p class="neutral-bottom">
-                            {{ logement.proprietaire.description || 'Aucune description disponible.' }}
+                            {{ logement.proprietaire.description || t('PropertyDetailsComponent.aucuneDescription') }}
                         </p>
                     </div>
                 </div>
@@ -84,11 +89,14 @@
     </div>
 </template>
 
-<script setup>
 
+<script setup>
 import { ref, computed } from 'vue'
 import AvantagesList from '@/components/AvantagesList.vue'
 import { capitalizeFirstLetter } from '@/services/capitalizeFirstLetter.js'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps({
     logement: {
@@ -97,51 +105,54 @@ const props = defineProps({
     },
 })
 
-// Cette propriété renvoie un tableau contenant uniquement les avantages valides du logement
+// Avantages du logement traduits
 const avantages = computed(() => [
-    props.logement.is_meuble ? 'Logement meublé' : null,
+    props.logement.is_meuble ? t('PropertyDetailsComponent.logementMeuble') : t('PropertyDetailsComponent.logementNonMeuble'),
     props.logement.chambres_for_mobile?.length
-        ? `${props.logement.chambres_for_mobile.length} chambres`
+        ? `${props.logement.chambres_for_mobile.length} ${t('PropertyDetailsComponent.chambres')}`
         : null,
-    props.logement.is_eligible_apl ? 'Logement éligible aux APL' : null,
+    props.logement.is_eligible_apl ? t('PropertyDetailsComponent.logementEligibleAPL') : null,
     props.logement.principaux_equipements?.length > 0
-        ? 'Équipement du logement'
+        ? t('PropertyDetailsComponent.equipementsLogement')
         : null,
-    props.logement.minDate ? 'Les dates de disponibilité' : null
+    props.logement.minDate ? t('PropertyDetailsComponent.datesDisponibilite') : null
 ].filter(Boolean))
 
 // Conditions pour louer le logement
 const conditions = ref([
     {
         icon: 'D',
-        label: 'Type de bail',
-        value: props.logement.type_bail || 'Pas de bail défini',
+        label: t('PropertyDetailsComponent.typeBail'),
+        value: props.logement.type_bail || t('PropertyDetailsComponent.pasBailDefini'),
     },
     {
         icon: 'G',
-        label: 'Garantie',
-        value: props.logement.type_garantie || 'Pas de garantie définie',
+        label: t('PropertyDetailsComponent.garantie'),
+        value: props.logement.type_garantie || t('PropertyDetailsComponent.pasGarantieDefinie'),
     },
     {
         icon: '€',
-        label: 'Dossier',
-        value: 'Complet et conforme',
+        label: t('PropertyDetailsComponent.dossier'),
+        value: t('PropertyDetailsComponent.dossierComplet'),
     },
 ])
 
+// Éléments financiers traduits
 const elements = ref([
-    'Charges locatives',
-    'Dépôt de garantie',
-    'Loyer hors charge',
-    'Assurance habitation',
-    "Frais d'agence éventuels"
+    t('PropertyDetailsComponent.chargesLocatives'),
+    t('PropertyDetailsComponent.depotGarantie'),
+    t('PropertyDetailsComponent.loyerHorsCharge'),
+    t('PropertyDetailsComponent.assuranceHabitation'),
+    t('PropertyDetailsComponent.fraisAgence')
 ])
 
+// URL de la carte Google Maps
 const mapUrl = computed(() => {
     if (!props.logement || !props.logement.lat || !props.logement.lon) return ''
     return `https://www.google.com/maps?q=${props.logement.lat},${props.logement.lon}&hl=fr&z=14&output=embed`
 })
 </script>
+
 
 
 <style scoped>

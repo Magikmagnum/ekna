@@ -40,8 +40,8 @@ export default {
         Proposition2Component: {
             title1: 'Voir les ',
             title2: 'colocations',
-            noResultsMessage: 'Aucun logement ne correspond à votre recherche.',   
-            chargement: 'Chargement des logements...', 
+            noResultsMessage: 'Aucun logement ne correspond à votre recherche.',
+            chargement: 'Chargement des logements...',
             voirPlus: 'Voir plus',
             sort: {
                 plus_recent: "le plus récent",
@@ -103,6 +103,43 @@ export default {
             primaryCta: 'Déposer une annonce',
             secondaryCta: 'Trouver une colocation'
         },
+        PropertyDetailsComponent: {
+            
+            voirLaGalerie: "Voir la galerie",
+            professionnel: "Professionnel",
+            chargement: "Chargement...",
+            chambres: "chambres",
+            logement: "Logement",
+            proprietaire: "Propriétaire",
+            description: "Description",
+            pointsFortsColocation: "Les points forts de cette colocation",
+            conditionsLocation: "Les principales conditions pour louer ce logement",
+            elementsFinanciers: "Les principaux éléments financiers à anticiper",
+            bailleur: "Bailleur",
+            photoBailleur: "Photo du bailleur",
+            aucuneDescription: "Aucune description disponible.",
+            logementMeuble: "Logement meublé",
+            logementNonMeuble: "Logement non meublé",
+            logementEligibleAPL: "Logement éligible aux APL",
+            datesDisponibilite: "Les dates de disponibilité",
+            pasBailDefini: "Pas de bail défini",
+            pasGarantieDefinie: "Pas de garantie définie",
+            typeBail: "Type de bail",
+            garantie: "Garantie",
+            dossier: "Dossier",
+            dossierComplet: "Complet et conforme",
+            chargesLocatives: "Charges locatives",
+            depotGarantie: "Dépôt de garantie",
+            loyerHorsCharge: "Loyer hors charge",
+            assuranceHabitation: "Assurance habitation",
+            fraisAgence: "Frais d'agence éventuels",
+            meuble: "meublé",
+            nonMeuble: "non meublé",
+            occupant: "occupant",
+            nonOccupant: "non occupant",
+            equipementsLogement: "Équipement du logement"
+        }
+
     },
     en: {
         HeaderComponent: {},
@@ -133,6 +170,7 @@ export default {
             description: 'Speed up your process, secure your property, and connect with qualified tenants.',
             primaryCta: 'Post a listing',
             secondaryCta: 'Find a shared flat'
-        }
+        },
+
     }
 }
