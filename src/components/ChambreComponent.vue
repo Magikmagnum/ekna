@@ -11,9 +11,9 @@
                         <span>{{ item.label }}</span>
                     </div>
                 </div>
-                <a href="#" class="button button--effect equipement-btn btn-blanc">
+                <!-- <a href="#" class="button button--effect equipement-btn btn-blanc">
                     voir tous les équipements
-                </a>
+                </a> -->
             </div>
         </div>
 
@@ -97,6 +97,7 @@ const equipements = computed(() => {
     display: flex;
     gap: 32px;
     align-items: baseline;
+    flex-wrap: wrap;
 }
 
 .equipement-btn {
