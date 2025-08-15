@@ -122,19 +122,15 @@ const { t } = useI18n()
 // État du modal
 const visibleGallery = ref(false)
 
-// Exemple d'images (adapter avec tes données)
-const images = ref([
-    {
-        itemImageSrc: '/images/logement1.jpg',
-        thumbnailImageSrc: '/images/logement1-thumb.jpg',
-        alt: 'Image 1'
-    },
-    {
-        itemImageSrc: '/images/logement2.jpg',
-        thumbnailImageSrc: '/images/logement2-thumb.jpg',
-        alt: 'Image 2'
-    }
-])
+// Transformation des images du logement pour Galleria
+const images = computed(() => {
+  if (!props.logement || !props.logement.images) return []
+  return props.logement.images.map(img => ({
+    itemImageSrc: img.file,
+    thumbnailImageSrc: img.file,
+    alt: 'Image du logement'
+  }))
+})
 
 // Options responsive de Galleria
 const responsiveOptions = [
