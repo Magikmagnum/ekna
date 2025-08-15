@@ -64,9 +64,7 @@
                         <span class="dot-green"></span>
                         <span>Disponible à partir du</span>
                         <span>|</span>
-                        <strong>{{ Array.isArray(dateDispo) && dateDispo.length > 0 ? extraireDateFin(dateDispo[0]) :
-                            'Non
-                            définie'}}</strong>
+                        <strong>{{ Array.isArray(dateDispo) && dateDispo.length > 0 ? extraireDateFin(dateDispo[0]) :'Non définie'}}</strong>
                     </div>
                     <div class="detail-row-item">
                         <span class="dot-green"></span>
