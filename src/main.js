@@ -2,18 +2,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+
+// i18n
 import { createI18n } from 'vue-i18n'
 import messages from './i18n/messages'
 
-import './assets/js/main.js'; // ton fichier JS global
-
-const i18n = createI18n({
-  legacy: false,
-  locale: 'fr',
-  fallbackLocale: 'en',
-  messages
-})
-
+// PrimeVue + thème Aura
+import PrimeVue from 'primevue/config'
+import Aura from '@primeuix/themes/aura'
 
 // CSS globaux
 import './assets/vendor/bootstrap/css/bootstrap.min.css'
@@ -24,4 +20,22 @@ import './assets/vendor/animate/animate.css'
 import './assets/css/style.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
-createApp(App).use(router).use(i18n).mount('#app')
+// JS global
+import './assets/js/main.js'
+
+// Création instance i18n
+const i18n = createI18n({
+  legacy: false,
+  locale: 'fr',
+  fallbackLocale: 'en',
+  messages
+})
+
+// Création et montage de l'application
+createApp(App)
+  .use(router)
+  .use(i18n)
+  .use(PrimeVue, {
+    theme: { preset: Aura }
+  })
+  .mount('#app')

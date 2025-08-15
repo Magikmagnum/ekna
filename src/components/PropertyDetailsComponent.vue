@@ -1,8 +1,24 @@
 <template>
     <div class="p__details__content">
-        <a href="#gallery" class="button button--effect button--secondary">
-            <i class="fa-solid fa-images"></i> {{ t('PropertyDetailsComponent.voirLaGalerie') }}
-        </a>
+        <!-- Bouton ouverture Galleria -->
+        <button class="button button--effect button--secondary" @click="visibleGallery = true">
+            <i class="fa-solid fa-images"></i>
+            {{ t('PropertyDetailsComponent.voirLaGalerie') }}
+        </button>
+
+        <!-- Dialog PrimeVue contenant Galleria -->
+        <Dialog v-model:visible="visibleGallery" modal :style="{ width: '90vw' }"
+            :header="t('PropertyDetailsComponent.galerie')">
+            <Galleria :value="images" :numVisible="5" :circular="true" :showThumbnails="true"
+                :responsiveOptions="responsiveOptions" containerStyle="max-width: 100%;">
+                <template #item="slotProps">
+                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%;" />
+                </template>
+                <template #thumbnail="slotProps">
+                    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" style="width: 100px" />
+                </template>
+            </Galleria>
+        </Dialog>
 
         <div class="intro">
             <div>
@@ -95,8 +111,46 @@ import { ref, computed } from 'vue'
 import AvantagesList from '@/components/AvantagesList.vue'
 import { capitalizeFirstLetter } from '@/services/capitalizeFirstLetter.js'
 import { useI18n } from 'vue-i18n'
+import Galleria from 'primevue/galleria';
+
+
+// PrimeVue
+import Dialog from 'primevue/dialog'
 
 const { t } = useI18n()
+
+// État du modal
+const visibleGallery = ref(false)
+
+// Exemple d'images (adapter avec tes données)
+const images = ref([
+    {
+        itemImageSrc: '/images/logement1.jpg',
+        thumbnailImageSrc: '/images/logement1-thumb.jpg',
+        alt: 'Image 1'
+    },
+    {
+        itemImageSrc: '/images/logement2.jpg',
+        thumbnailImageSrc: '/images/logement2-thumb.jpg',
+        alt: 'Image 2'
+    }
+])
+
+// Options responsive de Galleria
+const responsiveOptions = [
+    {
+        breakpoint: '1024px',
+        numVisible: 5
+    },
+    {
+        breakpoint: '768px',
+        numVisible: 3
+    },
+    {
+        breakpoint: '560px',
+        numVisible: 1
+    }
+]
 
 const props = defineProps({
     logement: {

@@ -10,10 +10,15 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
+    "@primeuix/themes": "^1.2.3",
+    "@primevue/themes": "^4.3.7",
     "axios": "^1.9.0",
+    "form-data": "^4.0.4",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.3.7",
     "swiper": "^11.2.8",
     "vue": "^3.5.13",
-    "vue-i18n": "^11.1.5",
+    "vue-i18n": "^11.1.11",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
