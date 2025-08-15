@@ -31,12 +31,12 @@
                     <div class="price">
                         {{ prix }}€<span class="per">/mois</span>
                     </div>
-                    <div class="price">
-                        100€ <span class="per">charges locatives</span>
+                   <div class="price">
+                        {{charge_locatives.montant}}€ <span class="per">charges locatives</span>
                     </div>
-                    <div class="price sub">
-                        Disponible
-                    </div>
+                    <div :class="['price', 'sub', isDisponible ? 'green' : 'red']">
+  {{ isDisponible ? 'Disponible' : 'Indisponible' }}
+</div>
                 </div>
             </div>
 
@@ -147,6 +147,14 @@ const props = defineProps({
     isSalleDeBainIndividuelle: {
         type: Boolean,
         default: false
+    },
+    isDisponible: {
+        type: Boolean,
+        default: true
+    },
+    charge_locatives: {
+        type: Object,
+        default: () => ({ montant: 100 })
     }
 })
 
@@ -427,7 +435,6 @@ function extraireDateFin(periode) {
 
 .sub {
     font-size: medium;
-    color: #8acfa0;
     margin-top: 12px;
 }
 
@@ -451,4 +458,29 @@ function extraireDateFin(periode) {
     max-width: 400px;
     width: 90%;
 }
+
+@media (max-width: 768px) {
+    .info-section-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: 140px;
+        margin-bottom: 14px;
+    }
+
+    .title-right {
+        align-items: flex-start;
+            margin-top: 12px;
+    }
+}
+
+.red {
+    color: #ff4d4f;
+}
+
+.green {
+    color: #28a745;
+}
+
 </style>

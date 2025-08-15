@@ -20,10 +20,11 @@
         <div ref="chambresSection">
             <ChambreCardComponent v-for="(chambre, index) in logement.chambres_for_mobile" :key="chambre.id"
                 :titre="`Chambre ${index + 1}`" :prix="chambre.loyer_hors_charge" :sousTitre="`${chambre.surface} m²`"
-                :equipements="chambre.equipements" :dateDispo="chambre.date_disponibilites"
-                :images="chambre.images" :depotGarantie="chambre.depot_garantie"
-                :lienEquipements="`/equipements/${chambre.reference}`" :texteLienEquipements="'Voir les équipements'"
+                :equipements="chambre.equipements" :dateDispo="chambre.date_disponibilites" :images="chambre.images"
+                :depotGarantie="chambre.depot_garantie" :lienEquipements="`/equipements/${chambre.reference}`"
+                :texteLienEquipements="'Voir les équipements'"
                 :isSalleDeBainIndividuelle="chambre.is_salle_de_bain_individuelle" :isMeuble="chambre.is_meuble"
+                :isDisponible="chambre.is_disponible" :charge_locatives="chambre.charge_locatives"
                 @louer="handleLouer(`Chambre ${index + 1}`)" />
         </div>
     </div>
