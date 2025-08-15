@@ -9,6 +9,7 @@
         </div>
 
         <div class="info-section">
+
             <div class="info-section-header">
                 <div class="info-section whithousPadding">
                     <div class="title">
@@ -39,9 +40,6 @@
                 </div>
             </div>
 
-
-
-
             <div class="equipements" v-if="equipementsActifs.length">
                 <h3>Équipements de la chambre</h3>
                 <div class="equipements-bloc">
@@ -53,7 +51,8 @@
                         </span>
                     </div>
 
-                    <a :href="lienEquipements" class="button button--effect btn-blanc">
+                    <!-- Bouton pour ouvrir le modal -->
+                    <a class="button button--effect btn-blanc" @click.prevent="showEquipements = true">
                         Consulter les équipements
                     </a>
                 </div>
@@ -66,8 +65,8 @@
                         <span>Disponible à partir du</span>
                         <span>|</span>
                         <strong>{{ Array.isArray(dateDispo) && dateDispo.length > 0 ? extraireDateFin(dateDispo[0]) :
-                            'Non définie'
-                        }}</strong>
+                            'Non
+                            définie'}}</strong>
                     </div>
                     <div class="detail-row-item">
                         <span class="dot-green"></span>
@@ -79,12 +78,29 @@
                 <button class="button button--effect" @click="$emit('louer')">Louer</button>
             </div>
 
+            <!-- Modal placé ici, hors du flex -->
+            <div v-if="showEquipements" class="modal-overlay" @click.self="showEquipements = false">
+                <div class="modal">
+                    <h3>Liste complète des équipements</h3>
+                    <ul>
+                        <li v-for="(equipement, index) in equipementsActifs" :key="index">
+                            <img :src="equipement.icon" :alt="equipement.label" width="20" />
+                            {{ equipement.label }}
+                        </li>
+                    </ul>
+                    <button @click="showEquipements = false">Fermer</button>
+                </div>
+            </div>
+
         </div>
     </div>
 </template>
 
+
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+
+const showEquipements = ref(false)
 
 const props = defineProps({
     titre: {
@@ -415,5 +431,26 @@ function extraireDateFin(periode) {
     font-size: medium;
     color: #8acfa0;
     margin-top: 12px;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
 }
 </style>
