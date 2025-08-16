@@ -118,11 +118,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { RouterLink } from 'vue-router'
-
+import { ref, computed } from 'vue'
+import { getDisponibiliteGlobal } from '../services/getDisponibiliteGlobal'
 
 const props = defineProps({
     logement: {
@@ -131,21 +128,37 @@ const props = defineProps({
     },
 })
 
-const logement = props.logement
+// Dates min / max de dispo (sécurisé)
+const disponibilites = computed(() => {
+    const chambres = props.logement?.chambres_for_mobile
 
-const keyUpdates = ref([
-    {
-        date: '01-Mai-2022',
-        text: 'Signature du bail',
-        link: 'terms-conditions.html',
-    },
-    {
-        date: '31-Sep-2025',
-        text: 'Fin du bail',
-        link: 'privacy-policy.html',
-    },
-])
+    if (Array.isArray(chambres) && chambres.length > 0) {
+        return getDisponibiliteGlobal(chambres)
+    }
 
+    // Valeurs par défaut
+    return { minDate: null, maxDate: null }
+})
+
+// Key updates basées sur disponibilités
+const keyUpdates = computed(() => {
+    const { minDate, maxDate } = disponibilites.value || {}
+
+    return [
+        {
+            date: minDate || "Indisponible",
+            text: "Signature du bail",
+            link: "terms-conditions.html",
+        },
+        {
+            date: maxDate || "Indisponible",
+            text: "Fin du bail",
+            link: "privacy-policy.html",
+        },
+    ]
+})
+
+// Avantages fixes
 const avantages = ref([
     'Colocataires compatibles grâce au matching intelligent.',
     'Temps gagné avec des annonces vérifiées',
@@ -153,14 +166,15 @@ const avantages = ref([
     'Démarches simplifiées 100% en ligne',
 ])
 
+// Prix minimum
 const prixMin = computed(() => {
     if (
-        logement &&
-        logement.chambres_for_mobile &&
-        logement.chambres_for_mobile.length
+        props.logement &&
+        props.logement.chambres_for_mobile &&
+        props.logement.chambres_for_mobile.length
     ) {
         return Math.min(
-            ...logement.chambres_for_mobile
+            ...props.logement.chambres_for_mobile
                 .map((c) => Number(c.loyer_hors_charge))
                 .filter((v) => !isNaN(v))
         )
