@@ -93,8 +93,7 @@
                             t('PropertyDetailsComponent.bailleur') }})</h5>
                     </div>
                     <div class="bailleur_block_content">
-                        <p class="neutral-bottom">
-                            {{ logement.proprietaire.description || t('PropertyDetailsComponent.aucuneDescription') }}
+                        <p class="neutral-bottom" v-html="logement.proprietaire.description || t('PropertyDetailsComponent.aucuneDescription')">
                         </p>
                     </div>
                 </div>
