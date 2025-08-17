@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <HeaderComponent />
-    <BannerComponent :title="title" :bannerThumb="bannerThumb" :backgroundImage="backgroundImage"
-      :breadcrumbs="breadcrumbs" />
+    <BannerComponent :htmlTitle="title" :bannerThumb="bannerThumb" :backgroundImage="backgroundImage"/>
     <BannerSecondComponent />
     <StepTwoSectionComponent />
     <TestimonialsComponent />
@@ -24,7 +23,7 @@ import TestimonialsComponent from '@/components/TestimonialsComponent.vue'
 const backgroundImage = new URL('@/assets/images/banner/program-bg.png', import.meta.url).href
 const bannerThumb = new URL('@/assets/images/banner/affi-thumb.png', import.meta.url).href
 
-const title = "Affiliate Program"
+const title = "<div>Rejoignez</div> <div>l'espace</div> <div>bailleurs EKNA</div>"
 
 const breadcrumbs = [
   { label: 'Home', path: '/' },

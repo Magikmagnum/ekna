@@ -21,9 +21,8 @@
                             <div v-if="isSalleDeBainIndividuelle">Salle de bain individuelle</div>
                         </template>
                         <template v-else>
-                            <span>Non meublée</span>
-                            <span> - </span>
-                            <span>Pas de SDB individuelle</span>
+                            <div class="meuble">Non meublée</div>
+                            <div>Pas de SDB individuelle</div>
                         </template>
                     </p>
                 </div>

@@ -4,7 +4,8 @@
     <div class="container">
       <div :class="innerWrapperClass">
         <div :class="innerContentClass">
-          <h1 class="neutral-top">{{ title }}</h1>
+          <h1 class="neutral-top" v-if="htmlTitle" v-html="htmlTitle"></h1>
+          <h1 class="neutral-top" v-else>{{ title }}</h1>
           <h5 class="neutral-top">{{ subtitle }}</h5>
 
           <!-- Breadcrumbs (optionnel, affiché seulement si variant === 'key') -->
@@ -35,6 +36,7 @@ import { computed } from 'vue'
 
 const props = defineProps({
   title: String,
+  htmlTitle: String, // Permet de passer un titre HTML si nécessaire
   subtitle: String,
   backgroundImage: {
     type: String,
