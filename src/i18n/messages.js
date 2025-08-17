@@ -35,6 +35,7 @@ export default {
         },
         PropositionComponent: {
             title: 'Toutes les colocations',
+            title3: 'Annonces similaires',
             bouton: 'Voir toutes les annonces',
         },
         Proposition2Component: {

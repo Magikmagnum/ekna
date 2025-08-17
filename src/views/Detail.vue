@@ -45,7 +45,7 @@
                 </div>
             </section>
         </div>
-        <!-- <Proposition2Component /> -->
+        <Proposition3Component />
         <FooterComponent />
     </div>
 </template>
@@ -55,7 +55,7 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 import HeaderComponent from '@/components/HeaderComponent.vue'
-import Proposition2Component from '@/components/Proposition2Component.vue'
+import Proposition3Component from '@/components/Proposition3Component.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
 import PropertyDetailsComponent from '@/components/PropertyDetailsComponent.vue'
 import PropertyDetailsSidebar from '@/components/PropertyDetailsSidebar.vue'
