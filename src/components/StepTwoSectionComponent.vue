@@ -25,11 +25,11 @@
       </div>
     </div>
     <!-- ==== video popup section start ==== -->
-    <VideoComponent
+    <!-- <VideoComponent
       :videoIllustration="videoIllustration"
       :videoAlt="videoAlt"
       :videoLink="videoLink"
-    />
+    /> -->
     <!-- ==== #video popup section end ==== -->
   </section>
 </template>
@@ -42,11 +42,11 @@ import VideoComponent from './VideoComponent.vue';
 defineProps({
   title: {
     type: String,
-    default: 'Start to make money in 3 easy steps',
+    default: 'Découvrez comment EKNA peut vous aider à remplir vos logements plus rapidement et sans stress',
   },
   subtitle: {
     type: String,
-    default: 'How the program Works',
+    default: 'Quels sont les avantages ?',
   },
   backgroundImage: {
     type: String,
@@ -92,4 +92,12 @@ defineProps({
 
 <style scoped>
 /* Ajoute tes styles ici si nécessaire */
+
+.step__two .section__header h2 {
+    max-width: 1064px;
+}
+
+.section__header {
+    max-width: 1084px;
+}
 </style>
