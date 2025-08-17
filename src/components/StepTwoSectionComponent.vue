@@ -73,20 +73,20 @@ defineProps({
     type: Array,
     default: () => [
       {
-        title: 'Join',
-        description: 'It’s free to get started. Access marketing materials, tools, and more!',
+        title: 'Profils qualifiés et vérifiés',
+        description: 'Accèdez à une sélection de colocataires évalués selon leur solvabilité et leur compatibilité relationnelle.',
         image: new URL('@/assets/images/icons/join.png', import.meta.url).href,
         alt: 'Join',
       },
       {
-        title: 'Promote',
-        description: 'Share with your target audience. There’s a match for every need',
+        title: 'Moins de vacance locative, plus de sérénité',
+        description: 'Réduis le turnover et maximise l\'occupation de tes logements grâce à des mises en relation efficaces.',
         image: new URL('@/assets/images/icons/promote.png', import.meta.url).href,
         alt: 'Promote',
       },
       {
-        title: 'Earn',
-        description: 'Rake in the moment your traffic converts. Check our commission plans',
+        title: 'Tableau de bord intelligent',
+        description: 'Pilotez facilement vos candidatures et échanges avec les locataires en quelques clics.',
         image: new URL('@/assets/images/icons/earn.png', import.meta.url).href,
         alt: 'Earn',
       },
@@ -117,5 +117,13 @@ defineProps({
     margin-top: 28px;
     top: 0px;
     margin-bottom: 0px;
+}
+
+.step__two__single {
+    padding: 40px 18px;
+}
+
+.step__two__single h4 {
+    min-height: 129px;
 }
 </style>
