@@ -18,18 +18,23 @@
       </div>
     </div>
 
-    <div style="text-align: center;margin: 47px 0 100px 0;">
+    <div style="text-align: center;margin: 46px 28px;">
       <button type="submit" class="button button--effect">
         <i class="fa-solid fa-rocket"></i>
         Inscrivez-vous dès maintenant et simplifiez votre gestion locative !
       </button>
     </div>
+
+    <!-- je une image responsive qui occupe tout la  -->
+
+    <img src="@/assets/images/exampleEkna.png" alt="Example EKNA" style="max-width: 100%; height: auto;" />
+
     <!-- ==== video popup section start ==== -->
-    <!-- <VideoComponent
+    <VideoComponent
       :videoIllustration="videoIllustration"
       :videoAlt="videoAlt"
       :videoLink="videoLink"
-    /> -->
+    />
     <!-- ==== #video popup section end ==== -->
   </section>
 </template>
@@ -105,5 +110,12 @@ defineProps({
     background-size: 100% 90%;
     background-position: top center;
     padding-bottom: 100px;
+}
+
+.video {
+    position: relative;
+    margin-top: 28px;
+    top: 0px;
+    margin-bottom: 0px;
 }
 </style>
