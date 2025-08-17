@@ -3,9 +3,9 @@
         <div class="container">
             <div class="market__area">
                 <div class="row d-flex align-items-center">
-                    <div class="col-lg-6 col-xl-5">
+                    <div class="col-lg-6 col-xl-5 d-none d-lg-block">
 
-                        <div class="market__thumb thumb__rtl column__space d-none d-lg-block">
+                        <div class="market__thumb thumb__rtl column__space">
                             <img :src="imageSrc" :alt="imageAlt" />
                         </div>
                     </div>
@@ -13,7 +13,7 @@
                         <div class="content">
                             <h5 class="neutral-top" v-html="subtitle"></h5>
                             <h2>{{ title }}</h2>
-                            <div v-html="description"></div>
+                            <p v-html="description"></p>
 
                             <div class="btn-group">
                                 <router-link :to="ctaLink" class="button button--effect">
@@ -44,15 +44,15 @@ import Store2Component from '@/components/Store2Component.vue';
 defineProps({
     title: {
         type: String,
-        default: 'Affiliate Program',
+        default: 'Optimisez la gestion de vos colocataires',
     },
     subtitle: {
         type: String,
-        default: 'Earn Money',
+        default: "N'attendez plus",
     },
     description: {
         type: String,
-        default: 'Earn commission from every Revest new user you help to bring. Join our affiliate program, refer your audience, and earn revenue.',
+        default: 'Trouvez rapidement des colocataires fiables et compatibles grâce à notre technologie de matching et de scoring.',
     },
     ctaText: {
         type: String,
@@ -74,7 +74,7 @@ defineProps({
 </script>
 
 <style scoped>
-p,
+/* p,
 th,
 td,
 li,
@@ -85,13 +85,13 @@ label,
 blockquote,
 span {
     margin-bottom: 36px;
-}
+} */
 
-.section__space {
+/* .section__space {
     padding: 0px;
-}
+} */
 
-@media (min-width: 1200px) {
+/* @media (min-width: 1200px) {
     .offset-xl-1 {
         margin-left: 3.333333%;
     }
@@ -102,11 +102,11 @@ span {
         flex: 0 0 auto;
         width: 55%;
     }
-}
+} */
 
-.market__thumb img {
+/* .market__thumb img {
     max-width: 24vw;
-}
+} */
 
 
 .btn-group {
