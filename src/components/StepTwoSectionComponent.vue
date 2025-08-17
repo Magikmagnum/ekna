@@ -1,8 +1,5 @@
 <template>
-  <section
-    class="step__two section__space__top bg__img"
-    :style="{ backgroundImage: `url(${backgroundImage})` }"
-  >
+  <section class="step__two section__space__top bg__img" :style="{ backgroundImage: `url(${backgroundImage})` }">
     <div class="container">
       <div class="step__two-area wow fadeInUp">
         <div class="section__header">
@@ -10,11 +7,7 @@
           <h2>{{ title }}</h2>
         </div>
         <div class="row">
-          <div
-            v-for="(step, index) in steps"
-            :key="index"
-            class="col-sm-6 col-lg-4"
-          >
+          <div v-for="(step, index) in steps" :key="index" class="col-sm-6 col-lg-4">
             <div class="step__two__single shadow__effect">
               <img :src="step.image" :alt="step.alt" />
               <h4>{{ step.title }}</h4>
@@ -23,6 +16,13 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div style="text-align: center;margin: 47px 0 100px 0;">
+      <button type="submit" class="button button--effect">
+        <i class="fa-solid fa-rocket"></i>
+        Inscrivez-vous dès maintenant et simplifiez votre gestion locative !
+      </button>
     </div>
     <!-- ==== video popup section start ==== -->
     <!-- <VideoComponent
@@ -94,10 +94,16 @@ defineProps({
 /* Ajoute tes styles ici si nécessaire */
 
 .step__two .section__header h2 {
-    max-width: 1064px;
+  max-width: 1064px;
 }
 
 .section__header {
-    max-width: 1084px;
+  max-width: 1084px;
+}
+
+.step__two {
+    background-size: 100% 90%;
+    background-position: top center;
+    padding-bottom: 100px;
 }
 </style>
