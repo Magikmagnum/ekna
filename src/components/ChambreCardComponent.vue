@@ -35,8 +35,8 @@
                         {{charge_locatives.montant}}€ <span class="per">charges locatives</span>
                     </div>
                     <div :class="['price', 'sub', isDisponible ? 'green' : 'red']">
-  {{ isDisponible ? 'Disponible' : 'Indisponible' }}
-</div>
+                        {{ isDisponible ? 'Disponible' : 'Indisponible' }}
+                    </div>
                 </div>
             </div>
 

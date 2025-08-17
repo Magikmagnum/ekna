@@ -46,9 +46,7 @@
 
             <div>
                 <h4>{{ t('PropertyDetailsComponent.description') }}</h4>
-                <p v-if="logement">
-                    {{ logement.description }}
-                </p>
+                <p v-if="logement" v-html="logement.description"></p>
                 <p v-else>
                     {{ t('PropertyDetailsComponent.chargement') }}
                 </p>
