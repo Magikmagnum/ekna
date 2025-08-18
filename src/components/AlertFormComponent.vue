@@ -3,10 +3,11 @@
         <div class="container">
             <div class="alert__newsletter__area">
                 <div class="section__header">
-                    <h5 class="neutral-top">Alerte colocation</h5>
-                    <h2>Ne manque pas ta prochaine coloc' !</h2>
+                    <h5 class="neutral-top">Formulaire d'inscription</h5>
+                    <h2>Trouve ta colocation au bon moment !</h2>
                     <p class="neutral-bottom">
-                        Inscris-toi à l'alerte colocation pour recevoir un résumé complet de nos nouvelles colocations.
+                        Inscris-toi et indique ta date d'emménagement: on te contacte dès qu'une colocation te
+                        correspond.
                     </p>
                 </div>
 
@@ -14,16 +15,16 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="input input--secondary">
-                                <label for="alertFirstName">First Name*</label>
+                                <label for="alertFirstName">Prénom*</label>
                                 <input v-model="form.firstName" type="text" id="alertFirstName"
-                                    placeholder="Enter Your First Name" required />
+                                    placeholder="Saisis ton prénom" required />
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="input input--secondary">
-                                <label for="alertLastName">Last Name*</label>
+                                <label for="alertLastName">Nom*</label>
                                 <input v-model="form.lastName" type="text" id="alertLastName"
-                                    placeholder="Enter Your Last Name" required />
+                                    placeholder="Saisis ton nom" required />
                             </div>
                         </div>
                     </div>
@@ -31,11 +32,11 @@
                     <div class="input input--secondary">
                         <label for="alertRegistrationMail">Email*</label>
                         <input v-model="form.email" type="email" id="alertRegistrationMail"
-                            placeholder="Enter your email" required />
+                            placeholder="Saisis ton email" required />
                     </div>
 
                     <div class="input input--secondary input__alt">
-                        <label for="alertNumber">Phone*</label>
+                        <label for="alertNumber">Téléphone*</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <select v-model="form.phoneCode" class="number__code__select">
@@ -53,22 +54,35 @@
                     </div>
 
                     <div class="input input--secondary">
-                        <label for="countrySelect">Location*</label>
+                        <label for="countrySelect">Ville recherchée*</label>
                         <select v-model="form.location" id="countrySelect" required class="type__select">
-                            <option disabled value="">Desired Location</option>
-                            <option>Australia</option>
-                            <option>New Zeeland</option>
-                            <option>Japan</option>
-                            <option>China</option>
+                            <option disabled value="">Saisis la ville souhaitée</option>
+                            <option>Australie</option>
+                            <option>Nouvelle-Zélande</option>
+                            <option>Japon</option>
+                            <option>Chine</option>
                         </select>
                     </div>
 
-                    <div class="input__button">
-                        <button type="submit" class="button button--effect">Subscribe</button>
+                    <div class="input input--secondary">
+                        <label for="alertRegistrationMail">Date d'emménagement*</label>
+                        <input v-model="form.moveInDate" type="date" id="alertRegistrationMail" required
+                            placeholder="Saisis la date à laquelle tu souhaites emménager" />
                     </div>
+
+                    <div class="input__button">
+                        <button type="submit" class="button button--effect">Envoyer ma demande</button>
+                    </div>
+
+
                 </form>
             </div>
         </div>
+        <p class="text-center">
+            Remplis notre formulaire d'inscription. Si tu hésites encore à trouver ta colocation idéale, indique
+            simplement ta date d'emménagement souhaitée, on te recontactera dès qu'une offre correspondante sera
+            disponible !
+        </p>
     </section>
 </template>
 
@@ -103,5 +117,16 @@ function handleSubmit() {
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     background-size: 10px 6px;
+}
+
+.text-center {
+    text-align: center;
+    margin-top: 1rem;
+    color: #555;
+    padding: 0 24px;
+}
+
+.alert__newsletter__area .section__header {
+    max-width: 604px;
 }
 </style>
