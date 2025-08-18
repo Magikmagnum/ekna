@@ -112,7 +112,7 @@ export default {
             chambres: "chambres",
             logement: "Logement",
             proprietaire: "Propriétaire",
-            description: "Description",
+            description: "Description du logement",
             pointsFortsColocation: "Les points forts de cette colocation",
             conditionsLocation: "Les principales conditions pour louer ce logement",
             elementsFinanciers: "Les principaux éléments financiers à anticiper",

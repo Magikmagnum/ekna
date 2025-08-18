@@ -51,6 +51,8 @@
                         </div>
                     </div>
 
+                    
+
                     <div class="input input--secondary">
                         <label for="countrySelect">Ville recherchée*</label>
                         <select v-model="form.city" id="countrySelect" required class="type__select">
