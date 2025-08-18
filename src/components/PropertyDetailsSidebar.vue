@@ -4,9 +4,9 @@
             <div class="countdown__wrapper">
                 <p class="secondary">A partir de</p>
                 <div class="countdown">
-                    <h5><span class="days">{{ prixMin !== null ? prixMin + ' €' : '—' }}</span></h5>
+                    <h5><span class="days">{{ prixMin !== null ? prixMin + ' €/Mois' : '—' }}</span></h5>
                 </div>
-                <p class="secondary">Charges comprises</p>
+                <p class="secondary">{{props.logement.charge_locatives.montant + ' €' }} Charges locatives</p>
             </div>
             <h5>Disponible maintenent</h5>
             <div class="progress__type progress__type--two">
@@ -127,6 +127,8 @@ const props = defineProps({
         required: false,
     },
 })
+
+console.log('PropertyDetailsSidebar props:', props)
 
 // Dates min / max de dispo (sécurisé)
 const disponibilites = computed(() => {
