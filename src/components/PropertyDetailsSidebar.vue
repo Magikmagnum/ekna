@@ -55,7 +55,7 @@
         </div>
 
         <div class="group alt__brin">
-            <h5>Chambres disponibles<i class="fa-solid fa-bell"></i></h5>
+            <h5>Chambres disponibles</h5>
             <hr />
             <div class="singl__wrapper">
                 <div class="singl" v-for="update in keyUpdates" :key="update.text">

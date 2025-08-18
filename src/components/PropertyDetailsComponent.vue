@@ -68,7 +68,7 @@
                 <h5>{{ t('PropertyDetailsComponent.conditionsLocation') }}</h5>
                 <div class="condition-cards">
                     <div class="condition-card" v-for="(item, index) in conditions" :key="index">
-                        <div class="condition-icon">{{ item.icon }}</div>
+                        <img :src="item.icon" alt="" class="condition-icon" />
                         <p class="condition-label">{{ item.label }}</p>
                         <p class="condition-value">{{ item.value }}</p>
                     </div>
@@ -165,23 +165,28 @@ const avantages = computed(() => [
     props.logement.minDate ? t('PropertyDetailsComponent.datesDisponibilite') : null
 ].filter(Boolean))
 
+
+
+
+
 // Conditions pour louer le logement
-const conditions = ref([
-    {
-        icon: 'D',
-        label: t('PropertyDetailsComponent.typeBail'),
-        value: props.logement.type_bail || t('PropertyDetailsComponent.pasBailDefini'),
-    },
-    {
-        icon: 'G',
-        label: t('PropertyDetailsComponent.garantie'),
-        value: props.logement.type_garantie || t('PropertyDetailsComponent.pasGarantieDefinie'),
-    },
-    {
-        icon: '€',
-        label: t('PropertyDetailsComponent.dossier'),
-        value: t('PropertyDetailsComponent.dossierComplet'),
-    },
+// Conditions pour louer le logement (reactives + compatible Vite)
+const conditions = computed(() => [
+  {
+    icon: new URL('@/assets/images/ekna/design.svg', import.meta.url).href,
+    label: t('PropertyDetailsComponent.typeBail'),
+    value: props.logement.type_bail || t('PropertyDetailsComponent.pasBailDefini'),
+  },
+  {
+    icon: new URL('@/assets/images/ekna/charge.svg', import.meta.url).href,
+    label: t('PropertyDetailsComponent.garantie'),
+    value: props.logement.type_garantie || t('PropertyDetailsComponent.pasGarantieDefinie'),
+  },
+  {
+    icon: new URL('@/assets/images/ekna/project.svg', import.meta.url).href,
+    label: t('PropertyDetailsComponent.dossier'),
+    value: t('PropertyDetailsComponent.dossierComplet'),
+  },
 ])
 
 // Éléments financiers traduits
