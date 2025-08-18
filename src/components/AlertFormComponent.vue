@@ -16,14 +16,14 @@
                         <div class="col-sm-6">
                             <div class="input input--secondary">
                                 <label for="alertFirstName">Prénom*</label>
-                                <input v-model="form.firstName" type="text" id="alertFirstName"
+                                <input v-model="form.first_name" type="text" id="alertFirstName"
                                     placeholder="Saisis ton prénom" required />
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="input input--secondary">
                                 <label for="alertLastName">Nom*</label>
-                                <input v-model="form.lastName" type="text" id="alertLastName"
+                                <input v-model="form.name" type="text" id="alertLastName"
                                     placeholder="Saisis ton nom" required />
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                         <label for="alertNumber">Téléphone*</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <select v-model="form.phoneCode" class="number__code__select">
+                                <select v-model="form.phone" class="number__code__select">
                                     <option value="+1">+1</option>
                                     <option value="+2">+2</option>
                                     <option value="+3">+3</option>
@@ -55,7 +55,7 @@
 
                     <div class="input input--secondary">
                         <label for="countrySelect">Ville recherchée*</label>
-                        <select v-model="form.location" id="countrySelect" required class="type__select">
+                        <select v-model="form.city" id="countrySelect" required class="type__select">
                             <option disabled value="">Saisis la ville souhaitée</option>
                             <option>Australie</option>
                             <option>Nouvelle-Zélande</option>
@@ -66,7 +66,7 @@
 
                     <div class="input input--secondary">
                         <label for="alertRegistrationMail">Date d'emménagement*</label>
-                        <input v-model="form.moveInDate" type="date" id="alertRegistrationMail" required
+                        <input v-model="form.date_emmenagement" type="date" id="alertRegistrationMail" required
                             placeholder="Saisis la date à laquelle tu souhaites emménager" />
                     </div>
 
@@ -90,13 +90,18 @@
 import { reactive } from 'vue'
 
 const form = reactive({
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    name: '',
     email: '',
     phoneCode: '+1',
-    phoneNumber: '',
-    location: '',
+    phone: '',
+    city: '',
+    date_emmenagement: ''
 })
+
+
+
+
 
 function handleSubmit() {
     // console.log('Form submitted:', form)
