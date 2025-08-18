@@ -40,12 +40,26 @@
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <select v-model="form.phone" class="number__code__select">
-                                    <option value="+1">+1</option>
-                                    <option value="+2">+2</option>
-                                    <option value="+3">+3</option>
-                                    <option value="+4">+4</option>
-                                    <option value="+5">+5</option>
-                                    <option value="+6">+6</option>
+                                    <option value="+33" selected>France</option>
+                                    <option value="+1">États-Unis</option>
+                                    <option value="+44">Royaume-Uni</option>
+                                    <option value="+49">Allemagne</option>
+                                    <option value="+34">Espagne</option>
+                                    <option value="+39">Italie</option>
+                                    <option value="+81">Japon</option>
+                                    <option value="+61">Australie</option>
+                                    <option value="+64">Nouvelle-Zélande</option>
+                                    <option value="+86">Chine</option>
+                                    <option value="+91">Inde</option>
+                                    <option value="+55">Brésil</option>
+                                    <option value="+7">Russie</option>
+                                    <option value="+82">Corée du Sud</option>
+                                    <option value="+66">Thaïlande</option>
+                                    <option value="+65">Singapour</option>
+                                    <option value="+971">Émirats Arabes Unis</option>
+                                    <option value="+27">Afrique du Sud</option>
+                                    <option value="+90">Turquie</option>
+
                                 </select>
                             </div>
                             <input v-model="form.phoneNumber" type="tel" id="alertNumber" placeholder="345-323-1234"
