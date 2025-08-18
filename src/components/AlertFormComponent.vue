@@ -104,23 +104,49 @@
 import { reactive } from 'vue'
 
 const form = reactive({
-    first_name: '',
-    name: '',
-    email: '',
-    phoneCode: '+1',
-    phone: '',
-    city: '',
-    date_emmenagement: ''
+  first_name: '',
+  name: '',
+  email: '',
+  phoneCode: '+33',
+  phoneNumber: '',
+  city: '',
+  date_emmenagement: ''
 })
 
+async function handleSubmit() {
+  try {
+    // Construction de la payload
+    const payload = {
+      first_name: form.first_name,
+      name: form.name,
+      email: form.email,
+      phone: `${form.phoneCode}${form.phoneNumber}`,
+      city: form.city,
+      date_emmenagement: form.date_emmenagement
+    }
 
+    // Envoi au backend
+    const response = await fetch('https://mydevapi.espacebailleurekna.fr/contacts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
 
+    if (!response.ok) {
+      throw new Error('Erreur lors de l’envoi du formulaire')
+    }
 
-
-function handleSubmit() {
-    // console.log('Form submitted:', form)
+    // ✅ Si tout est OK → redirection vers Jotform
+    window.location.href = 'https://form.jotform.com/221381928289365'
+  } catch (error) {
+    console.error(error)
+    alert("Une erreur est survenue, merci de réessayer.")
+  }
 }
 </script>
+
 
 <style scoped>
 /* Optionnel : style du select */

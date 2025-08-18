@@ -9,7 +9,7 @@
           <div>Télécharge-la sur l'App Store ou le</div>
           <div>Play Store pour commencer.</div>
         </h5>
-        <img src="@/assets/images/eknastore.svg" alt="Alert Image" />
+        <img class="alert-image" src="@/assets/images/eknastore.svg" alt="Alert Image" />
         <div class="container-btn">
           <img src="@/assets/images/appstore.svg" alt="Alert Image" class="store-btn" />
           <img src="@/assets/images/googleplay.svg" alt="Alert Image" class="store-btn" />
@@ -108,5 +108,11 @@ h5.neutral-tap {
   h5.neutral-tap {
     font-size: 0.9rem;
   }
+}
+
+.alert-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
 }
 </style>
