@@ -1,6 +1,6 @@
 <template>
     <section class="alert__newsletter section__space__bottom">
-        <div class="container">
+        <div class="container-form">
             <div class="alert__newsletter__area">
                 <div class="section__header">
                     <h5 class="neutral-top">Formulaire d'inscription</h5>
@@ -23,8 +23,8 @@
                         <div class="col-sm-6">
                             <div class="input input--secondary">
                                 <label for="alertLastName">Nom*</label>
-                                <input v-model="form.name" type="text" id="alertLastName"
-                                    placeholder="Saisis ton nom" required />
+                                <input v-model="form.name" type="text" id="alertLastName" placeholder="Saisis ton nom"
+                                    required />
                             </div>
                         </div>
                     </div>
@@ -39,27 +39,11 @@
                         <label for="alertNumber">Téléphone*</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <select v-model="form.phone" class="number__code__select">
-                                    <option value="+33" selected>France</option>
-                                    <option value="+1">États-Unis</option>
-                                    <option value="+44">Royaume-Uni</option>
-                                    <option value="+49">Allemagne</option>
-                                    <option value="+34">Espagne</option>
-                                    <option value="+39">Italie</option>
-                                    <option value="+81">Japon</option>
-                                    <option value="+61">Australie</option>
-                                    <option value="+64">Nouvelle-Zélande</option>
-                                    <option value="+86">Chine</option>
-                                    <option value="+91">Inde</option>
-                                    <option value="+55">Brésil</option>
-                                    <option value="+7">Russie</option>
-                                    <option value="+82">Corée du Sud</option>
-                                    <option value="+66">Thaïlande</option>
-                                    <option value="+65">Singapour</option>
-                                    <option value="+971">Émirats Arabes Unis</option>
-                                    <option value="+27">Afrique du Sud</option>
-                                    <option value="+90">Turquie</option>
-
+                                <select v-model="form.phoneCode" class="number__code__select">
+                                    <option v-for="country in countries" :key="country.cca2"
+                                        :value="formatDialCode(country)">
+                                        {{ country.flag }} {{ country.name.common }} ({{ formatDialCode(country) }})
+                                    </option>
                                 </select>
                             </div>
                             <input v-model="form.phoneNumber" type="tel" id="alertNumber" placeholder="345-323-1234"
@@ -102,48 +86,57 @@
 
 <script setup>
 import { reactive } from 'vue'
+import countries from '@/services/countries.json'
+
+// fonction utilitaire pour construire l'indicatif complet
+const formatDialCode = (country) => {
+  if (!country.idd) return ''
+  const root = country.idd.root || ''
+  const suffixes = country.idd.suffixes || []
+  return suffixes.length > 0 ? root + suffixes[0] : root
+}
 
 const form = reactive({
-  first_name: '',
-  name: '',
-  email: '',
-  phoneCode: '+33',
-  phoneNumber: '',
-  city: '',
-  date_emmenagement: ''
+    first_name: '',
+    name: '',
+    email: '',
+    phoneCode: '+33',
+    phoneNumber: '',
+    city: '',
+    date_emmenagement: ''
 })
 
 async function handleSubmit() {
-  try {
-    // Construction de la payload
-    const payload = {
-      first_name: form.first_name,
-      name: form.name,
-      email: form.email,
-      phone: `${form.phoneCode}${form.phoneNumber}`,
-      city: form.city,
-      date_emmenagement: form.date_emmenagement
+    try {
+        // Construction de la payload
+        const payload = {
+            first_name: form.first_name,
+            name: form.name,
+            email: form.email,
+            phone: `${form.phoneCode}${form.phoneNumber}`,
+            city: form.city,
+            date_emmenagement: form.date_emmenagement
+        }
+
+        // Envoi au backend
+        // const response = await fetch('https://mydevapi.espacebailleurekna.fr/contacts', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body: JSON.stringify(payload)
+        // })
+
+        // if (!response.ok) {
+        //   throw new Error('Erreur lors de l’envoi du formulaire')
+        // }
+
+        // ✅ Si tout est OK → redirection vers Jotform
+        window.location.href = 'https://form.jotform.com/221381928289365'
+    } catch (error) {
+        console.error(error)
+        alert("Une erreur est survenue, merci de réessayer.")
     }
-
-    // Envoi au backend
-    const response = await fetch('https://mydevapi.espacebailleurekna.fr/contacts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    })
-
-    if (!response.ok) {
-      throw new Error('Erreur lors de l’envoi du formulaire')
-    }
-
-    // ✅ Si tout est OK → redirection vers Jotform
-    window.location.href = 'https://form.jotform.com/221381928289365'
-  } catch (error) {
-    console.error(error)
-    alert("Une erreur est survenue, merci de réessayer.")
-  }
 }
 </script>
 
@@ -173,5 +166,20 @@ async function handleSubmit() {
 
 .alert__newsletter__area .section__header {
     max-width: 604px;
+}
+
+@media (max-width: 900px) {
+    .alert__newsletter {
+        top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .container-form {
+        width: 100%;
+        /* padding-right: var(--bs-gutter-x, 1rem);
+        padding-left: var(--bs-gutter-x, 1rem); */
+        margin-right: auto;
+        margin-left: auto;
+    }
 }
 </style>
