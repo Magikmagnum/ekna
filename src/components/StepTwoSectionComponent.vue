@@ -18,16 +18,18 @@
       </div>
     </div>
 
-    <div style="text-align: center;margin: 46px 28px;">
+    <div style="text-align: center;margin: 64px 28px;">
       <button type="submit" class="button button--effect">
         <i class="fa-solid fa-rocket"></i>
         Inscrivez-vous dès maintenant et simplifiez votre gestion locative !
       </button>
     </div>
 
-    <!-- je une image responsive qui occupe tout la  -->
+    <!-- je une image responsive qui occupe tout la  MET LE DANS UNE div et centre le -->
 
-    <img src="@/assets/images/exampleEkna.png" alt="Example EKNA" style="max-width: 100%; height: auto;" />
+    <div style="display: flex; justify-content: center;">
+      <img src="@/assets/images/exampleEkna.png" alt="Example EKNA" style="max-width: 100%; height: auto;" />
+    </div>
 
     <!-- ==== video popup section start ==== -->
     <VideoComponent

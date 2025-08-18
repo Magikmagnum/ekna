@@ -17,6 +17,7 @@ import HeaderComponent from '@/components/HeaderComponent.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
 import BannerComponent from '@/components/BannerComponent.vue'
 import Banner3Component from '@/components/Banner3Component.vue'
+import BannerSecondComponent from '@/components/BannerSecondComponent.vue'
 import StepTwoSectionComponent from '@/components/StepTwoSectionComponent.vue'
 import TestimonialsComponent from '@/components/TestimonialsComponent.vue'
 
