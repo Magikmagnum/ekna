@@ -85,7 +85,7 @@
                     </div>
 
                     <div class="input__button">
-                        <button type="submit" class="button button--effect">Envoyer ma demande</button>
+                        <button type="submit" class="button button--effect">Complète ta demande</button>
                     </div>
 
 
