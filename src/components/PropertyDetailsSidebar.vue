@@ -61,8 +61,8 @@
                 <div class="singl" v-for="update in keyUpdates" :key="update.text">
                     <img src="@/assets/images/check.png" alt="Check" />
                     <div>
-                        <p>{{ update.date }}</p>
                         <a :href="update.link">{{ update.text }}</a>
+                        <p>{{ update.date }}</p>
                     </div>
                 </div>
             </div>
@@ -149,12 +149,12 @@ const keyUpdates = computed(() => {
     return [
         {
             date: minDate || "Indisponible",
-            text: "Signature du bail",
+            text: "À partir du :",
             link: "terms-conditions.html",
         },
         {
             date: maxDate || "Indisponible",
-            text: "Fin du bail",
+            text: "Jusqu'au :",
             link: "privacy-policy.html",
         },
     ]
