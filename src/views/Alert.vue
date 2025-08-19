@@ -43,8 +43,8 @@ const backgroundImage = new URL('@/assets/images/banner/banner-bg.png', import.m
 }
 
 .alert__image {
-  flex: 1;
-  padding-right: 1rem;
+    width: 100%;
+    max-width: 354px;
 }
 
 .alert__form {
@@ -56,7 +56,7 @@ h5.neutral-tap {
 }
 
 .store-btn {
-  /* width: 150px; */
+  width: 254px;
   margin-top: 24px;
 }
 
@@ -64,7 +64,11 @@ h5.neutral-tap {
   margin-top: 48px;
 }
 
-
+.alert-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
 
 /* RESPONSIVE */
 @media (max-width: 1024px) {
@@ -89,6 +93,7 @@ h5.neutral-tap {
 
   .alert__newsletter {
     position: relative;
+    margin-bottom: inherit;
   }
 
   h5.neutral-top {
@@ -96,13 +101,13 @@ h5.neutral-tap {
   }
 
   .text-center {
-    margin-bottom: 84px;
+    margin-bottom: 0px;
   }
 }
 
 @media (max-width: 480px) {
   .store-btn {
-    width: 120px;
+    width: 140px;
   }
 
   h5.neutral-tap {
@@ -110,9 +115,5 @@ h5.neutral-tap {
   }
 }
 
-.alert-image {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-}
+
 </style>
