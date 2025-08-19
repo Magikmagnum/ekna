@@ -100,10 +100,6 @@
                     title="Partager sur Facebook">
                     <i class="fab fa-facebook-f"></i>
                 </a>
-                <a :href="`https://twitter.com/intent/tweet?url=${currentUrl}`" target="_blank" rel="noopener"
-                    title="Partager sur Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
                 <a :href="`https://www.instagram.com`" target="_blank" rel="noopener"
                     title="Instagram (page d’accueil)">
                     <i class="fab fa-instagram"></i>
