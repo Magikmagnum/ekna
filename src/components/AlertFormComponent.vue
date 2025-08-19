@@ -34,6 +34,38 @@
                         <input v-model="form.email" type="email" id="alertRegistrationMail"
                             placeholder="Saisis ton email" required />
                     </div>
+<!-- 
+                    <div class="input input--secondary input__alt">
+                        <label for="alertNumber">Téléphone*</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <select v-model="form.phone" class="number__code__select">
+                                    <option value="+33" selected>France</option>
+                                    <option value="+1">États-Unis</option>
+                                    <option value="+44">Royaume-Uni</option>
+                                    <option value="+49">Allemagne</option>
+                                    <option value="+34">Espagne</option>
+                                    <option value="+39">Italie</option>
+                                    <option value="+81">Japon</option>
+                                    <option value="+61">Australie</option>
+                                    <option value="+64">Nouvelle-Zélande</option>
+                                    <option value="+86">Chine</option>
+                                    <option value="+91">Inde</option>
+                                    <option value="+55">Brésil</option>
+                                    <option value="+7">Russie</option>
+                                    <option value="+82">Corée du Sud</option>
+                                    <option value="+66">Thaïlande</option>
+                                    <option value="+65">Singapour</option>
+                                    <option value="+971">Émirats Arabes Unis</option>
+                                    <option value="+27">Afrique du Sud</option>
+                                    <option value="+90">Turquie</option>
+
+                                </select>
+                            </div>
+                            <input v-model="form.phoneNumber" type="tel" id="alertNumber" placeholder="345-323-1234"
+                                required />
+                        </div>
+                    </div> -->
 
                     <div class="input input--secondary input__alt">
                         <label for="alertNumber">Téléphone*</label>
@@ -42,7 +74,8 @@
                                 <select v-model="form.phoneCode" class="number__code__select">
                                     <option v-for="country in countries" :key="country.cca2"
                                         :value="formatDialCode(country)">
-                                        {{ country.flag }} {{ country.name.common }} ({{ formatDialCode(country) }})
+                                        {{ country.flag }} 
+                                        <!--  {{ country.name.common }} ({{ formatDialCode(country) }}) -->
                                     </option>
                                 </select>
                             </div>
@@ -50,8 +83,6 @@
                                 required />
                         </div>
                     </div>
-
-                    
 
                     <div class="input input--secondary">
                         <label for="countrySelect">Ville recherchée*</label>
@@ -97,6 +128,7 @@ const formatDialCode = (country) => {
   const suffixes = country.idd.suffixes || []
   return suffixes.length > 0 ? root + suffixes[0] : root
 }
+
 
 const form = reactive({
     first_name: '',
