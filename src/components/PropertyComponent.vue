@@ -9,7 +9,7 @@
                             <h5 class="neutral-top">{{ headingSmall }}</h5>
                             <h2>{{ headingLarge }}</h2>
                             <p>{{ description }}</p>
-                            <p>
+                            <p v-if="learnMoreLabel">
                                 <a :href="learnMoreLink">{{ learnMoreLabel }}</a>
                             </p>
                             <a :href="ctaLink" class="button button--effect">{{ ctaLabel }}</a>
