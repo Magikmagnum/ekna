@@ -43,23 +43,23 @@ const stats = [
   {
     icon: successs,
     alt: 'Success',
-    count: 1000,
-    suffix: '+',
-    title: 'Successful High-Value Transactions',
+    count: 73,
+    suffix: '%',
+    title: "trouvent une colocation en moins d'une semaine grâce au matching EKNA",
   },
   {
     icon: served,
     alt: 'served',
-    count: 5000,
+    count: 50,
     suffix: '+',
-    title: 'Number of clients served',
+    title: 'colocations actives chaque mois partout en France',
   },
   {
     icon: exp,
     alt: 'experience',
-    count: 45,
-    suffix: ' Year+',
-    title: 'Real estate investment experience',
+    count: 95,
+    suffix: '%',
+    title: 'de satisfaction sur la compatibilité entre colocataires',
   },
 ]
 

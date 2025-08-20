@@ -104,6 +104,9 @@ export default {
             primaryCta: 'Déposer une annonce',
             secondaryCta: 'Trouver une colocation'
         },
+        HeroListComponent: {
+            title1: 'Trouvez rapidement un logement fiable avec des colocataires qui te ressemblent',
+        },
         PropertyDetailsComponent: {
             
             voirLaGalerie: "Voir la galerie",
