@@ -8,10 +8,17 @@
       description="La première application qui sélectionne des colocations compatibles avec ta personnalité, ton budget et ton mode de vie."
       ctaLink="login.html" ctaLabel="Commencer ma recherche" :leftItems="leftItems" :rightItems="rightItems" />
     <ProcessComponent :steps="steps" />
-    <AccordionComponent :title="'FAQ'" :items="accordionItems" />
+    <AccordionComponent :title="'Foire aux questions'" :items="accordionItems" />
     <TestimonialsComponent />
-    <BannerSecondComponent title="Vous louez. Ekna s'occupe du reste." subtitle="Optimisez votre mobilité"
-      :imageSrc="imageSrc" />
+    <BannerSecondComponent title="L'app EKNA t'accompagne partout."
+            subtitle="Trouve une colocation ou ton futur <br/>colocataire en quelques clics"
+            :imageSrc="backgroundImageBannerSecond" :description="`<p style='margin-bottom: 24px;'>Grâce à notre algorithme de matching et notre scoring de dossier, finis les recherches interminables et les mauvaises surprises.</p>
+            <ul style='list-style: disc;margin-left: 52px;'>
+            <li>Navigue parmi des profils qualifiés.</li>
+            <li>Échange directement avec les bons candidats ou propriétaires.</li>
+            <li>Centralise ton dossier locatif.</li>
+            <li>Reçois des alertes en temps réel.</li>
+            </ul>`" />
     <FooterComponent />
   </div>
 </template>
@@ -38,7 +45,7 @@ const attractive = new URL('@/assets/images/icons/attractive.png', import.meta.u
 const scoring = new URL('@/assets/images/icons/statscoring.png', import.meta.url).href
 const matching = new URL('@/assets/images/icons/statmatching.png', import.meta.url).href
 
-const imageSrc = new URL('@/assets/images/market-illustration.png', import.meta.url).href
+const backgroundImageBannerSecond = new URL('@/assets/images/ekna/App.png', import.meta.url).href
 
 const stats = [
   {
@@ -92,21 +99,21 @@ const rightItems = [
 const steps = [
   {
     id: 1,
-    title: 'Fill out the online form',
+    title: 'Crée ton profil en quelques minutes',
     description:
-      'Answer a few questions and attach a summary file to help us evaluate your property.',
+      "Remplis ton budget, ta situation, ton mode de vie et tes préférences. Ton dossier est complet, vérifié, et prêt à matcher. Tu gagnes du temps et tu confiances.",
   },
   {
     id: 2,
-    title: 'Analysis of the property',
+    title: 'Découvre des colocations qui te correspondent',
     description:
-      'Answer a few questions and attach a summary file to help us evaluate your property.',
+      "Grâce à notre algorithme, tu accèdes à des logements compatibles avec ton rythme de vie, ta personnalité et tes attentes.Fini les visites inutiles et les mauvaises surprises.",
   },
   {
     id: 3,
-    title: 'Receive a first offer',
+    title: "Échange directement et emménage en toute confiance",
     description:
-      'Answer a few questions and attach a summary file to help us evaluate your property.',
+      "Contacte directement le bailleur. Pose tes questions, prends ta décision, emménage sereinement.",
   },
 ]
 

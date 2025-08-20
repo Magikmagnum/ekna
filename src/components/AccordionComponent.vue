@@ -4,6 +4,7 @@
       <div class="faq__area">
         <div class="section__header">
           <h2 class="neutral-top">{{ title }}</h2>
+          <h5 class="neutral-top">Discute directement avec notre agent lA pour répondre à toutes tes interrogations</h5>
         </div>
         <div class="faq__group">
           <div class="accordion" id="accordionExampleFund">
@@ -67,3 +68,21 @@ const toggle = (index: number) => {
   activeIndex.value = activeIndex.value === index ? -1 : index
 }
 </script>
+
+<style scoped>
+.faq .section__header h2 {
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.faq .section__header h5 {
+    max-width: 684px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 50px;
+}
+</style>

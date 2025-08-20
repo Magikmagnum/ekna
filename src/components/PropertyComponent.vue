@@ -62,11 +62,18 @@ const props = defineProps<{
     leftItems: InfoItem[]
     rightItems: InfoItem[]
 }>()
+
+
 </script>
 
 <style scoped>
 .numbers__single {
     margin-bottom: 30px;
     text-align: center;
+}
+
+.work__two__single h4 {
+
+    min-height: 126px;
 }
 </style>
