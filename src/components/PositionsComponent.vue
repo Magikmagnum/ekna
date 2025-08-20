@@ -1,32 +1,54 @@
 <template>
-    <section class="open__tab__position section__space__bottom">
+    <section class="testimonial testimonial--two section__space pos__rel over__hi bg__img testimonial__area"
+        :style="{ backgroundImage: `url(${backgroundImage})` }">
         <div class="container">
-            <h2 class="neutral-top">Open Positions</h2>
-            <div class="d-flex justify-content-center">
-                <div class="open__tab">
-                    <a v-for="tab in tabs" :key="tab" href="javascript:void(0)"
-                        class="button button--effect open__tab__btn" :class="{ active: activeTab === tab }"
-                        @click="activeTab = tab">
-                        {{ capitalize(tab) }}
-                    </a>
+            <div class="testimonial__area">
+                <div class="section__header">
+                    <h5 class="neutral-top">{{ props.smallTitle }}</h5>
+                    <h2>{{ props.mainTitle }}</h2>
+                    <p class="neutral-bottom">{{ props.description }}</p>
                 </div>
-            </div>
-            <div class="open__position__tab__wrapper">
-                <div v-for="(job, index) in filteredJobs" :key="index" class="job__single open__job__single">
-                    <div class="open__job__inner">
-                        <img :src="job.image" :alt="job.title" />
-                        <div class="open__job__info">
-                            <h5><a :href="job.link">{{ job.title }}</a></h5>
-                            <ul>
-                                <li>{{ job.department }}</li>
-                                <li>{{ job.location }}</li>
-                                <li>{{ job.type }}</li>
-                            </ul>
-                        </div>
+
+                <div class="testimonial__item__wrapper">
+                    <!-- Bouton Previous -->
+                    <button type="button" class="slick-prev pull-left button arrow--button slick-arrow" @click="prev"
+                        aria-label="Previous testimonial">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
+
+                    <!-- Container animé des slides -->
+                    <div class="testimonial__support slider-wrapper">
+                        <transition-group name="slide" tag="div" class="slider-inner">
+                            <div v-for="(testimonial, index) in props.testimonials" :key="testimonial.name"
+                                v-show="index === currentIndex" class="testimonial__item bg__img"
+                                :style="{ backgroundImage: `url(${quoteImage})` }">
+                                <div class="testimonial__author__ratings">
+                                    <i v-for="n in 5" :key="n" :class="[
+                                        'fa-solid',
+                                        n <= testimonial.stars ? 'fa-star' : 'fa-star-half-alt'
+                                    ]"></i>
+                                </div>
+                                <p class="tertiary">{{ testimonial.comment }}</p>
+                                <div class="testimonial__author">
+                                    <div class="testimonial__author__info">
+                                        <div class="avatar__wrapper">
+                                            <img :src="testimonial.avatar" :alt="testimonial.name" />
+                                        </div>
+                                        <div>
+                                            <h5>{{ testimonial.name }}</h5>
+                                            <p class="neutral-bottom">{{ testimonial.country }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition-group>
                     </div>
-                    <a :href="job.link" class="arrw">
-                        <i class="fa-solid fa-angle-right"></i>
-                    </a>
+
+                    <!-- Bouton Next -->
+                    <button type="button" class="slick-next pull-right button arrow--button slick-arrow" @click="next"
+                        aria-label="Next testimonial">
+                        <i class="fa-solid fa-arrow-left-long"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -34,37 +56,76 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
+// Images
+import backgroundImage from '@/assets/images/testimonial/dot-map.png'
+import quoteImage from '@/assets/images/testimonial/quote.png'
+import avatar from '@/assets/images/testimonial/avatar.png'
+
+// Props
 const props = defineProps({
-    jobs: {
-        type: Array,
-        required: true
-    },
-    tabs: {
-        type: Array,
-        required: true
-    },
-    default: {
+    mainTitle: {
         type: String,
-        default: 'all'
+        default: 'Plus de 50 bailleurs nous font confiance depuis 2022'
+    },
+    smallTitle: {
+        type: String,
+        default: 'Ils nous font confiance'
+    },
+    description: {
+        type: String,
+        default: ''
+    },
+    testimonials: {
+        type: Array,
+        default: () => [
+            {
+                name: 'Thomas',
+                country: 'Lille, France',
+                avatar,
+                stars: 5,
+                comment: 'Very trustworthy and clear platform to invest in real estate...',
+            },
+            {
+                name: 'John Doe',
+                country: 'Canada',
+                avatar,
+                stars: 4,
+                comment: 'Excellent service and smooth investment experience.',
+            },
+            {
+                name: 'Jane Smith',
+                country: 'United Kingdom',
+                avatar,
+                stars: 3,
+                comment: 'Good platform but could improve the UI.',
+            },
+        ]
     }
 })
 
-const activeTab = ref(props.default)
+// State
+const currentIndex = ref(0)
+let autoSlideInterval = null
 
-watch(() => props.default, (newVal) => {
-    activeTab.value = newVal
+// Lifecycle
+onMounted(() => {
+    autoSlideInterval = setInterval(() => {
+        next()
+    }, 8000)
 })
 
-const filteredJobs = computed(() =>
-    activeTab.value === 'all'
-        ? props.jobs
-        : props.jobs.filter((job) => job.tags.includes(activeTab.value))
-)
+onBeforeUnmount(() => {
+    clearInterval(autoSlideInterval)
+})
 
-function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1)
+// Methods
+function next() {
+    currentIndex.value = (currentIndex.value + 1) % props.testimonials.length
+}
+function prev() {
+    currentIndex.value = (currentIndex.value - 1 + props.testimonials.length) % props.testimonials.length
 }
 </script>
 

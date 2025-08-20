@@ -9,7 +9,8 @@
       ctaLink="login.html" ctaLabel="Commencer ma recherche" :leftItems="leftItems" :rightItems="rightItems" />
     <ProcessComponent :steps="steps" />
     <AccordionComponent :title="'Foire aux questions'" :items="accordionItems" />
-    <TestimonialsComponent />
+    <TestimonialsComponent mainTitle="3 500 colocataires utilisent EKNA.
+Et toi, où en es-tu ?" />
     <BannerSecondComponent title="L'app EKNA t'accompagne partout."
             subtitle="Trouve une colocation ou ton futur <br/>colocataire en quelques clics"
             :imageSrc="backgroundImageBannerSecond" :description="`<p style='margin-bottom: 24px;'>Grâce à notre algorithme de matching et notre scoring de dossier, finis les recherches interminables et les mauvaises surprises.</p>
