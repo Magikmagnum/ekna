@@ -4,9 +4,9 @@
         <div class="container">
             <div class="testimonial__area">
                 <div class="section__header">
-                    <h5 class="neutral-top">{{ header.smallTitle }}</h5>
-                    <h2>{{ header.mainTitle }}</h2>
-                    <p class="neutral-bottom">{{ header.description }}</p>
+                    <h5 class="neutral-top">{{ props.smallTitle }}</h5>
+                    <h2>{{ props.mainTitle }}</h2>
+                    <p class="neutral-bottom">{{ props.description }}</p>
                 </div>
 
                 <div class="testimonial__item__wrapper">
@@ -19,7 +19,7 @@
                     <!-- Container animé des slides -->
                     <div class="testimonial__support slider-wrapper">
                         <transition-group name="slide" tag="div" class="slider-inner">
-                            <div v-for="(testimonial, index) in testimonials" :key="testimonial.name"
+                            <div v-for="(testimonial, index) in props.testimonials" :key="testimonial.name"
                                 v-show="index === currentIndex" class="testimonial__item bg__img"
                                 :style="{ backgroundImage: `url(${quoteImage})` }">
                                 <div class="testimonial__author__ratings">
@@ -55,72 +55,77 @@
     </section>
 </template>
 
-<script>
-// Importing images for background and quotes
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+// Images
 import backgroundImage from '@/assets/images/testimonial/dot-map.png'
 import quoteImage from '@/assets/images/testimonial/quote.png'
-
-// Default Avatar imag
 import avatar from '@/assets/images/testimonial/avatar.png'
 
-export default {
-    name: 'Testimonials',
-    data() {
-        return {
-            backgroundImage,
-            quoteImage,
-            header: {
-                smallTitle: 'Ils nous font confiance',
-                mainTitle: 'Plus de 50 bailleurs nous font confiance depuis 2022',
-                description:
-                    '',
+// Props
+const props = defineProps({
+    mainTitle: {
+        type: String,
+        default: 'Plus de 50 bailleurs nous font confiance depuis 2022'
+    },
+    smallTitle: {
+        type: String,
+        default: 'Ils nous font confiance'
+    },
+    description: {
+        type: String,
+        default: ''
+    },
+    testimonials: {
+        type: Array,
+        default: () => [
+            {
+                name: 'Thomas',
+                country: 'Lille, France',
+                avatar,
+                stars: 5,
+                comment: 'Very trustworthy and clear platform to invest in real estate...',
             },
-            testimonials: [
-                {
-                    name: 'Thomas',
-                    country: 'Lille, France',
-                    avatar,
-                    stars: 5,
-                    comment:
-                        'Very trustworthy and clear platform to invest in real estate. Safe investment with monthly payouts. Really recommended!',
-                },
-                {
-                    name: 'John Doe',
-                    country: 'Canada',
-                    avatar,
-                    stars: 4,
-                    comment: 'Excellent service and smooth investment experience.',
-                },
-                {
-                    name: 'Jane Smith',
-                    country: 'United Kingdom',
-                    avatar,
-                    stars: 3,
-                    comment: 'Good platform but could improve the UI.',
-                },
-            ],
-            currentIndex: 0,
-            autoSlideInterval: null,
-        }
-    },
-    mounted() {
-        // Auto slide toutes les 5 secondes
-        this.autoSlideInterval = setInterval(() => {
-            this.next()
-        }, 8000)
-    },
-    beforeUnmount() {
-        clearInterval(this.autoSlideInterval)
-    },
-    methods: {
-        next() {
-            this.currentIndex = (this.currentIndex + 1) % this.testimonials.length
-        },
-        prev() {
-            this.currentIndex =
-                (this.currentIndex - 1 + this.testimonials.length) % this.testimonials.length
-        },
-    },
+            {
+                name: 'John Doe',
+                country: 'Canada',
+                avatar,
+                stars: 4,
+                comment: 'Excellent service and smooth investment experience.',
+            },
+            {
+                name: 'Jane Smith',
+                country: 'United Kingdom',
+                avatar,
+                stars: 3,
+                comment: 'Good platform but could improve the UI.',
+            },
+        ]
+    }
+})
+
+// State
+const currentIndex = ref(0)
+let autoSlideInterval = null
+
+// Lifecycle
+onMounted(() => {
+    autoSlideInterval = setInterval(() => {
+        next()
+    }, 8000)
+})
+
+onBeforeUnmount(() => {
+    clearInterval(autoSlideInterval)
+})
+
+// Methods
+function next() {
+    currentIndex.value = (currentIndex.value + 1) % props.testimonials.length
+}
+function prev() {
+    currentIndex.value = (currentIndex.value - 1 + props.testimonials.length) % props.testimonials.length
 }
 </script>
 
