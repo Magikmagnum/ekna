@@ -39,7 +39,7 @@ const backgroundImage = new URL('@/assets/images/hero/list-bg.png', import.meta.
 </script>
 
 <style scoped>
-.row h1 {
+/* .hero__area h1 {
   font-size: 58px;
   color: #ffffff;
   max-width: 100%;
@@ -52,7 +52,61 @@ const backgroundImage = new URL('@/assets/images/hero/list-bg.png', import.meta.
 
 .neutral-bottom{
   color: #ffffff;
-  /* font-size: 16px; */
+  font-size: 16px;
+  margin-bottom: 8px;
+} */
+
+
+/* ---------------------------- */
+
+/* Style global du h1 */
+h1 {
+  font-size: clamp(2rem, 6vw, 4.75rem); /* responsive */
+  font-weight: 700;
+  color: #13216e;
+  font-style: normal;
+  text-align: left;
+  margin: 0; /* reset */
+}
+
+/* Style spécifique au h1 dans la hero area */
+.hero__area h1 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #ffffff; /* si tu veux blanc dans la hero */
+}
+
+/* Titres secondaires */
+.row h5 {
+  color: #26dd77;
+}
+
+/* Classe utilitaire */
+.neutral-bottom {
+  color: #ffffff;
   margin-bottom: 8px;
 }
+
+/* Responsive : mobile */
+@media only screen and (max-width: 767px) {
+  h1 {
+    font-size: 2.25rem;  /* environ 36px */
+    line-height: 1.3;
+  }
+  .hero__area h1 {
+    margin: 15px 0;
+    font-size: 36px;
+  }
+}
+
+/* Responsive : tablettes / petits laptops */
+@media only screen and (max-width: 1199px) {
+  h1 {
+    font-size: 3.5rem; /* environ 56px */
+    line-height: 1.2;
+  }
+}
+
+
+
 </style>

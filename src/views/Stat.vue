@@ -8,7 +8,7 @@
       description="La première application qui sélectionne des colocations compatibles avec ta personnalité, ton budget et ton mode de vie."
       ctaLink="login.html" ctaLabel="Commencer ma recherche" :leftItems="leftItems" :rightItems="rightItems" />
     <ProcessComponent :steps="steps" />
-    <AccordionComponent :title="'Foire aux questions'" :items="accordionItems" />
+    <IframeIa :title="'Foire aux questions'" :items="accordionItems" />
     <TestimonialsComponent mainTitle="3 500 colocataires utilisent EKNA. Et toi, où en es-tu ?" />
     <BannerSecondComponent title="L'app EKNA t'accompagne partout."
             subtitle="Trouve une colocation ou ton futur <br/>colocataire en quelques clics"
@@ -32,7 +32,7 @@ import HeroListComponent from '@/components/HeroListComponent.vue'
 import StatComponent from '@/components/StatComponent.vue'
 import ProcessComponent from '@/components/ProcessComponent.vue'
 import TestimonialsComponent from '@/components/TestimonialsComponent.vue'
-import AccordionComponent from '@/components/AccordionComponent.vue'
+import IframeIa from '@/components/IframeIa.vue'
 import BannerSecondComponent from '@/components/BannerSecondComponent.vue'
 
 const successs = new URL('@/assets/images/icons/successs.png', import.meta.url).href

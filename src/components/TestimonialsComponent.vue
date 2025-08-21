@@ -199,4 +199,10 @@ button.button {
     height: auto;
     padding: 40px !important;
 }
+
+@media only screen and (max-width: 991px) {
+    .section__space {
+        padding: 40px 0px;
+    }
+}
 </style>
