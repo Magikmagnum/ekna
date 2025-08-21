@@ -19,7 +19,7 @@
                                 <router-link :to="ctaLink" class="button button--effect">
                                     {{ ctaText }}
                                 </router-link>
-                                <div>
+                                <div class="arrow">
                                     <img src="@/assets/images/ekna/arrow.svg" alt="Play Store" />
                                 </div>
                                 <div>
@@ -74,45 +74,10 @@ defineProps({
 </script>
 
 <style scoped>
-/* p,
-th,
-td,
-li,
-input,
-textarea,
-select,
-label,
-blockquote,
-span {
-    margin-bottom: 36px;
-} */
-
-/* .section__space {
-    padding: 0px;
-} */
-
-/* @media (min-width: 1200px) {
-    .offset-xl-1 {
-        margin-left: 3.333333%;
-    }
-}
-
-@media (min-width: 1200px) {
-    .col-xl-6 {
-        flex: 0 0 auto;
-        width: 55%;
-    }
-} */
-
-/* .market__thumb img {
-    max-width: 24vw;
-} */
-
-
 .btn-group {
     display: flex;
     justify-content: start;
-    gap: 37px;
+    gap: 10px;
     align-items: center;
     margin: 32px 0;
 }
@@ -121,8 +86,24 @@ span {
     margin-top: 0 !important;
 }
 
-.market .content img {
-    position: unset;
-    margin-left: 0px;
+.section__space {
+    padding: 0px 0px !important;
+}
+
+h2 {
+    font-size: 52px;
+}
+
+.market__thumb img {
+    max-width: 44vw;
+    height: auto;
+    margin-top: -7px;
+    clip-path: inset(0 0 225px 0);
+    margin-bottom: -225px;
+}
+
+.arrow {
+    width: 120px;
+    height: 53px;
 }
 </style>

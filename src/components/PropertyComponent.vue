@@ -76,4 +76,8 @@ const props = defineProps<{
 
     min-height: 126px;
 }
+
+h2{
+    font-size: 56px;
+}
 </style>
