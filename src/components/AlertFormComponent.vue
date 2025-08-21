@@ -42,7 +42,7 @@
                                 <select v-model="form.phoneCode" class="number__code__select">
                                     <option v-for="country in countries" :key="country.cca2"
                                         :value="formatDialCode(country)">
-                                        {{ country.flag }} 
+                                        {{ country.flag }} {{ " " + formatDialCode(country) }}
                                         <!--  {{ country.name.common }} ({{ formatDialCode(country) }}) -->
                                     </option>
                                 </select>
@@ -183,5 +183,10 @@ async function handleSubmit() {
         margin-right: auto;
         margin-left: auto;
     }
+}
+
+select:focus {
+  outline: 0px solid #007bff; /* contour bleu */
+  border: 0px solid #007bff;  /* bordure bleue */
 }
 </style>
