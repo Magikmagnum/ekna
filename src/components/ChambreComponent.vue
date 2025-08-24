@@ -26,7 +26,7 @@
                 :texteLienEquipements="'Voir les équipements'"
                 :isSalleDeBainIndividuelle="chambre.is_salle_de_bain_individuelle" :isMeuble="chambre.is_meuble"
                 :isDisponible="chambre.is_disponible" :charge_locatives="chambre.charge_locatives"
-                @louer="handleLouer(`Chambre ${index + 1}`)" />
+                @louer="handleLouer(`Chambre ${index + 1}`)" :surface="chambre.surface"/>
         </div>
     </div>
 </template>

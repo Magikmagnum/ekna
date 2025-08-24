@@ -12,7 +12,7 @@
             <div class="info-section-header">
                 <div class="info-section withoutPadding">
                     <div class="title">
-                        <h2>{{ titre }}</h2>
+                        <h2>{{ titre }} . {{ surface }} m²</h2>
                     </div>
                     <div class="subtitle">
                         <template v-if="isMeuble || isSalleDeBainIndividuelle">
@@ -127,7 +127,8 @@ const props = defineProps({
     isMeuble: { type: Boolean, default: false },
     isSalleDeBainIndividuelle: { type: Boolean, default: false },
     isDisponible: { type: Boolean, default: true },
-    charge_locatives: { type: Object, default: () => ({ montant: 100 }) }
+    charge_locatives: { type: Object, default: () => ({ montant: 100 }) },
+    surface: { type: Number, default: 0 }
 })
 
 defineEmits(['louer'])
