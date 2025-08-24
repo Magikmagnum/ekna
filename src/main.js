@@ -11,6 +11,10 @@ import messages from './i18n/messages'
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
 
+// Vue Final Modal
+import { createVfm } from 'vue-final-modal'
+import 'vue-final-modal/style.css'
+
 // CSS globaux
 import './assets/vendor/bootstrap/css/bootstrap.min.css'
 import './assets/vendor/nice-select/css/nice-select.css'
@@ -35,6 +39,7 @@ const i18n = createI18n({
 createApp(App)
   .use(router)
   .use(i18n)
+  .use(createVfm())
   .use(PrimeVue, {
     theme: { preset: Aura }
   })

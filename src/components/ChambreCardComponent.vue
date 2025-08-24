@@ -1,37 +1,36 @@
 <template>
     <div class="chambre-card">
         <div class="image-section image-container">
-            <template v-if="props.images && props.images.length">
-                <img v-for="image in props.images.slice(0, 3)" :key="image.id" :src="image.file" alt="Image du logement"
-                    :class="['image', `count-${props.images.length > 3 ? 3 : props.images.length}`]" />
+            <template v-if="images && images.length">
+                <img v-for="image in images.slice(0, 3)" :key="image.id" :src="image.file" alt="Image du logement"
+                    :class="['image', `count-${images.length > 3 ? 3 : images.length}`]" />
             </template>
             <div v-else class="image-placeholder">{{ imagePlaceholder }}</div>
         </div>
 
         <div class="info-section">
-
             <div class="info-section-header">
-                <div class="info-section whithousPadding">
+                <div class="info-section withoutPadding">
                     <div class="title">
                         <h2>{{ titre }}</h2>
                     </div>
-                    <p class="subtitle">
+                    <div class="subtitle">
                         <template v-if="isMeuble || isSalleDeBainIndividuelle">
                             <div v-if="isMeuble" class="meuble">Meublée</div>
                             <div v-if="isSalleDeBainIndividuelle">Salle de bain individuelle</div>
                         </template>
                         <template v-else>
                             <div class="meuble">Non meublée</div>
-                            <div>Pas de SDB individuelle</div>
+                            <div>Pas de salle de bain individuelle</div>
                         </template>
-                    </p>
+                    </div>
                 </div>
                 <div class="title title-right">
                     <div class="price">
                         {{ prix }}€<span class="per">/mois</span>
                     </div>
-                   <div class="price">
-                        {{charge_locatives.montant}}€ <span class="per">charges locatives</span>
+                    <div class="price">
+                        {{ charge_locatives.montant }}€ <span class="per">charges locatives</span>
                     </div>
                     <div :class="['price', 'sub', isDisponible ? 'green' : 'red']">
                         {{ isDisponible ? 'Disponible' : 'Indisponible' }}
@@ -39,18 +38,19 @@
                 </div>
             </div>
 
-            <div class="equipements" v-if="equipementsActifs.length">
+            <div class="equipements">
                 <h3>Équipements de la chambre</h3>
-                <div class="equipements-bloc">
-                    <div class="equipement-item" v-for="(equipement, index) in equipementsActifs.slice(0, 3)"
-                        :key="index">
-                        <img class="icon-placeholder" :src="equipement.icon" :alt="equipement.label" />
-                        <span :title="equipement.label">
-                            {{ equipement.label.length > 11 ? equipement.label.slice(0, 11) + '…' : equipement.label }}
-                        </span>
+                <div class="equipements-bloc"  v-if="equipementsActifs.length">
+                    <div class="equipement-container">
+                        <div class="equipement-item" v-for="(equipement, index) in equipementsActifs.slice(0, 3)"
+                            :key="index">
+                            <img class="icon-placeholder" :src="equipement.icon" :alt="equipement.label" />
+                            <span :title="equipement.label">
+                                {{ equipement.label.length > 8 ? equipement.label.slice(0, 6) + '…' : equipement.label }}
+                            </span>
+                        </div>
                     </div>
 
-                    <!-- Bouton pour ouvrir le modal -->
                     <a class="button button--effect btn-blanc" @click.prevent="showEquipements = true">
                         Consulter les équipements
                     </a>
@@ -63,7 +63,7 @@
                         <span class="dot-green"></span>
                         <span>Disponible à partir du</span>
                         <span>|</span>
-                        <strong>{{ Array.isArray(dateDispo) && dateDispo.length > 0 ? extraireDateFin(dateDispo[0]) :'Non définie'}}</strong>
+                        <strong>{{ Array.isArray(dateDispo) && dateDispo.length > 0 ? extraireDateFin(dateDispo[0]) :'Non définie' }}</strong>
                     </div>
                     <div class="detail-row-item">
                         <span class="dot-green"></span>
@@ -74,44 +74,41 @@
                 </div>
                 <button class="button button--effect" @click="$emit('louer')">Louer</button>
             </div>
-
-            <!-- Modal placé ici, hors du flex -->
-            <div v-if="showEquipements" class="modal-overlay" @click.self="showEquipements = false">
-                <div class="modal">
-                    <h3>Liste complète des équipements</h3>
-                    <ul>
-                        <li v-for="(equipement, index) in equipementsActifs" :key="index">
-                            <img :src="equipement.icon" :alt="equipement.label" width="20" />
-                            {{ equipement.label }}
-                        </li>
-                    </ul>
-                    <button @click="showEquipements = false">Fermer</button>
-                </div>
-            </div>
-
         </div>
     </div>
-</template>
 
+    <!-- Modal vue-final-modal -->
+    <VueFinalModal v-model="showEquipements" :click-to-close="true" content-class="bloc-modal" :content-style="{
+        background: 'white',
+        padding: '32px',
+        borderRadius: '8px',
+        maxWidth: '1000px',
+        width: '90%',
+        margin: 'auto',
+        marginTop: '100px'
+    }">
+        <h3>Liste complète des équipements</h3>
+        <ul class="liste-content">
+            <!-- je qu'il soient aligne les l'un apres les autres et que le label soit en desous de l'icone -->
+            <li class="liste-item" v-for="(equipement, index) in equipementsActifs" :key="index">
+                <img :src="equipement.icon" :alt="equipement.label" width="20" />
+                <span>{{ equipement.label }}</span>
+            </li>
+        </ul>
+        <button class="button button--effect" @click="showEquipements = false">Fermer</button>
+    </VueFinalModal>
+</template>
 
 <script setup>
 import { computed, ref } from 'vue'
+import { VueFinalModal } from 'vue-final-modal'
 
 const showEquipements = ref(false)
 
 const props = defineProps({
-    titre: {
-        type: String,
-        default: 'Chambre 01 de 12m²'
-    },
-    prix: {
-        type: String,
-        default: '650€'
-    },
-    imagePlaceholder: {
-        type: String,
-        default: '4096X2304'
-    },
+    titre: { type: String, default: 'Chambre 01 de 12m²' },
+    prix: { type: String, default: '650' },
+    imagePlaceholder: { type: String, default: '4096X2304' },
     equipements: {
         type: Object,
         default: () => ({
@@ -123,74 +120,30 @@ const props = defineProps({
             radiateur: true
         })
     },
-    lienEquipements: {
-        type: String,
-        default: '/detail/6d1b65aa-6437-3000-8bc2-651b06265bbf'
-    },
-    dateDispo: {
-        type: Array,
-        default: () => []
-    },
-    images: {
-        type: Array,
-        default: () => []
-    },
-    depotGarantie: {
-        type: String,
-        default: 'Non définie'
-    },
-    isMeuble: {
-        type: Boolean,
-        default: false
-    },
-    isSalleDeBainIndividuelle: {
-        type: Boolean,
-        default: false
-    },
-    isDisponible: {
-        type: Boolean,
-        default: true
-    },
-    charge_locatives: {
-        type: Object,
-        default: () => ({ montant: 100 })
-    }
+    lienEquipements: { type: String, default: '/detail/6d1b65aa-6437-3000-8bc2-651b06265bbf' },
+    dateDispo: { type: Array, default: () => [] },
+    images: { type: Array, default: () => [] },
+    depotGarantie: { type: String, default: 'Non définie' },
+    isMeuble: { type: Boolean, default: false },
+    isSalleDeBainIndividuelle: { type: Boolean, default: false },
+    isDisponible: { type: Boolean, default: true },
+    charge_locatives: { type: Object, default: () => ({ montant: 100 }) }
 })
 
 defineEmits(['louer'])
 
-// Liste des icônes et labels pour chaque équipement
 const allEquipements = {
-    lit_double: {
-        label: 'Lit double',
-        icon: 'https://mydev.espacebailleurekna.fr/svg/lit_double.svg'
-    },
-    lit_simple: {
-        label: 'Lit simple',
-        icon: 'https://mydev.espacebailleurekna.fr/svg/lit_simple.svg'
-    },
-    armoire: {
-        label: 'Armoire',
-        icon: 'https://mydev.espacebailleurekna.fr/svg/armoire.svg'
-    },
-    bureau: {
-        label: 'Bureau',
-        icon: 'https://mydev.espacebailleurekna.fr/svg/bureau.svg'
-    },
-    table_chevet: {
-        label: 'Table de chevet',
-        icon: 'https://mydev.espacebailleurekna.fr/svg/table_chevet.svg'
-    },
-    radiateur: {
-        label: 'Radiateur',
-        icon: 'https://mydev.espacebailleurekna.fr/svg/radiateur.svg'
-    }
+    lit_double: { label: 'Lit double', icon: 'https://mydev.espacebailleurekna.fr/svg/lit_double.svg' },
+    lit_simple: { label: 'Lit simple', icon: 'https://mydev.espacebailleurekna.fr/svg/lit_simple.svg' },
+    armoire: { label: 'Armoire', icon: 'https://mydev.espacebailleurekna.fr/svg/armoire.svg' },
+    bureau: { label: 'Bureau', icon: 'https://mydev.espacebailleurekna.fr/svg/bureau.svg' },
+    table_chevet: { label: 'Table de chevet', icon: 'https://mydev.espacebailleurekna.fr/svg/table_chevet.svg' },
+    radiateur: { label: 'Radiateur', icon: 'https://mydev.espacebailleurekna.fr/svg/radiateur.svg' }
 }
 
-// Transformer les équipements actifs en tableau exploitable
 const equipementsActifs = computed(() =>
     Object.entries(props.equipements)
-        .filter(([key, value]) => value === true)
+        .filter(([_, value]) => value === true)
         .map(([key]) => ({
             label: allEquipements[key]?.label || key,
             icon: allEquipements[key]?.icon || ''
@@ -220,10 +173,8 @@ function extraireDateFin(periode) {
     margin-bottom: 24px;
 }
 
-
 .image-container {
     height: 348px;
-    /* gap: 10px; */
 }
 
 .image-container .count-1 {
@@ -233,8 +184,6 @@ function extraireDateFin(periode) {
 }
 
 .image-container .count-2 {
-    /* width: calc(100% / 2); */
-    /* height: 200px; */
     flex: 1;
     object-fit: cover;
     width: 100%;
@@ -242,8 +191,6 @@ function extraireDateFin(periode) {
 }
 
 .image-container .count-3 {
-    /* width: calc(100% / 3); */
-    /* height: 200px; */
     flex: 1;
     object-fit: cover;
     width: 100%;
@@ -252,10 +199,8 @@ function extraireDateFin(periode) {
 
 .image-section {
     background: #ccc;
-    /* padding: 16px; */
     display: flex;
     flex-direction: column;
-    /* gap: 16px; */
     flex: 1 1 200px;
     min-width: 150px;
 }
@@ -283,22 +228,14 @@ function extraireDateFin(periode) {
 
 .title .price {
     font-weight: bold;
-    /* font-size: 1.2em; */
-}
-
-.title .size {
-    font-weight: normal;
-    font-size: 1em;
 }
 
 .title .per {
-    font-weight: normal;
     font-weight: bold;
     font-size: 0.6em;
 }
 
-
-.info-section .subtitle {
+.subtitle {
     color: #13216f;
     font-size: 0.8em;
     line-height: 1em;
@@ -347,19 +284,6 @@ function extraireDateFin(periode) {
     background: #fff;
 }
 
-.btn-blanc:hover {
-    color: #13216e;
-}
-
-.chambre-block h5 {
-    margin-bottom: 24px;
-}
-
-.equipement-item span {
-    font-size: 0.6em;
-    line-height: 16px;
-}
-
 .details {
     display: flex;
     justify-content: space-between;
@@ -379,24 +303,6 @@ function extraireDateFin(periode) {
     margin-bottom: 6px;
 }
 
-.detail-row-item span {
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
-    align-items: center;
-    font-size: 0.8em;
-    line-height: 16px;
-}
-
-.detail-row-item strong {
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
-    align-items: center;
-    font-size: 0.8em;
-    line-height: 16px;
-}
-
 .dot-green {
     background-color: #28a745;
     border-radius: 100%;
@@ -404,11 +310,7 @@ function extraireDateFin(periode) {
     height: 10px;
 }
 
-.meuble {
-    margin-bottom: 8px;
-}
-
-.whithousPadding {
+.withoutPadding {
     padding: 0;
 }
 
@@ -416,7 +318,7 @@ function extraireDateFin(periode) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 6px;
+    /* margin-bottom: 6px; */
 }
 
 .title-right {
@@ -428,50 +330,9 @@ function extraireDateFin(periode) {
     flex-direction: column;
 }
 
-.title-right .price {
-    flex: 1;
-}
-
 .sub {
     font-size: medium;
     margin-top: 12px;
-}
-
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-}
-
-.modal {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 400px;
-    width: 90%;
-}
-
-@media (max-width: 768px) {
-    .info-section-header {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        height: 140px;
-        margin-bottom: 14px;
-    }
-
-    .title-right {
-        align-items: flex-start;
-            margin-top: 12px;
-    }
 }
 
 .red {
@@ -479,7 +340,60 @@ function extraireDateFin(periode) {
 }
 
 .green {
-    color: #28a745;
+    color: #49e6cd;
 }
 
+.bloc-modal {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    margin: auto;
+}
+
+@media (max-width: 768px) {
+    .info-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        height: 140px;
+        margin-bottom: 14px;
+    }
+
+    .title-right {
+        align-items: flex-start;
+        margin-top: 12px;
+    }
+}
+
+.liste-content {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    padding: 24px 0;
+}
+
+.liste-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100px;
+    text-align: center;
+}
+
+.liste-item img {
+    width: 100px;
+    clip-path: inset(2px 2px 2px 2px);
+}
+
+.equipement-container {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+.meuble {
+    margin-bottom: 6px;
+}
 </style>

@@ -108,7 +108,6 @@ export default {
             title1: 'Trouvez rapidement un logement fiable avec des colocataires qui te ressemblent',
         },
         PropertyDetailsComponent: {
-            
             voirLaGalerie: "Voir la galerie",
             professionnel: "Professionnel",
             chargement: "Chargement...",
@@ -143,7 +142,6 @@ export default {
             nonOccupant: "non occupant",
             equipementsLogement: "Équipement du logement"
         }
-
     },
     en: {
         HeaderComponent: {},
