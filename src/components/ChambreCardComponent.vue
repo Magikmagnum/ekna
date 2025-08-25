@@ -107,7 +107,7 @@ const showEquipements = ref(false)
 
 const props = defineProps({
     titre: { type: String, default: 'Chambre 01 de 12m²' },
-    prix: { type: String, default: '650' },
+    prix: { type: [String, Number], default: '650' },
     imagePlaceholder: { type: String, default: '4096X2304' },
     equipements: {
         type: Object,
@@ -123,12 +123,14 @@ const props = defineProps({
     lienEquipements: { type: String, default: '/detail/6d1b65aa-6437-3000-8bc2-651b06265bbf' },
     dateDispo: { type: Array, default: () => [] },
     images: { type: Array, default: () => [] },
-    depotGarantie: { type: String, default: 'Non définie' },
+    depotGarantie: { type: [String, Number], default: 'Non définie' },
     isMeuble: { type: Boolean, default: false },
     isSalleDeBainIndividuelle: { type: Boolean, default: false },
     isDisponible: { type: Boolean, default: true },
     charge_locatives: { type: Object, default: () => ({ montant: 100 }) },
-    surface: { type: Number, default: 0 }
+    surface: { type: Number, default: 0 },
+    sousTitre: {type: String, default: ""},                 // <--- ajoute cette prop
+    texteLienEquipements: {type: String, default: ""}
 })
 
 defineEmits(['louer'])

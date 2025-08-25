@@ -2,11 +2,13 @@
     <div class="intro">
         <h3>Détails du logement</h3>
 
+
         <div class="details__block">
             <h5>L'équipement du logement</h5>
             <div class="equipements-bloc">
                 <div class="equipement">
-                    <div class="equipement-item" v-for="(item, index) in equipements" :key="index">
+                    <!-- je utilise  equipements_maison à la place de equipements -->
+                    <div class="equipement-item" v-for="(item, key) in equipementsMaisonList" :key="key">
                         <img class="equipement-item-icon" :src="item.icon" :alt="item.label" />
                         <span>{{ item.label }}</span>
                     </div>
@@ -20,13 +22,13 @@
         <div class="chambres_block" ref="chambresSection">
             <h5>Les chambres</h5>
             <ChambreCardComponent v-for="(chambre, index) in logement.chambres_for_mobile" :key="chambre.id"
-                :titre="`Chambre ${index + 1}`" :prix="chambre.loyer_hors_charge" :sousTitre="`${chambre.surface} m²`"
+                :titre="`Chambre ${index + 1}`" :prix="String(chambre.loyer_hors_charge)" :sousTitre="`${chambre.surface} m²`"
                 :equipements="chambre.equipements" :dateDispo="chambre.date_disponibilites" :images="chambre.images"
-                :depotGarantie="chambre.depot_garantie" :lienEquipements="`/equipements/${chambre.reference}`"
+                :depotGarantie="String(chambre.depot_garantie)" :lienEquipements="`/equipements/${chambre.reference}`"
                 :texteLienEquipements="'Voir les équipements'"
                 :isSalleDeBainIndividuelle="chambre.is_salle_de_bain_individuelle" :isMeuble="chambre.is_meuble"
                 :isDisponible="chambre.is_disponible" :charge_locatives="chambre.charge_locatives"
-                @louer="handleLouer(`Chambre ${index + 1}`)" :surface="chambre.surface"/>
+                @louer="handleLouer(`Chambre ${index + 1}`)" :surface="chambre.surface" />
         </div>
     </div>
 </template>
@@ -58,6 +60,44 @@ const labelMap = {
     // ajoute d'autres ici si besoin
 }
 
+const equipements_maison = {
+    salons: {
+        icon: `https://mydev.espacebailleurekna.fr/svg/salons.svg`,
+        label: 'Salon',
+        content: {
+            description: 'Un salon confortable avec un canapé.',
+            superficie: '20 m²'
+        }
+    },
+    cuisines: {
+        icon: `https://mydev.espacebailleurekna.fr/svg/cuisines.svg`,
+        label: 'Cuisine',
+        content: {
+            description: 'Une cuisine équipée avec tous les appareils nécessaires.',
+            superficie: '15 m²'
+        }
+    },
+    salle_bain: {
+        icon: `https://mydev.espacebailleurekna.fr/svg/salle_bain.svg`,
+        label: 'Salle de bain',
+        content: {
+            description: 'Une salle de bain moderne avec douche.',
+            superficie: '8 m²'
+        }
+    },
+    exterieurs: {
+        icon: `https://mydev.espacebailleurekna.fr/svg/exterieurs.svg`,
+        label: 'Extérieur',
+        content: {
+            description: 'Un espace extérieur agréable.',
+            superficie: '30 m²'
+        }
+    }
+};
+
+// Transforme l'objet en tableau de valeurs
+const equipementsMaisonList = computed(() => Object.values(equipements_maison))
+
 // Générer le tableau final des équipements
 const equipements = computed(() => {
     return logement.principaux_equipements.map((nom) => {
@@ -83,7 +123,8 @@ const equipements = computed(() => {
     padding-top: 12px;
 }
 
-.details__block h5,  .chambres_block h5{
+.details__block h5,
+.chambres_block h5 {
     color: #13216e;
     margin-bottom: 24px;
 }

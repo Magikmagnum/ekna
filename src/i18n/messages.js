@@ -140,7 +140,8 @@ export default {
             nonMeuble: "non meublé",
             occupant: "occupant",
             nonOccupant: "non occupant",
-            equipementsLogement: "Équipement du logement"
+            equipementsLogement: "Équipement du logement",
+            galerie: "Galerie"
         }
     },
     en: {
