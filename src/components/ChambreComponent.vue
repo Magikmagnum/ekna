@@ -29,13 +29,26 @@
         </div>
     </div>
 
-    <!-- Utilise le bon nom de composant -->
-    <VueFinalModal v-model="isModalOpen" content-class="modal-content">
+    <!-- Modale pour les équipements -->
+    <VueFinalModal v-model="isModalOpen" :content-style="{
+        background: 'white',
+        padding: '32px',
+        borderRadius: '8px',
+        maxWidth: '1000px',
+        width: '90%',
+        margin: 'auto',
+        marginTop: '100px'
+    }">
         <template #default>
             <h3>{{ selectedItem?.label }}</h3>
-            <p>{{ selectedItem?.content?.description }}</p>
-            <p><strong>Superficie :</strong> {{ selectedItem?.content?.superficie }}</p>
-            <button @click="isModalOpen = false">Fermer</button>
+            <ul v-if="selectedItem?.content.length"  class="liste-content">
+                <li class="liste-item" v-for="equip in selectedItem.content" :key="equip.label" >
+                     <img :src="equip.icon" :alt="equip.label" width="20" />
+                    <span>{{ equip.label }}</span>
+                </li>
+            </ul>
+            <p v-else>Aucun équipement disponible</p>
+            <button class="button button--effect" @click="isModalOpen = false">Fermer</button>
         </template>
     </VueFinalModal>
 </template>
@@ -45,57 +58,15 @@ import { ref, computed } from 'vue'
 import ChambreCardComponent from '@/components/ChambreCardComponent.vue'
 import { VueFinalModal } from 'vue-final-modal'
 
+// Props logement
 const props = defineProps({
     logement: {
         type: Object,
-        required: false,
+        required: true,
     },
 })
 
 const logement = props.logement
-
-function handleLouer(titre) {
-    // Action sur la location
-}
-
-// Définition des équipements
-const equipements_maison = {
-    salons: {
-        icon: `https://mydev.espacebailleurekna.fr/svg/salon.svg`,
-        label: 'Salon',
-        content: {
-            description: 'Un salon confortable avec un canapé.',
-            superficie: '20 m²',
-        },
-    },
-    cuisines: {
-        icon: `https://mydev.espacebailleurekna.fr/svg/cuisine.svg`,
-        label: 'Cuisine',
-        content: {
-            description: 'Une cuisine équipée avec tous les appareils nécessaires.',
-            superficie: '15 m²',
-        },
-    },
-    salle_bain: {
-        icon: `https://mydev.espacebailleurekna.fr/svg/douche.svg`,
-        label: 'Salle de bain',
-        content: {
-            description: 'Une salle de bain moderne avec douche.',
-            superficie: '8 m²',
-        },
-    },
-    exterieurs: {
-        icon: `https://mydev.espacebailleurekna.fr/svg/exterieur.svg`,
-        label: 'Extérieur',
-        content: {
-            description: 'Un espace extérieur agréable.',
-            superficie: '30 m²',
-        },
-    },
-}
-
-// Transforme l'objet en tableau
-const equipementsMaisonList = computed(() => Object.values(equipements_maison))
 
 // État de la modale
 const isModalOpen = ref(false)
@@ -105,10 +76,72 @@ function openModal(item) {
     selectedItem.value = item
     isModalOpen.value = true
 }
+
+function handleLouer(titre) {
+    // Action sur la location
+}
+
+// Mapping sous-équipements
+const sousEquipementsMap = {
+    canape: { label: 'Canapé', icon: 'https://mydev.espacebailleurekna.fr/svg/canape.svg' },
+    fauteuil: { label: 'Fauteuil', icon: 'https://mydev.espacebailleurekna.fr/svg/fauteuil.svg' },
+    television: { label: 'Télévision', icon: 'https://mydev.espacebailleurekna.fr/svg/television.svg' },
+    rangement: { label: 'Rangement', icon: 'https://mydev.espacebailleurekna.fr/svg/rangement.svg' },
+    table_basse: { label: 'Table basse', icon: 'https://mydev.espacebailleurekna.fr/svg/table_basse.svg' },
+    salle_a_manger: { label: 'Salle à manger', icon: 'https://mydev.espacebailleurekna.fr/svg/salle_a_manger.svg' },
+    cuisiniere: { label: 'Cuisinière', icon: 'https://mydev.espacebailleurekna.fr/svg/cuisiniere.svg' },
+    table_et_chaise: { label: 'Table et chaise', icon: 'https://mydev.espacebailleurekna.fr/svg/table_chaise.svg' },
+    refrigerateur: { label: 'Réfrigérateur', icon: 'https://mydev.espacebailleurekna.fr/svg/refrigerateur.svg' },
+    micro_ondes: { label: 'Micro-ondes', icon: 'https://mydev.espacebailleurekna.fr/svg/micro_ondes.svg' },
+    lave_vaisselle: { label: 'Lave-vaisselle', icon: 'https://mydev.espacebailleurekna.fr/svg/lave_vaisselle.svg' },
+    vaisselle: { label: 'Vaisselle', icon: 'https://mydev.espacebailleurekna.fr/svg/vaisselle.svg' },
+    hotte: { label: 'Hotte', icon: 'https://mydev.espacebailleurekna.fr/svg/hotte.svg' },
+    baignoire: { label: 'Baignoire', icon: 'https://mydev.espacebailleurekna.fr/svg/baignoire.svg' },
+    douche: { label: 'Douche', icon: 'https://mydev.espacebailleurekna.fr/svg/douche.svg' },
+    vasque: { label: 'Vasque', icon: 'https://mydev.espacebailleurekna.fr/svg/vasque.svg' },
+    seche_serviette: { label: 'Sèche-serviette', icon: 'https://mydev.espacebailleurekna.fr/svg/seche_serviette.svg' },
+    seche_cheveux: { label: 'Sèche-cheveux', icon: 'https://mydev.espacebailleurekna.fr/svg/seche_cheveux.svg' },
+    double_vasque: { label: 'Double vasque', icon: 'https://mydev.espacebailleurekna.fr/svg/double_vasque.svg' },
+    ventilation: { label: 'Ventilation', icon: 'https://mydev.espacebailleurekna.fr/svg/ventilation.svg' },
+    lave_linge: { label: 'Lave-linge', icon: 'https://mydev.espacebailleurekna.fr/svg/lave_linge.svg' },
+    toilette: { label: 'Toilette', icon: 'https://mydev.espacebailleurekna.fr/svg/toilette.svg' },
+    balance: { label: 'Balance', icon: 'https://mydev.espacebailleurekna.fr/svg/balance.svg' },
+    balcon: { label: 'Balcon', icon: 'https://mydev.espacebailleurekna.fr/svg/balcon.svg' },
+    terasse: { label: 'Terrasse', icon: 'https://mydev.espacebailleurekna.fr/svg/terrasse.svg' },
+    barbecue: { label: 'Barbecue', icon: 'https://mydev.espacebailleurekna.fr/svg/barbecue.svg' },
+    jardin: { label: 'Jardin', icon: 'https://mydev.espacebailleurekna.fr/svg/jardin.svg' },
+}
+
+// Définition des pièces avec icônes principales
+const equipements_maison = {
+    salons: { icon: `https://mydev.espacebailleurekna.fr/svg/salon.svg` },
+    cuisines: { icon: `https://mydev.espacebailleurekna.fr/svg/cuisine.svg` },
+    salle_bain: { icon: `https://mydev.espacebailleurekna.fr/svg/douche.svg` },
+    exterieurs: { icon: `https://mydev.espacebailleurekna.fr/svg/exterieur.svg` },
+}
+
+// Générer la liste des équipements par pièce
+function getEquipementsContent(pieceData) {
+    return Object.keys(pieceData)
+        .filter((key) => key !== 'logements_id' && pieceData[key] && sousEquipementsMap[key])
+        .map((key) => sousEquipementsMap[key])
+}
+
+const equipementsMaisonList = computed(() =>
+    Object.keys(equipements_maison).map((pieceKey) => {
+        const pieceData = logement[pieceKey]
+        return pieceData
+            ? {
+                label: pieceKey.charAt(0).toUpperCase() + pieceKey.slice(1),
+                icon: equipements_maison[pieceKey].icon,
+                content: getEquipementsContent(pieceData),
+            }
+            : null
+    }).filter(Boolean)
+)
 </script>
 
 <style scoped>
-/* Styles identiques à ton exemple */
 .intro {
     margin-top: 40px;
     margin-bottom: 40px;
@@ -156,5 +189,43 @@ function openModal(item) {
     background: white;
     padding: 20px;
     border-radius: 8px;
+}
+
+.equip-modal-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 12px 0;
+}
+
+.equip-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60px;
+}
+
+
+.liste-content {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    padding: 24px 0;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.liste-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    /* width: 100px; */
+    text-align: center;
+}
+
+.liste-item img {
+    width: 100px;
+    clip-path: inset(2px 2px 2px 2px);
 }
 </style>

@@ -392,8 +392,10 @@ function extraireDateFin(periode) {
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
-    width: 100px;
+    /* width: 100px; */
     text-align: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .liste-item img {
