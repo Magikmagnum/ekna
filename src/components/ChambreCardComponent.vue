@@ -46,7 +46,7 @@
                             :key="index">
                             <img class="icon-placeholder" :src="equipement.icon" :alt="equipement.label" />
                             <span :title="equipement.label">
-                                {{ equipement.label.length > 8 ? equipement.label.slice(0, 6) + '…' : equipement.label }}
+                                {{ equipement.label.length > 10 ? equipement.label.slice(0, 8) + '…' : equipement.label }}
                             </span>
                         </div>
                     </div>
@@ -162,8 +162,8 @@ function extraireDateFin(periode) {
 
 <style scoped>
 .detail-row {
-    flex: 1;
-    margin-right: 32px;
+    /* flex: 1;
+    margin-right: 32px; */
 }
 
 .chambre-card {
@@ -210,7 +210,7 @@ function extraireDateFin(periode) {
 
 .info-section {
     flex: 2 1 530px;
-    padding: 24px;
+    padding: 12px 24px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -246,7 +246,7 @@ function extraireDateFin(periode) {
 }
 
 .equipements {
-    margin-top: 8px;
+    /* margin-top: 8px; */
 }
 
 .equipements h3 {
@@ -261,6 +261,8 @@ function extraireDateFin(periode) {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .equipements .equipement-item {
@@ -270,6 +272,9 @@ function extraireDateFin(periode) {
     width: 70px;
     height: 88px;
     align-items: center;
+}
+.equipement-item span {
+    font-size: 14px;
 }
 
 .equipements .icon-placeholder {
@@ -291,6 +296,8 @@ function extraireDateFin(periode) {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .detail-row-item {
@@ -304,6 +311,10 @@ function extraireDateFin(periode) {
     border-top: solid 1px #e5e5e5;
     padding: 6px 0;
     margin-bottom: 6px;
+}
+
+.detail-row-item span {
+    font-size: 0.9em;
 }
 
 .dot-green {
@@ -321,7 +332,7 @@ function extraireDateFin(periode) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin-bottom: 6px; */
+    margin-bottom: 3px;
 }
 
 .title-right {
