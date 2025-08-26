@@ -385,6 +385,7 @@ function extraireDateFin(periode) {
     flex-direction: row;
     gap: 24px;
     padding: 24px 0;
+    justify-content: space-around;
 }
 
 .liste-item {
