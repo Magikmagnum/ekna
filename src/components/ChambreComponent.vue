@@ -114,10 +114,10 @@ const sousEquipementsMap = {
 
 // Définition des pièces avec icônes principales
 const equipements_maison = {
-    salons: { icon: `https://mydev.espacebailleurekna.fr/svg/salon.svg` },
-    cuisines: { icon: `https://mydev.espacebailleurekna.fr/svg/cuisine.svg` },
-    salle_bain: { icon: `https://mydev.espacebailleurekna.fr/svg/douche.svg` },
-    exterieurs: { icon: `https://mydev.espacebailleurekna.fr/svg/exterieur.svg` },
+    salons: { label: "Salon", icon: `https://mydev.espacebailleurekna.fr/svg/salon.svg` },
+    cuisines: { label: "Cuisine", icon: `https://mydev.espacebailleurekna.fr/svg/cuisine.svg` },
+    salle_bain: { label: "Salle de bain", icon: `https://mydev.espacebailleurekna.fr/svg/douche.svg` },
+    exterieurs: { label: "Exterieur", icon: `https://mydev.espacebailleurekna.fr/svg/exterieur.svg` },
 }
 
 // Générer la liste des équipements par pièce
@@ -132,7 +132,7 @@ const equipementsMaisonList = computed(() =>
         const pieceData = logement[pieceKey]
         return pieceData
             ? {
-                label: pieceKey.charAt(0).toUpperCase() + pieceKey.slice(1),
+                label: equipements_maison[pieceKey].label,
                 icon: equipements_maison[pieceKey].icon,
                 content: getEquipementsContent(pieceData),
             }
@@ -176,7 +176,7 @@ const equipementsMaisonList = computed(() =>
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 78px;
+    width: 120px;
     cursor: pointer;
     text-align: center;
 }

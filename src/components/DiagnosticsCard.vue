@@ -6,7 +6,9 @@
                 :class="['bar-step', step.color, { active: dpeLetter === step.letter }]">
                 <span v-if="dpeLetter === step.letter">{{ step.letter }}</span>
             </div>
-            <button class="details-button button--effect button">Voir le détail</button>
+            <button class="details-button button--effect button" @click="openModal('dpe')">
+                Voir le détail
+            </button>
         </div>
     </div>
 
@@ -17,26 +19,42 @@
                 :class="['bar-step', step.color, { active: gesLetter === step.letter }]">
                 <span v-if="gesLetter === step.letter">{{ step.letter }}</span>
             </div>
-            <button class="details-button button--effect button">Voir le détail</button>
+            <button class="details-button button--effect button" @click="openModal('ges')">
+                Voir le détail
+            </button>
         </div>
     </div>
+
+    <!-- Modal via vue-final-modal -->
+    <VueFinalModal v-model="showModal" :esc-to-close="true" :click-to-close="true" content-class="custom-modal"
+        :content-style="{
+            background: 'white',
+            padding: '32px',
+            borderRadius: '8px',
+            maxWidth: '1000px',
+            width: '90%',
+            margin: 'auto',
+            marginTop: '100px'
+        }">
+        <div class="modal-body">
+            <h3 v-if="activeModal === 'dpe'">Diagnostic de performance énergétique</h3>
+            <h3 v-else-if="activeModal === 'ges'">Gaz à effet de serre</h3>
+            <!-- <img v-if="activeModal === 'dpe'" src="@/assets/images/dpe-exemple.png" alt="DPE" />
+            <img v-else-if="activeModal === 'ges'" src="@/assets/images/ges-exemple.png" alt="GES" /> -->
+            <button class="button button--effect" @click="showModal = false">Fermer</button>
+        </div>
+    </VueFinalModal>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import { VueFinalModal } from 'vue-final-modal'
 
 const props = defineProps({
-    dpe: {
-        type: Object,
-        required: true,
-    },
-    ges: {
-        type: Object,
-        required: true,
-    },
+    dpe: { type: Object, required: true },
+    ges: { type: Object, required: true }
 })
 
-// Fonction utilitaire pour extraire la lettre active
 function extractActiveLetter(diag) {
     if (!diag) return ''
     const lettres = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
@@ -54,7 +72,7 @@ const dpeScale = [
     { letter: 'D', color: 'yellow' },
     { letter: 'E', color: 'orange-a' },
     { letter: 'F', color: 'orange-b' },
-    { letter: 'G', color: 'red' },
+    { letter: 'G', color: 'red' }
 ]
 
 const gesScale = [
@@ -64,11 +82,47 @@ const gesScale = [
     { letter: 'D', color: 'gray-a' },
     { letter: 'E', color: 'gray-b' },
     { letter: 'F', color: 'gray-c' },
-    { letter: 'G', color: 'black' },
+    { letter: 'G', color: 'black' }
 ]
+
+const showModal = ref(false)
+const activeModal = ref(null)
+
+function openModal(type) {
+    activeModal.value = type
+    showModal.value = true
+}
 </script>
 
 <style scoped>
+.custom-modal {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    margin: auto;
+}
+
+
+.modal-body img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000;
+}
+
 .diagnostic-card {
     background-color: #fff;
     padding: 1.5rem;
