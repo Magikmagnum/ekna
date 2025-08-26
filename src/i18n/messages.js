@@ -111,7 +111,7 @@ export default {
             voirLaGalerie: "Voir la galerie",
             professionnel: "Professionnel",
             chargement: "Chargement...",
-            chambres: "chambres",
+            chambres: "chambres - Salle de bain individuelle",
             logement: "Logement",
             proprietaire: "Propriétaire",
             description: "Description du logement",
@@ -141,7 +141,9 @@ export default {
             occupant: "occupant",
             nonOccupant: "non occupant",
             equipementsLogement: "Équipement du logement",
-            galerie: "Galerie"
+            galerie: "Galerie",
+            chauffageDiagnostics: "Chauffage et diagnostics - connectivité",
+            equipementsChambre: "Équipement de la chambre"
         }
     },
     en: {

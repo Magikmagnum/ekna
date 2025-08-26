@@ -127,9 +127,6 @@ const props = defineProps({
 // Ajout de currentUrl
 const currentUrl = ref(window.location.href)
 
-
-console.log('PropertyDetailsSidebar props:', props)
-
 // Dates min / max de dispo (sécurisé)
 const disponibilites = computed(() => {
     const chambres = props.logement?.chambres_for_mobile

@@ -162,15 +162,18 @@ const avantages = computed(() => [
     props.logement.principaux_equipements?.length > 0
         ? t('PropertyDetailsComponent.equipementsLogement')
         : null,
-    props.logement.minDate ? t('PropertyDetailsComponent.datesDisponibilite') : null
+    props.logement.minDate ? t('PropertyDetailsComponent.datesDisponibilite') : null,
+
+    // Nouveaux éléments ajoutés
+  t('PropertyDetailsComponent.chauffageDiagnostics'),
+  t('PropertyDetailsComponent.equipementsChambre')
+
 ].filter(Boolean))
 
-
-
+console.log("Avantages", avantages)
 
 
 // Conditions pour louer le logement
-// Conditions pour louer le logement (reactives + compatible Vite)
 const conditions = computed(() => [
   {
     icon: new URL('@/assets/images/ekna/design.svg', import.meta.url).href,
