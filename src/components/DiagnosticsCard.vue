@@ -39,8 +39,8 @@
         <div class="modal-body">
             <h3 v-if="activeModal === 'dpe'">Diagnostic de performance énergétique</h3>
             <h3 v-else-if="activeModal === 'ges'">Gaz à effet de serre</h3>
-            <!-- <img v-if="activeModal === 'dpe'" src="@/assets/images/dpe-exemple.png" alt="DPE" />
-            <img v-else-if="activeModal === 'ges'" src="@/assets/images/ges-exemple.png" alt="GES" /> -->
+            <img v-if="activeModal === 'dpe'" src="@/assets/images/DPE.svg" alt="DPE" />
+            <img v-else-if="activeModal === 'ges'" src="@/assets/images/GES.svg" alt="GES" />
             <button class="button button--effect" @click="showModal = false">Fermer</button>
         </div>
     </VueFinalModal>
@@ -48,6 +48,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
+
 import { VueFinalModal } from 'vue-final-modal'
 
 const props = defineProps({
